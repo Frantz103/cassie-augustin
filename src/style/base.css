@@ -1,0 +1,117 @@
+/* Brand Colors */
+:root {
+    --pastel-pink: #E5B6B0;
+    --sunflower-yellow: #F1B041;
+    --off-white: #FFFOE1;
+    --dark-green: #353E2D;
+    --olive-green: #6A7350;
+    --dusty-rose: #C09A8A;
+  }
+  
+  /* Typography */
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap');
+  
+  body, button, input, textarea {
+    font-family: 'Lato', sans-serif;
+    color: var(--dark-green);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    color: var(--olive-green);
+  }
+  
+  h1 {
+    font-size: 3rem; /* Adjust size as needed */
+    font-weight: 700;
+  }
+  
+  h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+  
+  /* Button styling */
+  button {
+    background-color: var(--sunflower-yellow);
+    color: var(--dark-green);
+    border: none;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: var(--dusty-rose);
+  }
+  
+  /* Link styling */
+  a {
+    color: var(--olive-green);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: var(--sunflower-yellow);
+  }
+  
+  /* Layout and Grid */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 -15px;
+  }
+  
+  .col {
+    padding: 0 15px;
+    flex: 1;
+  }
+  
+  /* Misc */
+  /* Add other classes like modals, nav, etc., based on your layout structure */
+  
+  /* Example for the modal styling */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 50px;
+    box-sizing: border-box;
+  }
+  
+  .modal-content {
+    background-color: var(--off-white);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+  
+  .modal-close {
+    color: var(--dark-green);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .modal-close:hover,
+  .modal-close:focus {
+    color: var(--sunflower-yellow);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
