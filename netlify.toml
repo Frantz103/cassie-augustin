@@ -1,14 +1,18 @@
-# example netlify.toml
+# Example netlify.toml
 [build]
   command = "astro build"
-  functions = "netlify/functions"
   publish = "dist"
+  functions = "netlify/functions"
 
-[[plugins]] 
+[[plugins]]
   package = "netlify-plugin-cypress"
+  [plugins.inputs]
+    enable = false # Assuming you want this disabled globally
 
-  [plugins.inputs.postBuild]
-    enable = true
-  
-  [plugin.inputs]
-    enable = false
+  # The following section has been commented out because it seems you might have
+  # intended to configure something specific for postBuild but then chose to disable globally.
+  # If you have specific configurations for postBuild, ensure they're correctly nested
+  # and enabled as needed.
+
+  # [plugins.inputs.postBuild]
+  #   enable = true

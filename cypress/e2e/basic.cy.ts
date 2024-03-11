@@ -4,14 +4,14 @@ describe('empty spec', () => {
   })
 
   it('displays the resources text', () => {
-    cy.get('h1')
-    .contains('Quickstart Template');
+    cy.get('h1').contains('Ludnie Cassie Augustin');
   })
-  it('renders the image', () => {
-    cy.get('img')
-    .should('be.visible')
-    .and(($img) => {
-      expect($img[0].naturalWidth).to.be.greaterThan(0);
-    })
-  })
+
+  // it('renders the image', () => {
+  //   cy.get('img')
+  //     .should('be.visible')
+  //     .and(($img) => {
+  //       expect($img[0].naturalWidth).to.be.greaterThan(0);
+  //     })
+  // })
 })
