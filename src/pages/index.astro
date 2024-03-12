@@ -1,13 +1,47 @@
 ---
 import Layout from '../components/Layout.astro';
+import Header from '../components/Header.astro';
 //import content from '../data/content.json';
 // You may import any other components you need here.
 ---
-
 <Layout title="Ludnie Cassie Augustin - Nutritionist & Model">
-  <main>
-    <!-- Add your SVG background and other static content here -->
+  <div class="container">
+  <Header />
+ <main></main>
+  <div class="row">
+    <div class="one-half column">
+      <h1>Hi, I'm Cassie</h1>
+      <p>I am a nutritionist passionate about women health, fashion, and modeling.</p>
+       <div class="cta-container">
+          <a href="#your-target" class="cta-button" aria-label="Call to Action">Vote for me</a>
+        </div> 
+    </div>
+    <div class="one-half column image-container">
+      <img src="/assets/img/Ludnie.jpg" alt="A portrait of Ludnie Augustin showcasing her natural curly hair and subtle makeup, with a focus on her expressive eyes and glossy lips, complemented by elegant earrings." class="float-image">
+    </div>
+  </div>
 
+ <!-- Modal Sections -->
+ <section id="about" class="modal">
+  <!-- About content goes here -->
+</section>
+
+<section id="miss-choucoune" class="modal">
+  <!-- Miss Choucoune content goes here -->
+</section>
+
+<section id="lookbook" class="modal">
+  <!-- Lookbook content goes here -->
+</section>
+
+<section id="contact" class="modal">
+  <!-- Contact content goes here -->
+</section>
+
+</div>
+   
+</main>
+  <footer>
     <nav>
       <ul>
         <li><a href="#about" rel="modal:open">About</a></li>
@@ -17,29 +51,5 @@ import Layout from '../components/Layout.astro';
         <!-- You can add your Blog link here later -->
       </ul>
     </nav>
-
-    <section id="hero">
-      <h1>Ludnie Cassie Augustin</h1>
-      <h2>Nutritionist & Model</h2>
-
-</section>
-    <!-- Modal Sections -->
-    <section id="about" class="modal">
-      <!-- About content goes here -->
-    </section>
-    
-    <section id="miss-choucoune" class="modal">
-      <!-- Miss Choucoune content goes here -->
-    </section>
-
-    <section id="lookbook" class="modal">
-      <!-- Lookbook content goes here -->
-    </section>
-    
-    <section id="contact" class="modal">
-      <!-- Contact content goes here -->
-    </section>
-    
-    <!-- More content here -->
-  </main>
+  </footer>
 </Layout>
