@@ -111,7 +111,6 @@
   }
 }
 
-
   /* Layout and Grid */
   .container {
     max-width: 1200px;
@@ -132,8 +131,6 @@
   
   /* Misc */
   /* Add other classes like modals, nav, etc., based on your layout structure */
-  
-  /* Example for the modal styling */
   .modal {
     display: none;
     position: fixed;
