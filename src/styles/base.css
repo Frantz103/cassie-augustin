@@ -12,19 +12,27 @@
     --dusty-rose: #C09A8A;
   }
   
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    min-height: 100vh;
+  }
   
   body, button, input, textarea {
     font-family: 'Lato', sans-serif;
-    color: var(--dark-green);
+    color: #000;
   }
   
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Playfair Display', serif;
-    color: var(--olive-green);
+    color: #000;
   }
   
   h1 {
-    font-size: 3rem; /* Adjust size as needed */
+    font-size: 6rem; /* Adjust size as needed */
     font-weight: 700;
   }
   
@@ -33,28 +41,17 @@
     font-weight: 700;
   }
   
-  /* header, images, etc. */
-  .image-container {
-    position: relative;
+  .content-wrapper {
+    flex: 1;
   }
   
-  .float-image {
-    position: absolute;
-    top: -50px; /* Adjust this value to how much you want the image to float above */
-    right: 0;
-    z-index: 10; /* Ensure the z-index is higher than that of the header */
-    width: 100%; /* Adjust if necessary */
-    max-width: 500px; /* Adjust based on your design */
-  }
-  
-  /* Adjust header z-index to ensure it is lower than the image's z-index */
-  header {
-    position: relative;
-    z-index: 1;
-  }
-  
-  /* Rest of your custom Skeleton styling here */
-  
+/* Hide on mobile, display on desktop */
+.hide-on-mobile {
+  display: none; /* Hide by default */
+}
+
+
+
   /* Button styling */
   button {
     background-color: var(--sunflower-yellow);
@@ -72,7 +69,7 @@
   
   /* Link styling */
   a {
-    color: var(--olive-green);
+    color: #000;
     text-decoration: none;
     transition: color 0.3s ease;
   }
@@ -87,13 +84,19 @@
   background-color: var(--sunflower-yellow); /* Using CSS variable for the color */
   border: none;
   cursor: pointer;
-  color: var(--dark-green); /* Assuming this is a contrasting color for text */
-  font-size: 1.25rem; /* Adjust size as needed */
   padding: 1rem 2rem; /* Adjust padding as needed */
   text-align: center;
   display: inline-block; /* For <a> tag to behave like a button */
-  text-decoration: none; /* Remove underline from <a> tag */
-  border-radius: 4px; /* Optional: if you want rounded corners */
+  text-decoration: none; /* Remove underline from <a> tag */ /* Optional: if you want rounded corners */
+  margin-top: 30px;
+  max-width: 300px;
+ color: #000;
+ font-size: 16px;
+ font-family: Lato;
+ font-weight: 400;
+ word-wrap: break-word;
+  text-transform: uppercase;
+  transition: background-color 0.3s ease;
 }
 
 /* Add styles for hover state for better user interaction feedback */
@@ -113,21 +116,12 @@
 
   /* Layout and Grid */
   .container {
-    max-width: 1200px;
+    max-width: 1920px;
     margin: 0 auto;
     padding: 0 15px;
   }
   
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 -15px;
-  }
-  
-  .col {
-    padding: 0 15px;
-    flex: 1;
-  }
+
   
   /* Misc */
   /* Add other classes like modals, nav, etc., based on your layout structure */
@@ -167,3 +161,124 @@
     cursor: pointer;
   }
   
+   /* header, images, etc. */
+   .image-container {
+    position: relative;
+  }
+
+
+  /* Desktop styles inside this media query */
+@media (min-width: 769px) {
+  body {
+    font-size: 16px;
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+ 
+  header nav, .brand {
+    height: 78px;
+    background-color: var(--pastel-pink);
+  }
+
+  .brand {
+    color: #000;
+    width: 100%;
+    max-width: 1790px;
+  }
+
+  .intro-container{
+    min-height: 300px;
+    margin-top: 20%;
+    margin-bottom: 3rem;
+  }
+
+  .intro-container h1 {
+ 
+ font-size: 56px;
+ font-family: Playfair Display;
+ font-weight: 400;
+ line-height: 25px;
+ letter-spacing: 5.60px;
+ word-wrap: break-word;
+text-transform: uppercase;
+margin-bottom: 5%;
+  }
+
+  .intro {
+    
+color: black;
+ font-size: 28px;
+ font-family: Lato;
+ font-weight: 300;
+ line-height: 35px;
+ letter-spacing: 0.70px;
+ word-wrap: break-word;
+  }
+
+  .brand p {
+    color: black;
+    font-size: 24px;
+    font-family: Lato;
+    font-weight: 300;
+    letter-spacing: 6px;
+    word-wrap: break-word;
+    text-transform: uppercase;
+    padding-top: 20px;
+    padding-bottom: 25px;
+  }
+
+   .menu {
+    max-width: 130px;
+    background-color: var(--pastel-pink);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 78px;
+   }
+ .menu-icon {
+   width: 70%;
+   cursor: pointer;
+ }
+  .hide-on-mobile {
+    display: block; /* Or "flex", "inline", etc., depending on your layout needs */
+   }
+   
+  header {
+    position: relative;
+    z-index: 1;
+    background-color: var(--pastel-pink);
+  }
+
+  .float-image {
+    position: absolute;
+    top: -10rem; /* Adjust this value to how much you want the image to float above */
+    right: 12rem;
+    z-index: 10; /* Ensure the z-index is higher than that of the header */
+    width: 90%; /* Adjust if necessary */
+  }
+
+  footer {
+    width: 100%;
+    background-color: var(--pastel-pink);
+    height:85px;
+  }
+  footer ul {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style-type: none;
+  }
+
+ footer li a {
+  color: #000;
+  font-size: 16px;
+  font-weight: 400;
+  word-wrap: break-word;
+  line-height: 85px;
+  }
+}/* Desktop styles inside this media query */

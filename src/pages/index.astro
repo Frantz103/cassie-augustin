@@ -1,24 +1,30 @@
 ---
 import Layout from '../components/Layout.astro';
 import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
 import '../styles/base.css';
 //import content from '../data/content.json';
 // You may import any other components you need here.
 ---
 <Layout title="Ludnie Cassie Augustin - Nutritionist & Model">
-  <div class="container">
+  
+ 
   <Header />
- <main></main>
+  <div class="container">
   <div class="row">
     <div class="one-half column">
+      <div class="intro-container">
       <h1>Hi, I'm Cassie</h1>
-      <p>I am a nutritionist passionate about women health, fashion, and modeling.</p>
+      <p class="intro">I am a nutritionist passionate about women health, fashion, and modeling.</p>
+      
        <div class="cta-container">
           <a href="#your-target" class="cta-button" aria-label="Call to Action">Vote for me</a>
         </div> 
+      </div>
     </div>
-    <div class="one-half column image-container">
-      <img src="/assets/img/Ludnie.jpg" alt="A portrait of Ludnie Augustin showcasing her natural curly hair and bold makeup, with a focus on her expressive eyes and glossy lips, complemented by elegant earrings." class="float-image">
+    <div class="one-half column image-container ">
+      <img class="u-max-full-width float-image " src="/assets/img/Ludnie.jpg" alt="A portrait of Ludnie Augustin showcasing her natural curly hair and bold makeup, with a focus on her expressive eyes and glossy lips, complemented by elegant earrings." class="float-image">
     </div>
   </div>
 
@@ -40,17 +46,6 @@ import '../styles/base.css';
 </section>
 
 </div>
-   
-</main>
-  <footer>
-    <nav>
-      <ul>
-        <li><a href="#about" rel="modal:open">About</a></li>
-        <li><a href="#miss-choucoune" rel="modal:open">Miss Choucoune</a></li>
-        <li><a href="#lookbook" rel="modal:open">Lookbook</a></li>
-        <li><a href="#contact" rel="modal:open">Contact</a></li>
-        <!-- You can add your Blog link here later -->
-      </ul>
-    </nav>
-  </footer>
 </Layout>
+
+<Footer />

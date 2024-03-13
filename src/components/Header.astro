@@ -1,23 +1,25 @@
-<header>
-    <nav>
+<header class="u-full-width">
+    <nav class="container">
       <div class="brand">
-        <p>Ludnie Cassie Augustin</p>
+        <p class="hide-on-mobile">Ludnie Cassie Augustin</p>
       </div>
-      <div class="navigation-links">
+       <!-- This can be a button or an icon that toggles a mobile menu -->
+       <div class="menu" aria-label="Toggle menu" onclick="toggleMenu()">
+        <img class="menu-icon" src="/assets/icons/menu.png"/>
+      </div>
+
+      <div id="navigation-links" class="navigation-links" style="display: none;">
         <a href="#about">About</a>
         <a href="#miss-choucoune">Miss Choucoune</a>
         <a href="#lookbook">Lookbook</a>
         <a href="#contact">Contact</a>
         <!-- Add other navigation links here -->
       </div>
-      <div class="menu-toggle">
-        <!-- This can be a button or an icon that toggles a mobile menu -->
-        <button aria-label="Toggle menu" onclick="toggleMenu()">
-          ☰
-        </button>
+       
       </div>
     </nav>
   </header>
+  
   <script>
     function toggleMenu() {
       var navigationLinks = document.getElementById('navigation-links');
@@ -27,4 +29,4 @@
         navigationLinks.style.display = 'none';
       }
     }
-  </script>  
+  </script>
