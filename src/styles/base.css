@@ -1,5 +1,5 @@
 /* Typography */
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap');
 
 /* Brand Colors */
 :root {
@@ -9,13 +9,14 @@
   --dark-green: #353E2D;
   --olive-green: #6A7350;
   --dusty-rose: #C09A8A;
+  --black: #000;
+  --white: #fff;
 }
 
 html {
   height: 100%;
   margin: 0;
   font-size: 100%;
-  /* 1rem = 16px */
 }
 
 body {
@@ -25,7 +26,6 @@ body {
   min-height: 100vh;
   /* This will make the body at least the height of the viewport */
   padding-bottom: 85px;
-  /* Adjust this value to your footer's height */
   box-sizing: border-box;
   /* Ensures padding is included in the total height calculation */
 }
@@ -51,7 +51,6 @@ h6 {
 
 h1 {
   font-size: 6rem;
-  /* Adjust size as needed */
   font-weight: 700;
 }
 
@@ -60,23 +59,11 @@ h2 {
   font-weight: 700;
 }
 
-
-
 /* Hide on mobile, display on desktop */
 .hide-on-mobile {
   display: none;
-  /* Hide by default */
 }
 
-footer {
-  position: fixed;
-  width: 100%;
-  background-color: var(--pastel-pink);
-  height: 85px;
-  bottom: 0;
-  z-index: 9999999;
-  border-top: 2px solid var(--dark-green);
-}
 
 /* Button styling */
 button {
@@ -108,17 +95,12 @@ a:hover {
   width: 100%;
   height: 100%;
   background-color: var(--sunflower-yellow);
-  /* Using CSS variable for the color */
   border: none;
   cursor: pointer;
   padding: 1rem 2rem;
-  /* Adjust padding as needed */
   text-align: center;
   display: inline-block;
-  /* For <a> tag to behave like a button */
   text-decoration: none;
-  /* Remove underline from <a> tag */
-  /* Optional: if you want rounded corners */
   margin-top: 30px;
   max-width: 300px;
   color: #000;
@@ -134,12 +116,9 @@ a:hover {
 .cta-button:hover,
 .cta-button:focus {
   background-color: #e09c32;
-  /* A slightly darker shade for interaction */
-  outline: none;
-  /* Remove the focus outline and replace with a state change */
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments for mobile device */
 @media (max-width: 768px) {
   .cta-button {
     font-size: 1rem;
@@ -156,50 +135,21 @@ a:hover {
   padding: 0 15px;
 }
 
-
-/* Misc */
-/* Add other classes like modals, nav, etc., based on your layout structure */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 50px;
-  box-sizing: border-box;
-}
-
-.modal-content {
-  background-color: var(--off-white);
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-.modal-close {
-  color: var(--dark-green);
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.modal-close:hover,
-.modal-close:focus {
-  color: var(--sunflower-yellow);
-  text-decoration: none;
-  cursor: pointer;
-}
-
 /* header, images, etc. */
 .image-container {
   position: relative;
 }
 
+/* Footer */
+footer {
+  position: fixed;
+  width: 100%;
+  background-color: var(--pastel-pink);
+  height: 85px;
+  bottom: 0;
+  z-index: 9999999;
+  border-top: 2px solid var(--dark-green);
+}
 
 /* Desktop styles inside this media query */
 @media (min-width: 769px) {
@@ -321,3 +271,42 @@ a:hover {
 }
 
 /* Desktop styles inside this media query */
+
+
+/* Misc */
+/* Add other classes like modals, nav, etc., based on your layout structure */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 50px;
+  box-sizing: border-box;
+}
+
+.modal-content {
+  background-color: var(--off-white);
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.modal-close {
+  color: var(--dark-green);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  color: var(--sunflower-yellow);
+  text-decoration: none;
+  cursor: pointer;
+}
