@@ -1,100 +1,131 @@
-
 /* Typography */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap');
-  
+
 /* Brand Colors */
 :root {
-    --pastel-pink: #E5B6B0;
-    --sunflower-yellow: #F1B041;
-    --off-white: #FFFOE1;
-    --dark-green: #353E2D;
-    --olive-green: #6A7350;
-    --dusty-rose: #C09A8A;
-  }
-  
-  html, body {
-    height: 100%;
-    margin: 0;
-  }
+  --pastel-pink: #E5B6B0;
+  --sunflower-yellow: #F1B041;
+  --off-white: #FFFOE1;
+  --dark-green: #353E2D;
+  --olive-green: #6A7350;
+  --dusty-rose: #C09A8A;
+}
 
-  body {
-    min-height: 100vh;
-  }
-  
-  body, button, input, textarea {
-    font-family: 'Lato', sans-serif;
-    color: #000;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
-    color: #000;
-  }
-  
-  h1 {
-    font-size: 6rem; /* Adjust size as needed */
-    font-weight: 700;
-  }
-  
-  h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-  }
-  
-  .content-wrapper {
-    flex: 1;
-  }
-  
-/* Hide on mobile, display on desktop */
-.hide-on-mobile {
-  display: none; /* Hide by default */
+html {
+  height: 100%;
+  margin: 0;
+  font-size: 100%;
+  /* 1rem = 16px */
+}
+
+body {
+  margin: 0;
+  display: block;
+  /* Ensure this is reset to block if not already */
+  min-height: 100vh;
+  /* This will make the body at least the height of the viewport */
+  padding-bottom: 85px;
+  /* Adjust this value to your footer's height */
+  box-sizing: border-box;
+  /* Ensures padding is included in the total height calculation */
+}
+
+
+body,
+button,
+input,
+textarea {
+  font-family: 'Lato', sans-serif;
+  color: #000;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Playfair Display', serif;
+  color: #000;
+}
+
+h1 {
+  font-size: 6rem;
+  /* Adjust size as needed */
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
 }
 
 
 
-  /* Button styling */
-  button {
-    background-color: var(--sunflower-yellow);
-    color: var(--dark-green);
-    border: none;
-    padding: 1rem 2rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover {
-    background-color: var(--dusty-rose);
-  }
-  
-  /* Link styling */
-  a {
-    color: #000;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  a:hover {
-    color: var(--sunflower-yellow);
-  }
+/* Hide on mobile, display on desktop */
+.hide-on-mobile {
+  display: none;
+  /* Hide by default */
+}
+
+footer {
+  position: fixed;
+  width: 100%;
+  background-color: var(--pastel-pink);
+  height: 85px;
+  bottom: 0;
+  z-index: 9999999;
+  border-top: 2px solid var(--dark-green);
+}
+
+/* Button styling */
+button {
+  background-color: var(--sunflower-yellow);
+  color: var(--dark-green);
+  border: none;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: var(--dusty-rose);
+}
+
+/* Link styling */
+a {
+  color: #000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: var(--sunflower-yellow);
+}
 
 .cta-button {
   width: 100%;
   height: 100%;
-  background-color: var(--sunflower-yellow); /* Using CSS variable for the color */
+  background-color: var(--sunflower-yellow);
+  /* Using CSS variable for the color */
   border: none;
   cursor: pointer;
-  padding: 1rem 2rem; /* Adjust padding as needed */
+  padding: 1rem 2rem;
+  /* Adjust padding as needed */
   text-align: center;
-  display: inline-block; /* For <a> tag to behave like a button */
-  text-decoration: none; /* Remove underline from <a> tag */ /* Optional: if you want rounded corners */
+  display: inline-block;
+  /* For <a> tag to behave like a button */
+  text-decoration: none;
+  /* Remove underline from <a> tag */
+  /* Optional: if you want rounded corners */
   margin-top: 30px;
   max-width: 300px;
- color: #000;
- font-size: 16px;
- font-family: Lato;
- font-weight: 400;
- word-wrap: break-word;
+  color: #000;
+  font-size: 16px;
+  font-family: Lato;
+  font-weight: 400;
+  word-wrap: break-word;
   text-transform: uppercase;
   transition: background-color 0.3s ease;
 }
@@ -102,84 +133,85 @@
 /* Add styles for hover state for better user interaction feedback */
 .cta-button:hover,
 .cta-button:focus {
-  background-color: #e09c32; /* A slightly darker shade for interaction */
-  outline: none; /* Remove the focus outline and replace with a state change */
+  background-color: #e09c32;
+  /* A slightly darker shade for interaction */
+  outline: none;
+  /* Remove the focus outline and replace with a state change */
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .cta-button {
-    font-size: 1rem; /* Smaller text on mobile devices */
-    padding: 0.75rem 1.5rem; /* Adjust padding as needed for smaller screens */
+    font-size: 1rem;
+    /* Smaller text on mobile devices */
+    padding: 0.75rem 1.5rem;
+    /* Adjust padding as needed for smaller screens */
   }
 }
 
-  /* Layout and Grid */
-  .container {
-    max-width: 1920px;
-    margin: 0 auto;
-    padding: 0 15px;
-  }
-  
-
-  
-  /* Misc */
-  /* Add other classes like modals, nav, etc., based on your layout structure */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 50px;
-    box-sizing: border-box;
-  }
-  
-  .modal-content {
-    background-color: var(--off-white);
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  }
-  
-  .modal-close {
-    color: var(--dark-green);
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  
-  .modal-close:hover,
-  .modal-close:focus {
-    color: var(--sunflower-yellow);
-    text-decoration: none;
-    cursor: pointer;
-  }
-  
-   /* header, images, etc. */
-   .image-container {
-    position: relative;
-  }
+/* Layout and Grid */
+.container {
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
 
 
-  /* Desktop styles inside this media query */
+/* Misc */
+/* Add other classes like modals, nav, etc., based on your layout structure */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 50px;
+  box-sizing: border-box;
+}
+
+.modal-content {
+  background-color: var(--off-white);
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.modal-close {
+  color: var(--dark-green);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.modal-close:hover,
+.modal-close:focus {
+  color: var(--sunflower-yellow);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* header, images, etc. */
+.image-container {
+  position: relative;
+}
+
+
+/* Desktop styles inside this media query */
 @media (min-width: 769px) {
-  body {
-    font-size: 16px;
-  }
 
   nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
- 
-  header nav, .brand {
+
+  header nav,
+  .brand {
     height: 78px;
     background-color: var(--pastel-pink);
   }
@@ -190,33 +222,36 @@
     max-width: 1790px;
   }
 
-  .intro-container{
+  .intro-container {
     min-height: 300px;
     margin-top: 20%;
     margin-bottom: 3rem;
+    margin-right: 2rem;
   }
 
   .intro-container h1 {
- 
- font-size: 56px;
- font-family: Playfair Display;
- font-weight: 400;
- line-height: 25px;
- letter-spacing: 5.60px;
- word-wrap: break-word;
-text-transform: uppercase;
-margin-bottom: 5%;
+
+    font-size: 56px;
+    font-family: Playfair Display;
+    font-weight: 400;
+    line-height: 25px;
+    letter-spacing: 5.60px;
+    word-wrap: break-word;
+    text-transform: uppercase;
+    margin-bottom: 5%;
   }
 
   .intro {
-    
-color: black;
- font-size: 28px;
- font-family: Lato;
- font-weight: 300;
- line-height: 35px;
- letter-spacing: 0.70px;
- word-wrap: break-word;
+
+    color: black;
+    font-size: 28px;
+    font-family: Lato;
+    font-weight: 300;
+    line-height: 35px;
+    letter-spacing: 0.70px;
+    word-wrap: break-word;
+    max-width: 80%;
+    margin-right: 2rem;
   }
 
   .brand p {
@@ -231,22 +266,25 @@ color: black;
     padding-bottom: 25px;
   }
 
-   .menu {
+  .menu {
     max-width: 130px;
     background-color: var(--pastel-pink);
     display: flex;
     justify-content: flex-end;
     align-items: center;
     height: 78px;
-   }
- .menu-icon {
-   width: 70%;
-   cursor: pointer;
- }
+  }
+
+  .menu-icon {
+    width: 70%;
+    cursor: pointer;
+  }
+
   .hide-on-mobile {
-    display: block; /* Or "flex", "inline", etc., depending on your layout needs */
-   }
-   
+    display: block;
+    /* Or "flex", "inline", etc., depending on your layout needs */
+  }
+
   header {
     position: relative;
     z-index: 1;
@@ -255,17 +293,16 @@ color: black;
 
   .float-image {
     position: absolute;
-    top: -10rem; /* Adjust this value to how much you want the image to float above */
+    top: -10rem;
+    /* Adjust this value to how much you want the image to float above */
     right: 12rem;
-    z-index: 10; /* Ensure the z-index is higher than that of the header */
-    width: 90%; /* Adjust if necessary */
+    z-index: 10;
+    /* Ensure the z-index is higher than that of the header */
+    width: 100%;
+    /* Adjust if necessary */
   }
 
-  footer {
-    width: 100%;
-    background-color: var(--pastel-pink);
-    height:85px;
-  }
+
   footer ul {
     width: 100%;
     display: flex;
@@ -274,11 +311,13 @@ color: black;
     list-style-type: none;
   }
 
- footer li a {
-  color: #000;
-  font-size: 16px;
-  font-weight: 400;
-  word-wrap: break-word;
-  line-height: 85px;
+  footer li a {
+    color: #000;
+    font-size: 16px;
+    font-weight: 400;
+    word-wrap: break-word;
+    line-height: 85px;
   }
-}/* Desktop styles inside this media query */
+}
+
+/* Desktop styles inside this media query */
