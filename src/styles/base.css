@@ -36,7 +36,7 @@ button,
 input,
 textarea {
   font-family: 'Lato', sans-serif;
-  color: #000;
+  color: var(--black);
 }
 
 h1,
@@ -46,12 +46,15 @@ h4,
 h5,
 h6 {
   font-family: 'Playfair Display', serif;
-  color: #000;
+  color: var(--black);
 }
 
 h1 {
-  font-size: 6rem;
-  font-weight: 700;
+  font-size: 2.5rem;
+  font-weight: 400;
+  letter-spacing: 4px;
+  word-wrap: break-word;
+  text-transform: uppercase;
 }
 
 h2 {
@@ -62,6 +65,15 @@ h2 {
 /* Hide on mobile, display on desktop */
 .hide-on-mobile {
   display: none;
+}
+
+.intro {
+font-size: 1.25rem;
+font-family: Lato;
+font-weight: 400;
+letter-spacing: 0.50px;
+word-wrap: break-word;
+color: var(--white);
 }
 
 
@@ -120,13 +132,36 @@ a:hover {
 
 /* Responsive adjustments for mobile device */
 @media (max-width: 768px) {
+
   .cta-button {
     font-size: 1rem;
-    /* Smaller text on mobile devices */
     padding: 0.75rem 1.5rem;
-    /* Adjust padding as needed for smaller screens */
   }
-}
+
+  .intro-container {
+    width: 100%; /* Match the parent's width */
+    min-height: 300px; /* Adjust as necessary */
+    z-index: 1; /* Ensure the text is above the image */
+    margin-top: 70%;
+  }
+
+  .intro-container h1 {
+    color: var(--white);
+  }
+
+  body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/assets/img/ludnie.jpg') no-repeat center center;
+    background-size: cover; /* Cover the entire page */
+    z-index: -1; /* Ensure the image is behind the content */
+  }
+
+} /* End of media query for mobile devices */
 
 /* Layout and Grid */
 .container {
@@ -152,6 +187,7 @@ footer {
 }
 
 /* Desktop styles inside this media query */
+
 @media (min-width: 769px) {
 
   nav {
@@ -180,15 +216,13 @@ footer {
   }
 
   .intro-container h1 {
-
     font-size: 56px;
     font-family: Playfair Display;
+    font-style: normal;
     font-weight: 400;
-    line-height: 25px;
     letter-spacing: 5.60px;
     word-wrap: break-word;
     text-transform: uppercase;
-    margin-bottom: 5%;
   }
 
   .intro {
@@ -232,7 +266,6 @@ footer {
 
   .hide-on-mobile {
     display: block;
-    /* Or "flex", "inline", etc., depending on your layout needs */
   }
 
   header {
@@ -244,14 +277,10 @@ footer {
   .float-image {
     position: absolute;
     top: -10rem;
-    /* Adjust this value to how much you want the image to float above */
     right: 12rem;
     z-index: 10;
-    /* Ensure the z-index is higher than that of the header */
     width: 100%;
-    /* Adjust if necessary */
   }
-
 
   footer ul {
     width: 100%;
@@ -268,9 +297,10 @@ footer {
     word-wrap: break-word;
     line-height: 85px;
   }
-}
 
-/* Desktop styles inside this media query */
+}/* End of braket for media query */
+
+/* Desktop styles above end here  */
 
 
 /* Misc */
