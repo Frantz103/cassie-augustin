@@ -1,5 +1,4 @@
 /* Typography */
-/*@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@400;700&display=swap');
 
 /* Brand Colors */
 :root {
@@ -13,6 +12,25 @@
   --white: #fff;
 }
 
+.white {
+  color: var(--white);
+}
+.black {
+  color: var(--black);
+}
+
+.yellow-bg {
+  background-color: var(--sunflower-yellow);
+}
+
+.pink-bg {
+  background-color: var(--pastel-pink);
+}
+
+.off-white-bg {
+  background-color: var(--off-white);
+}
+
 html {
   height: 100%;
   margin: 0;
@@ -22,14 +40,10 @@ html {
 body {
   margin: 0;
   display: block;
-  /* Ensure this is reset to block if not already */
   min-height: 100vh;
-  /* This will make the body at least the height of the viewport */
   padding-bottom: 85px;
   box-sizing: border-box;
-  /* Ensures padding is included in the total height calculation */
 }
-
 
 body,
 button,
@@ -58,13 +72,16 @@ h1 {
 }
 
 h2 {
-  font-size: 2.5rem;
+  font-size: 1.75rem;
   font-weight: 700;
 }
 
 /* Hide on mobile, display on desktop */
 .hide-on-mobile {
   display: none;
+}
+.hide-on-desktop {
+  display: block;
 }
 
 .intro {
@@ -100,7 +117,7 @@ a {
 }
 
 a:hover {
-  color: var(--sunflower-yellow);
+  color: var( --dark-green);
 }
 
 .cta-button {
@@ -133,20 +150,52 @@ a:hover {
 /* Responsive adjustments for mobile device */
 @media (max-width: 768px) {
 
+  header{
+    background-color: rgba(0, 0, 0, 0.45); 
+    height: auto;
+    z-index: 999999;
+  }
+
+  .menu{
+    float: right;
+    right: -2rem;
+    top: 10px;
+    position: absolute;
+  }
+
+ 
+  img.menu-icon.mobile {
+   width: 4.1875rem;
+  }
+
   .cta-button {
-    font-size: 1rem;
     padding: 0.75rem 1.5rem;
+    margin-top: 1rem;
+    width: 15.625rem;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25); 
+  }
+
+  .cta-button:hover {
+    /* Optional: Slightly different shadow on hover for a dynamic effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   }
 
   .intro-container {
     width: 100%; /* Match the parent's width */
     min-height: 300px; /* Adjust as necessary */
     z-index: 1; /* Ensure the text is above the image */
-    margin-top: 70%;
+    padding-top: 85%;
+  
   }
 
   .intro-container h1 {
     color: var(--white);
+    line-height: 0.5rem;
+  }
+  .intro {
+    letter-spacing: 0.1rem;
+    font-weight: 300;
+    font-size: 1.4rem;
   }
 
   body::before {
@@ -156,15 +205,42 @@ a:hover {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('/assets/img/ludnie.jpg') no-repeat center center;
+    background: url('/assets/img/ludnie-mobile.JPG') no-repeat center center;
     background-size: cover; /* Cover the entire page */
     z-index: -1; /* Ensure the image is behind the content */
   }
 
+  body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.25); /* Example overlay color and opacity */
+    z-index: 0; /* Above the image, but below the content */
+  }
+
+  .footer-menu ul {
+    display: flex;
+    justify-content: space-between; /* Evenly distributes space between items */
+    align-items: center; /* Align items vertically in the center */
+    flex-wrap: nowrap; /* Prevents wrapping, enforcing a single line */
+    width: 100%; /* Ensures the footer menu uses the full width of its container */
+    line-height: 5.3125rem;
+  }
+  
+  
+  .footer-menu li {
+    margin: 0;
+    list-style: none;
+  }
+  
+
 } /* End of media query for mobile devices */
 
 /* Layout and Grid */
-.container {
+.container, footer {
   max-width: 1920px;
   margin: 0 auto;
   padding: 0 15px;
@@ -268,6 +344,10 @@ footer {
     display: block;
   }
 
+  .hide-on-desktop {
+    display: none;
+  }
+
   header {
     position: relative;
     z-index: 1;
@@ -279,17 +359,18 @@ footer {
     top: -10rem;
     right: 12rem;
     z-index: 10;
-    width: 100%;
+    width: 86.40625%;
   }
-
-  footer ul {
+  .footer .footer-desktop{
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    list-style-type: none;
   }
-
+footer li {
+  list-style-type: none;
+}
+  
   footer li a {
     color: #000;
     font-size: 16px;

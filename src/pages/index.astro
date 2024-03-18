@@ -1,19 +1,14 @@
 ---
 import Layout from '../components/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Modal from '../components/Modal.astro';
 
-import '../styles/base.css';
 //import content from '../data/content.json';
-// You may import any other components you need here.
 ---
 <Layout title="Ludnie Cassie Augustin - Nutritionist & Model">
   
- 
-  <Header />
   <div class="container">
   <div class="row">
-    <div class="one-half column">
+    <div class="six columns">
       <div class="intro-container">
       <h1>Hi, I'm Cassie</h1>
       <p class="intro">I am a nutritionist passionate about women health, fashion, and modeling.</p>
@@ -23,29 +18,10 @@ import '../styles/base.css';
         </div> 
       </div>
     </div>
-    <div class="one-half column image-container hide-on-mobile  ">
+    <div class="six columns image-container hide-on-mobile  ">
       <img class="u-max-full-width float-image " src="/assets/img/Ludnie.jpg" alt="A portrait of Ludnie Augustin showcasing her natural curly hair and bold makeup, with a focus on her expressive eyes and glossy lips, complemented by elegant earrings." class="float-image">
     </div>
   </div>
-
- <!-- Modal Sections -->
- <section id="about" class="modal">
-  <!-- About content goes here -->
-</section>
-
-<section id="miss-choucoune" class="modal">
-  <!-- Miss Choucoune content goes here -->
-</section>
-
-<section id="lookbook" class="modal">
-  <!-- Lookbook content goes here -->
-</section>
-
-<section id="contact" class="modal">
-  <!-- Contact content goes here -->
-</section>
-
+    <Modal />
 </div>
 </Layout>
-
-<Footer />

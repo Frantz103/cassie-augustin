@@ -4,23 +4,29 @@
         <p class="hide-on-mobile">Ludnie Cassie Augustin</p>
       </div>
        <!-- This can be a button or an icon that toggles a mobile menu -->
-       <div class="menu" aria-label="Toggle menu" onclick="toggleMenu()">
-        <img class="menu-icon" src="/assets/icons/menu.png"/>
-      </div>
-
-      <div id="navigation-links" class="navigation-links" style="display: none;">
-        <a href="#about">About</a>
-        <a href="#miss-choucoune">Miss Choucoune</a>
-        <a href="#lookbook">Lookbook</a>
-        <a href="#contact">Contact</a>
-        <!-- Add other navigation links here -->
-      </div>
-       
+       <div class="menu" id="menu" aria-label="Toggle menu">
+        <img class="menu-icon hide-on-mobile" src="/assets/icons/menu.png"/>
+        <img class="menu-icon mobile hide-on-desktop" src="/assets/icons/menu-2.png"/>
       </div>
     </nav>
   </header>
+
+
+  <div id="navigation-links" class="navigation-links" style="display: none;">
+    <ul>
+     <li><a href="#about">About</a></li>
+      <li><a href="#miss-choucoune">Miss Choucoune</a></li>
+      <li><a href="#lookbook">Lookbook</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="/blog">Blog</a></li>
+    </ul>
+  </div>
   
   <script>
+    document.getElementById('menu').onclick = function() {
+      toggleMenu();
+    };
+    
     function toggleMenu() {
       var navigationLinks = document.getElementById('navigation-links');
       if (navigationLinks.style.display === 'none') {
