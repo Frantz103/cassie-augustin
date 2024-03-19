@@ -1,16 +1,57 @@
- <!-- Modal Sections -->
- <section id="about" class="modal">
-    <!-- About content goes here -->
-  </section>
+
+ <!-- Modal for About -->
+<div class="modal micromodal-slide" id="modal-about" aria-hidden="true">
+  <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+    <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-about-title">
+      <header class="modal__header">
+        <h2 id="modal-about-title">
+          About
+        </h2>
+        <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+      </header>
+      <main class="modal__content" id="modal-about-content">
+        <!-- About content goes here -->
+      </main>
+      <footer class="modal__footer">
+        <button class="modal__btn modal__btn-primary" data-micromodal-close aria-label="Close this dialog window">Close</button>
+      </footer>
+    </div>
+  </div>
+</div>
+
+<!-- Repeat for other sections, changing IDs and content accordingly -->
+
+<!-- Modal for Miss Choucoune -->
+<div class="modal micromodal-slide" id="modal-miss-choucoune" aria-hidden="true">
+  <!-- ... structure similar to above ... -->
+</div>
+
+<!-- Modal for Lookbook -->
+<div class="modal micromodal-slide" id="modal-lookbook" aria-hidden="true">
+  <!-- ... structure similar to above ... -->
+</div>
+
+<!-- Modal for Contact -->
+<div class="modal micromodal-slide" id="modal-contact" aria-hidden="true">
+  <!-- ... structure similar to above ... -->
+</div>
+
+
+<script type="module">
+  import MicroModal from '../node_modules/micromodal';
   
-  <section id="miss-choucoune" class="modal">
-    <!-- Miss Choucoune content goes here -->
-  </section>
+  document.addEventListener('DOMContentLoaded', function () {
+    MicroModal.init({
+      // you can add other options here according to your needs
+      openTrigger: 'data-micromodal-trigger', // default setting for opening modals
+      closeTrigger: 'data-micromodal-close', // default setting for closing modals
+      disableScroll: true,
+      disableFocus: false,
+      awaitOpenAnimation: true,
+      awaitCloseAnimation: true,
+      debugMode: true
+    });
+  });
+</script>
+
   
-  <section id="lookbook" class="modal">
-    <!-- Lookbook content goes here -->
-  </section>
-  
-  <section id="contact" class="modal">
-    <!-- Contact content goes here -->
-  </section>

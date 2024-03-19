@@ -13,6 +13,7 @@
     "prettier-plugin-astro": "^0.13.0"
   },
   "dependencies": {
-    "cypress": "^13.6.6"
+    "cypress": "^13.6.6",
+    "micromodal": "^0.4.10"
   }
 }

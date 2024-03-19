@@ -1,7 +1,7 @@
 <header class="u-full-width">
-    <nav class="container">
+    <nav>
       <div class="brand">
-        <p class="hide-on-mobile">Ludnie Cassie Augustin</p>
+        <p class="logo pl-2 hide-on-mobile">Ludnie Cassie Augustin</p>
       </div>
        <!-- This can be a button or an icon that toggles a mobile menu -->
        <div class="menu" id="menu" aria-label="Toggle menu">
@@ -11,28 +11,103 @@
     </nav>
   </header>
 
-
-  <div id="navigation-links" class="navigation-links" style="display: none;">
-    <ul>
+  <div id="navigation-links" class="navigation-links off-white-bg">
+    <p class="text-align-right"><a href="#" class="btn-close">Close <img class="close-icon" src="/assets/icons/close.png"/></a>
+    </p>
+    <ul class="menu-top">
+      <li><a href="/">Home</a></li>
      <li><a href="#about">About</a></li>
       <li><a href="#miss-choucoune">Miss Choucoune</a></li>
       <li><a href="#lookbook">Lookbook</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a href="/blog">Blog</a></li>
     </ul>
+
+    <div class="menu-footer">
+      <ul>
+      <li><a href="#">Legal</a></li>
+      <li><a href="#">Privacy</a></li>
+      </ul> 
+      <p>&copy; Copyright 2024</p>
+    </div>
   </div>
+
+  <style>
+
+#navigation-links {
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  max-width: 400px;
+  z-index: 99999999;
+  height: 100vh; 
+  top: 0;
+  right: 0;
+  display: none;
+  background-color: #FFF0E1;
+
+}
+
+#navigation-links.active {
+  display: block;
+}
+
+.btn-close {
+ padding-rigth: 0.8rem;
+}
+.close-icon {
+  width: 3.75rem; /* Reduce the size of the 'X' image */
+  height: auto;
+  vertical-align: middle; /* Vertically align the 'X' with respect to adjacent text */
+}
+
+#navigation-links ul {
+  list-style: none;
+  margin-top: 3rem;
+}
+
+#navigation-links .menu-top li {
+  font-family: Playfair Display;
+  font-size: 2.5rem;
+  line-height: 4rem;
+  text-align: left;
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.25rem;
+}
+
+.menu-footer ul li {
+ display: inline;
+ padding-right: 1rem;
+}
+
+#navigation-links .menu-footer {
+  margin-top: 20px;
+}
+
+  </style>
   
-  <script>
-    document.getElementById('menu').onclick = function() {
-      toggleMenu();
-    };
-    
-    function toggleMenu() {
-      var navigationLinks = document.getElementById('navigation-links');
-      if (navigationLinks.style.display === 'none') {
-        navigationLinks.style.display = 'block';
-      } else {
-        navigationLinks.style.display = 'none';
-      }
-    }
-  </script>
+  
+<script>
+ document.getElementById('menu').addEventListener('click', function() {
+  toggleMenu();
+});
+
+function toggleMenu() {
+  var navigationLinks = document.getElementById('navigation-links');
+  var overlay = document.getElementById('overlay');
+  //var content = document.querySelector('.main-content'); // Adjust selector as needed
+
+  navigationLinks.classList.toggle('active');
+  overlay.style.display = (overlay.style.display === 'none' || overlay.style.display === '') ? 'block' : 'none';
+}
+document.getElementById('overlay').onclick = function() {
+  toggleMenu(); // This will hide the overlay and menu, and remove the blur
+};
+
+document.querySelector('.btn-close').addEventListener('click', function() {
+  toggleMenu(); // This will hide the overlay and menu, and remove the blur
+});
+
+
+</script>
