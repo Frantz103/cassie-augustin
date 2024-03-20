@@ -89,9 +89,20 @@
   
   
 <script>
+  document.addEventListener('DOMContentLoaded', function() {
  document.getElementById('menu').addEventListener('click', function() {
+  console.log('Menu touched');
   toggleMenu();
 });
+  });
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.getElementById('menu').addEventListener('touchstart', function() {
+    console.log('Menu touched');
+    toggleMenu();
+  });
+});
+
 
 function toggleMenu() {
   var navigationLinks = document.getElementById('navigation-links');

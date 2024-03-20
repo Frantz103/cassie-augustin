@@ -77,12 +77,6 @@ body {
   z-index: 99999998; /* Below the menu but above other content */
 }
 
-/* Style to blur the main content */
-.content-blur {
-  filter: blur(20px);
-}
-
-
 body,
 button,
 input,
@@ -160,7 +154,6 @@ a:hover {
 
 .cta-button {
   width: 100%;
-  height: 100%;
   background-color: var(--sunflower-yellow);
   border: none;
   cursor: pointer;
@@ -229,7 +222,6 @@ a:hover {
 
   .intro-container h1 {
     color: var(--white);
-    line-height: 0.5rem;
   }
   .intro {
     letter-spacing: 0.1rem;
