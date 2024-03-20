@@ -187,13 +187,15 @@ a:hover {
     z-index: 999999;
   }
 
-  header nav {
+  header, nav {
   height: 60px;
   }
 
   .menu{
     float: right;
     top: 10px;
+    z-index: 99999999;
+    position: relative;
   }
 
  

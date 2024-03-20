@@ -1,12 +1,12 @@
-<header class="u-full-width">
+<header>
     <nav>
       <div class="brand">
         <p class="logo pl-2 hide-on-mobile">Ludnie Cassie Augustin</p>
       </div>
        <!-- This can be a button or an icon that toggles a mobile menu -->
-       <div class="menu" id="menu" aria-label="Toggle menu">
+       <div class="menu" id="menu" aria-label="Toggle menu" tabindex="0">
         <img class="menu-icon hide-on-mobile" src="/assets/icons/menu.png"/>
-        <img class="menu-icon mobile hide-on-desktop" src="/assets/icons/menu-2.png"/>
+        <img class="menu-icon mobile hide-on-desktop" id="menu-mobile" src="/assets/icons/menu-2.png"/>
       </div>
     </nav>
   </header>
@@ -85,40 +85,40 @@
   margin-top: 20px;
 }
 
-  </style>
-  
-  
+</style>
+
 <script>
   document.addEventListener('DOMContentLoaded', function() {
- document.getElementById('menu').addEventListener('click', function() {
-  console.log('Menu touched');
-  toggleMenu();
-});
+    // Unified event listener for menu toggle, close actions, and close icon
+    document.body.addEventListener('click', function(event) {
+      if (event.target.id === 'menu' || event.target.closest('#menu') ||
+          event.target.id === 'menu-mobile' || 
+          event.target.classList.contains('btn-close') ||
+          event.target.classList.contains('close-icon')) {
+        console.log('Toggle or Close action triggered');
+        toggleMenu();
+      }
+    });
   });
 
-document.addEventListener('DOMContentLoaded', function() {
-  document.getElementById('menu').addEventListener('touchstart', function() {
-    console.log('Menu touched');
-    toggleMenu();
+  menu.addEventListener("keydown", function(event) {
+    // Check if Enter or Space is pressed
+    if (event.keyCode === 13 || event.keyCode === 32) {
+      toggleMenu();
+    }
   });
-});
-
-
-function toggleMenu() {
-  var navigationLinks = document.getElementById('navigation-links');
-  var overlay = document.getElementById('overlay');
-  //var content = document.querySelector('.main-content'); // Adjust selector as needed
-
-  navigationLinks.classList.toggle('active');
-  overlay.style.display = (overlay.style.display === 'none' || overlay.style.display === '') ? 'block' : 'none';
-}
-document.getElementById('overlay').onclick = function() {
-  toggleMenu(); // This will hide the overlay and menu, and remove the blur
-};
-
-document.querySelector('.btn-close').addEventListener('click', function() {
-  toggleMenu(); // This will hide the overlay and menu, and remove the blur
-});
-
-
-</script>
+  
+  function toggleMenu() {
+    var navigationLinks = document.getElementById('navigation-links');
+    var overlay = document.getElementById('overlay');
+    
+    // Toggle the active class and display property
+    navigationLinks.classList.toggle('active');
+    overlay.style.display = (overlay.style.display === 'none' || overlay.style.display === '') ? 'block' : 'none';
+  }
+  
+  // Setup the click event handler for the overlay to close the menu
+  document.getElementById('overlay').onclick = function() {
+    toggleMenu(); // This will hide the overlay and menu
+  };
+  </script>
