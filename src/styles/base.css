@@ -178,6 +178,7 @@ a:hover {
   background-color: #e09c32;
 }
 
+
 /* Responsive adjustments for mobile device */
 @media (max-width: 768px) {
 
@@ -271,7 +272,48 @@ a:hover {
     list-style: none;
   }
   
-} /* End of media query for mobile devices */
+} /* End of media query for all mobile devices */
+
+@media (max-width: 480px) {
+  /* Styles for smaller Android devices */
+  .intro-container { 
+    padding-top: 40%;
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .intro-container h1,
+  .intro-container p {
+    padding-left: 1rem;
+  }
+
+  header > nav { 
+    margin: 0 1.5rem;
+   }
+   .cta-container {
+    margin-left: 1rem;
+   }
+} /*end of media query for smaller Android devices */
+
+@media (max-width: 390px) {
+  /* Styles for slightly larger iPhones */
+  .intro-container { 
+    padding-top: 20%;
+    width: 95%;
+  }
+  #navigation-links {
+    box-sizing: border-box;
+  }
+ 
+}/*end of media query for slightly larger iPhones */
+
+@media (max-width: 320px) {
+  /* Styles for very small iPhones */
+  .intro-container { 
+    padding-top: 1rem;
+  }
+}/*end of media query for very small iPhones*/
+
 
 /* Layout and Grid */
 .container, footer, header {
