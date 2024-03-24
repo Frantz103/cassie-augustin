@@ -89,36 +89,38 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Unified event listener for menu toggle, close actions, and close icon
+    // Unified event listener for menu toggle and close actions
     document.body.addEventListener('click', function(event) {
-      if (event.target.id === 'menu' || event.target.closest('#menu') ||
-          event.target.id === 'menu-mobile' || 
-          event.target.classList.contains('btn-close') ||
-          event.target.classList.contains('close-icon')) {
-        console.log('Toggle or Close action triggered');
+      const targetElement = event.target as HTMLElement;
+      
+      if (targetElement.id === 'menu' || targetElement.closest('#menu') ||
+          targetElement.id === 'menu-mobile' ||
+          targetElement.classList.contains('btn-close') ||
+          targetElement.classList.contains('close-icon')) {
         toggleMenu();
       }
     });
-  });
 
-  menu.addEventListener("keydown", function(event) {
-    // Check if Enter or Space is pressed
-    if (event.keyCode === 13 || event.keyCode === 32) {
-      toggleMenu();
-    }
-  });
-  
-  function toggleMenu() {
-    var navigationLinks = document.getElementById('navigation-links');
-    var overlay = document.getElementById('overlay');
+    const menu = document.getElementById('menu');
+    menu.addEventListener("keydown", function(event) {
+      // Check if Enter or Space is pressed
+      if (event.key === 'Enter' || event.key === ' ') {
+        toggleMenu();
+      }
+    });
     
-    // Toggle the active class and display property
-    navigationLinks.classList.toggle('active');
-    overlay.style.display = (overlay.style.display === 'none' || overlay.style.display === '') ? 'block' : 'none';
-  }
-  
-  // Setup the click event handler for the overlay to close the menu
-  document.getElementById('overlay').onclick = function() {
-    toggleMenu(); // This will hide the overlay and menu
-  };
-  </script>
+    function toggleMenu() {
+      const navigationLinks = document.getElementById('navigation-links');
+      const overlay = document.getElementById('overlay');
+      
+      // Toggle the active class and display property
+      navigationLinks.classList.toggle('active');
+      overlay.style.display = (overlay.style.display === 'none' || overlay.style.display === '') ? 'block' : 'none';
+    }
+    
+    // Setup the click event handler for the overlay to close the menu
+    document.getElementById('overlay').onclick = function() {
+      toggleMenu(); // This will hide the overlay and menu
+    };
+  });
+</script>
