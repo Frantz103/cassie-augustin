@@ -45,14 +45,19 @@
   document.addEventListener('DOMContentLoaded', function () {
     MicroModal.init({
       // you can add other options here according to your needs
+      onShow: modal => console.info(`${modal.id} is shown`), // [1]
+      onClose: modal => console.info(`${modal.id} is hidden`), // [2]
       openTrigger: 'data-micromodal-trigger', // default setting for opening modals
       closeTrigger: 'data-micromodal-close', // default setting for closing modals
+      openClass: 'is-open', // default class added to the body
       disableScroll: true,
       disableFocus: false,
-      awaitOpenAnimation: true,
-      awaitCloseAnimation: true
+      awaitOpenAnimation: false,
+      awaitCloseAnimation: false,
+      debugMode: true
     });
   });
+
 </script>
 
   

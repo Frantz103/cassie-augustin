@@ -39,7 +39,7 @@
     margin: 0;
   }
   
-  .modal__close {
+  .modal__close, .model__close:hover {
     background: none;
     border: none;
     cursor: pointer;
