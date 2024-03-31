@@ -1,0 +1,41 @@
+---
+// Import necessary components
+import Layout from '../../components/Layout.astro';
+import Markdown from '../../components/Markdown.astro';
+
+// Directly define the function to fetch markdown files data here
+async function getMarkdownFiles() {
+  // Implementation of fetching markdown files. Adjust as necessary.
+  const markdownFiles = await Astro.glob('../pages/posts/*.md');
+  
+    return markdownFiles.map((file: any) => ({
+      slug: file.url.replace('/posts/', '').replace(/\/index\.md$/, ''),
+      ...file.frontmatter,
+    }));
+  }
+
+  // Now, define getStaticPaths directly using getMarkdownFiles
+  export async function getStaticPaths() {
+    const pages = await getMarkdownFiles();
+    return {
+      paths: pages.map((page: any) => ({
+        params: { slug: page.slug.split('/') },
+      })),
+      fallback: false,
+    };
+  }
+
+  // Use Astro.request.params to get the current slug and find the corresponding page data
+  const slug = Astro.request.params.slug.join('/');
+  const pages = await getMarkdownFiles();
+  const pageData = pages.find((page: any) => page.slug === slug) || { title: 'Not Found', content: 'The page you are looking for does not exist.' };
+
+const { title, content } = pageData;
+---
+
+<Layout title={title}>
+  <article>
+    <h1>{title}</h1>
+    <Markdown content={content} />
+  </article>
+</Layout>

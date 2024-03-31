@@ -1,35 +1,52 @@
 ---
-export interface Props {
-	title: string;
-}
-
+// Import components
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import '../styles/modal.css';
-import '../styles/base.css';
-
-const { title } = Astro.props as Props;
-
+const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <!-- Ensure the paths here are correct -->
     <link rel="stylesheet" href="/normalize.css" />
     <link rel="stylesheet" href="/skeleton.css" />
+    <link rel="stylesheet" href="/modal.css" />
+    <link rel="stylesheet" href="/base.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 	<title>{title}</title>
+  <script type="module" is:inline>
+    // Import MicroModal from the static file served from your public directory
+    import { MicroModal } from './assets/js/micromodal.min.js';
+    
+    // Wait for the DOM to fully load
+    document.addEventListener('DOMContentLoaded', function () {
+        MicroModal.init({
+            // Configuration options
+            onShow: modal => console.info(`${modal.id} is shown`), // Callback for modal show
+            onClose: modal => console.info(`${modal.id} is hidden`), // Callback for modal close
+            openTrigger: 'data-micromodal-trigger', // Attribute for open trigger
+            closeTrigger: 'data-micromodal-close', // Attribute for close trigger
+            openClass: 'is-open', // Class added when modal is open
+            disableScroll: true, // Disable scroll when modal is open
+            disableFocus: false, // Keep focus on modal when open
+            awaitOpenAnimation: false, // Wait for open animation
+            awaitCloseAnimation: false, // Wait for close animation
+            debugMode: true // Debug mode
+        });
+    });
+</script>
+  
 </head>
 <body>
-  <div class="overlay" id="overlay"></div>
-  <Header />
-	<slot />
-  <Footer />
+    <div class="overlay" id="overlay"></div>
+    <Header />
+    <slot />
+    <Footer />
 </body>
 </html>
