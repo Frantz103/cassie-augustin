@@ -9,6 +9,7 @@
     "preview": "astro preview"
   },
   "devDependencies": {
+    "@types/micromodal": "^0.3.5",
     "astro": "^1.0.0",
     "prettier-plugin-astro": "^0.13.0"
   },

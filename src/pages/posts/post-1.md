@@ -1,10 +1,13 @@
 ---
-layout: ../../components/MarkdownPostLayout.astro
+layout: ../../components/Markdown.astro
 title: "Representing Haiti's Strength: Miss Choucoune and Women's Wellbeing"
 pubDate: 2024-03-01
 description: "Join me on an inspiring journey as I embark on the path to the Miss Choucoune International pageant, a symbol of hope and resilience that shines a light on the rich cultural tapestry and indomitable spirit of Haiti. This pageant is more than just a contest; it is a platform for empowerment, a celebration of beauty, grace, and the unyielding strength that defines the Haitian people."
 author: "Ludnie Cassie Augustin"
 slug: "Miss-Choucoune-Women-Wellbeing"
+image:
+  url: "/path/to/image.jpg"
+  alt: "Image description"
 ---
 
 I am honored to represent the resilient spirit and vibrant culture of Haiti as I run for the Miss Choucoune International pageant.
