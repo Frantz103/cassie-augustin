@@ -1,4 +1,58 @@
 ---
-const { title, url } = Astro.props
+import type { CollectionEntry } from 'astro:content';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+
+type Props = CollectionEntry<'blog'>['data'];
+
+const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+
 ---
-<li><a href={url}>{title}</a></li>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <!-- Ensure the paths here are correct -->
+    <link rel="stylesheet" href="/normalize.css" />
+    <link rel="stylesheet" href="/skeleton.css" />
+    <link rel="stylesheet" href="/modal.css" />
+    <link rel="stylesheet" href="/base.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+	<title>{title}</title>
+</head>
+
+<body>
+    <Header />
+    <main>
+        <article>
+            <div class="hero-image">
+                {heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
+            </div>
+            <div class="prose">
+                <div class="title">
+                    <div class="date">
+                        <FormattedDate date={pubDate} />
+                        {
+                            updatedDate && (
+                                <div class="last-updated-on">
+                                    Last updated on <FormattedDate date={updatedDate} />
+                                </div>
+                            )
+                        }
+                    </div>
+                    <h1>{title}</h1>
+                    <hr />
+                </div>
+                <slot />
+            </div>
+        </article>
+    </main>
+    <Footer />
+</body>
+</html>

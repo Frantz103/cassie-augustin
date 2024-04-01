@@ -1,0 +1,53 @@
+---
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
+import { getCollection } from 'astro:content';
+
+const { title } = Astro.props;
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+);
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <!-- Ensure the paths here are correct -->
+    <link rel="stylesheet" href="/normalize.css" />
+    <link rel="stylesheet" href="/skeleton.css" />
+    <link rel="stylesheet" href="/modal.css" />
+    <link rel="stylesheet" href="/base.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+	<title>{title}</title>
+</head>
+
+<body>
+    <Header />
+    <main>
+        <section>
+            <ul>
+                {
+                    posts.map((post) => (
+                        <li>
+                            <a href={`/blog/${post.slug}/`}>
+                                <img width={720} height={360} src={post.data.heroImage} alt="" />
+                                <h4 class="title">{post.data.title}</h4>
+                                <p class="date">
+                                    <FormattedDate date={post.data.pubDate} />
+                                </p>
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </section>
+    </main>
+    <Footer />
+</body>
+</html>
