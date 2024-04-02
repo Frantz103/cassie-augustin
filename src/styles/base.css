@@ -231,11 +231,15 @@ a:hover {
 
   .intro-container h1 {
     color: var(--white);
+    letter-spacing: 0.25rem;
+    word-wrap: initial;
+    font-size: 2.25rem;
   }
+
   .intro {
-    letter-spacing: 0.1rem;
-    font-weight: 300;
-    font-size: 1.4rem;
+    letter-spacing: 0.12rem;
+    font-size: 1.25rem;
+
   }
 
   .pr-mobile-2 {
@@ -280,6 +284,7 @@ a:hover {
   
 } /* End of media query for all mobile devices */
 
+
 @media (max-width: 480px) {
   /* Styles for smaller Android devices */
   .intro-container { 
@@ -301,10 +306,10 @@ a:hover {
    }
 } /*end of media query for smaller Android devices */
 
-@media (max-width: 390px) {
+@media (max-width: 394px) {
   /* Styles for slightly larger iPhones */
   .intro-container { 
-    padding-top: 20%;
+    padding-top: 40%;
     width: 95%;
   }
   #navigation-links {
@@ -312,6 +317,7 @@ a:hover {
   }
  
 }/*end of media query for slightly larger iPhones */
+
 
 @media (max-width: 320px) {
   /* Styles for very small iPhones */
@@ -432,6 +438,10 @@ footer {
     position: relative;
     z-index: 1;
     background-color: var(--pastel-pink);
+  }
+
+  .pl-desktop-6 {
+    padding-left: 6rem;
   }
 
   .float-image {

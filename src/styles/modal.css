@@ -1,0 +1,134 @@
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width of the viewport */
+  height: 100vh; /* Full height of the viewport */
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1000;
+}
+
+.modal__overlay {
+  display: flex;
+  align-items: center; /* This centers the modal vertically */
+  justify-content: center; /* This centers the modal horizontally */
+  width: 100%; /* Ensures the overlay takes full width */
+  height: 100%; /* Full height of the modal */
+}
+
+.modal__container {
+  background-color: #FFF0E1;
+  padding: 2rem;
+  max-width: 1560px; /* Maximum width */
+  width: 100%; /* This makes it take the full width of the modal */
+  height: 90vh; /* Adjusts the modal container to take up to 90% of the viewport height */
+  min-height: 16rem; /* Ensures a minimum height */
+  overflow-y: auto; /* Allows scrolling within the modal if the content exceeds the modal's height */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #FFF0E1;
+}
+
+  
+.modal__content h2 {
+    font-family: Playfair Display;
+    font-size: 36px;
+    font-weight: 600;
+    line-height: 50px;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    }
+
+.modal__content p {
+  font-size: 1rem;
+  max-width: 520px;
+}
+
+  .modal__title {
+    margin: 0;
+  }
+  
+  /* icons */
+
+  .modal__close, .model__close:hover {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .modal__close {
+    height: 6.25rem;
+  }
+
+  .modal-icon-close {
+    width: 2.5rem;
+    height: 2.5rem;  
+  }
+  
+  /* modal content */
+
+  .modal__content {
+    margin-top: 2rem;
+  }
+
+    .modal-img {
+      width: 295px;
+      height: 252px;
+      top: 63px;
+      left: 100px;
+    }
+  
+  .modal__footer {
+    margin-top: 2rem;
+    text-align: right;
+  }
+  
+  .modal__btn {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+  }
+  
+  .modal__btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .modal.is-open {
+    display: block;
+  }
+  
+  /* desktop */
+  @media screen and (min-width: 768px){
+    
+    .modal-icon-close {
+      width: 3.54rem;
+      height: 3.54rem;  
+    }
+
+    .modal__content h2 {
+      font-family: Playfair Display;
+      font-size: 56px;
+      font-weight: 700;
+      line-height: 50px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      }
+
+    .modal-img {
+      width: 420px;
+      object-fit: cover; /* This ensures the image covers the area of the container without stretching. Use `contain` to make sure the entire image fits within the given dimensions */
+      position: relative; /* Adjusts the position relative to its normal position */
+      height: auto;
+      max-height: 30.25rem;
+      box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    }
+
+  }/* desktop */
