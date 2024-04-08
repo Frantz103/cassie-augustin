@@ -1,6 +1,8 @@
+
 ---
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import Modal from '../../components/Modal.astro';
 import '../../styles/base.css'; 
 import '../../styles/modal.css';
 import BaseHead from '../../components/BaseHead.astro';
@@ -18,6 +20,12 @@ const posts = (await getCollection('blog')).sort(
 <style>
     section {
         margin-top: 2rem;
+        max-width: 1200px;
+        width: 100%;
+    }
+
+    section p {
+        line-height: 175%;
     }
 
     ul {
@@ -31,6 +39,12 @@ const posts = (await getCollection('blog')).sort(
     }
     section .h-link {
         text-decoration: none ;
+    }
+
+    @media (min-width: 769px) { 
+        nav {
+            margin-left: 4.875rem;
+        }
     }
 </style>
 

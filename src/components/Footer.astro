@@ -1,11 +1,11 @@
 <footer class="footer">
     <nav class="footer-menu hide-on-mobile">
       <ul class="footer-desktop hide-on-mobile">
-        <li class="pl-2"><a href="#" data-micromodal-trigger="modal-about">About</a></li>
-        <li><a href="#" data-micromodal-trigger="modal-miss-choucoune">Miss Choucoune</a></li>
-        <li><a href="#" data-micromodal-trigger="modal-lookbook">Lookbook</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li class="pr-2"> <a href="#" data-micromodal-trigger="modal-contact">Contact</a></li>
+        <li class="pl-2"><a class="footer-link" href="#" data-micromodal-trigger="modal-about">About</a></li>
+        <li><a class="footer-link" href="#" data-micromodal-trigger="modal-miss-choucoune">Miss Choucoune</a></li>
+        <li><a class="footer-link" href="#" data-micromodal-trigger="modal-lookbook">Lookbook</a></li>
+        <li><a class="footer-link" href="/blog">Blog</a></li>
+        <li class="footer-link" class="pr-2"> <a href="#" data-micromodal-trigger="modal-contact">Contact</a></li>
         <!-- You can add your Blog link here later -->
       </ul>
     </nav>
@@ -13,8 +13,118 @@
        <ul class="footer-mobile hide-on-desktop">
         <li class="pl-2"><a href="#" data-micromodal-trigger="modal-about">About</a></li>
         <li><a href="#" data-micromodal-trigger="modal-lookbook">Lookbook</a></li>
-        <li class="pr-2"><a href="#miss-choucoune" rel="modal:open">More</a></li>
+        <li class="pr-2"><a href="#more" id="more-btn">More</a></li>
       </ul>
-    </nav>
+      <!-- Modal Structure (hidden by default) --></nav>
+      <div id="more-menu" class="more-menu">
+        <ul>
+            <li><a class="footer-link" href="#" data-micromodal-trigger="modal-about">About</a></li>
+            <li><a class="footer-link" href="#" data-micromodal-trigger="modal-miss-choucoune">Miss Choucoune</a></li>
+            <li class="footer-link" class="pr-2"> <a href="#" data-micromodal-trigger="modal-contact">Contact</a></li>
+            <!-- other links as needed -->
+        </ul>
       
   </footer>
+
+  <style>
+
+.more-menu {
+    display: none;
+    position: absolute;
+    bottom: 50px; /* Adjust as needed to position below the 'More' link */
+    right: 10%; /* Center below the 'More' link */
+    width: 156px;
+    min-height: 141px;
+    flex-shrink: 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    z-index: 100;
+    border-radius: 4px;
+background: #FFF0E1;
+box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.more-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.more-menu li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    border-bottom: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+.more-menu li a:hover {
+    background-color: #f6f6f6;
+}
+
+.more-menu li:last-child a {
+    border-bottom: none;
+}
+
+  </style>
+
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+    // Initialize MicroModal with awaitCloseAnimation set to true
+    MicroModal.init({
+        awaitCloseAnimation: true, // set to true if using animations
+        // other options here
+    });
+
+    // Attach click event to all links with 'data-micromodal-trigger'
+    document.querySelectorAll('[data-micromodal-trigger]').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault(); // Prevent default anchor behavior
+
+            // Close any currently open modal
+            const openModal = document.querySelector('.modal.is-open');
+            if (openModal) {
+                const modalIdToClose = openModal.id;
+                MicroModal.close(modalIdToClose);
+                // Wait for the close animation to complete
+                setTimeout(() => {
+                    // Then open the new modal
+                    const modalId = this.getAttribute('data-micromodal-trigger');
+                    MicroModal.show(modalId);
+                }, 300); // Adjust based on your modal close animation duration
+            } else {
+                // If no modal is open, just open the new one
+                const modalId = this.getAttribute('data-micromodal-trigger');
+                MicroModal.show(modalId);
+            }
+        });
+    });
+});
+
+
+
+  </script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+    var moreBtn = document.getElementById('more-btn');
+    var moreMenu = document.getElementById('more-menu');
+
+    moreBtn.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the default anchor behavior
+        // Toggle the display of the menu
+        moreMenu.style.display = moreMenu.style.display === 'block' ? 'none' : 'block';
+    });
+
+    // Optional: Hide the menu when clicking outside of it
+    document.addEventListener('click', function (event) {
+        var isClickInsideMenu = moreMenu.contains(event.target);
+        var isClickInsideMoreBtn = moreBtn.contains(event.target);
+
+        if (!isClickInsideMenu && !isClickInsideMoreBtn) {
+            moreMenu.style.display = 'none';
+        }
+    });
+});
+
+  </script>
