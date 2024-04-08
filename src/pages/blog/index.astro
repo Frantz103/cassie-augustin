@@ -15,7 +15,7 @@ const posts = (await getCollection('blog')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
 ---
-<BaseHead />
+<BaseHead title="Blog" />
 
 <style>
     section {
@@ -41,15 +41,24 @@ const posts = (await getCollection('blog')).sort(
         text-decoration: none ;
     }
 
+    @media (max-width: 768px) {
+        body:before{
+            background: #fff;
+        }
+        body:after {
+            background: rgba(0, 0, 0, 0);
+        }
+    }
+
     @media (min-width: 769px) { 
         nav {
             margin-left: 4.875rem;
-        }
+        } 
     }
 </style>
 
 
-<body>
+<body class="blog">
     <Header />
     <main>
         <div class="container">
@@ -74,6 +83,7 @@ const posts = (await getCollection('blog')).sort(
             </ul>
         </section>
     </div>
+    <Modal />
     </main>
     <Footer />
 </body>

@@ -13,14 +13,15 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
 
 ---
 
-<BaseHead />
+<BaseHead title="Blog" />
 
 <style>
     article {
-        margin: 2rem 6rem;
+        padding: 2rem;
         max-width: 900px;
         width: 100%;
         padding-bottom: 4rem;
+        box-sizing: border-box;
     }
     article .prose p {
         max-width: 900px;!important
@@ -29,6 +30,19 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
     }
     .date {
         font-size: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        body:before{
+            background: #fff;
+        }
+        body:after {
+            background: rgba(0, 0, 0, 0);
+        }
+        article h1 {
+            font-size: 2rem;
+            word-wrap: normal;
+        }
     }
 
 </style>

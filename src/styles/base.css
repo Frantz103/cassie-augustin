@@ -249,10 +249,6 @@ a:hover {
       margin:0 auto;
   }
 
-  header > nav {
-      margin:0 1.5rem
-  }
-
 }/*end of media query for iPhone 4 and 5 */
 
 /* Responsive adjustments for mobile device */
@@ -268,9 +264,13 @@ a:hover {
   height: 60px;
   }
 
+
+  header > nav {
+    margin:0 1rem;
+  }
+
   .menu{
     float: right;
-    top: 10px;
     z-index: 2000;
     position: relative;
   }
@@ -445,16 +445,20 @@ footer {
   }
 
   .menu {
-    max-width: 130px;
+    max-width: 8rem;
     background-color: var(--pastel-pink);
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     height: 78px;
+    width: 100%;
   }
 
+  
+
   .menu-icon {
-    width: 70%;
+    width: 50%;
+    min-width: 54px;
     cursor: pointer;
   }
 
@@ -492,6 +496,10 @@ footer li {
     font-weight: 400;
     word-wrap: break-word;
     line-height: 85px;
+  }
+
+  footer li:last-child {
+    margin-right: 2rem;
   }
 
 }/* End of braket for media query */
