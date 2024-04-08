@@ -8,7 +8,7 @@ p {
 }
 
 @media (min-width: 769px) { 
-nav, .intro-container {
+nav, .intro-container, article {
     margin-left: 4.875rem;
  }
 }
@@ -149,6 +149,38 @@ h2 {
   font-size: 1.75rem;
   font-weight: 700;
 }
+
+.hide-on-mobile {
+  position: relative; /* This will be the reference for the absolute positioning */
+}
+
+.image-and-bar-container {
+  position: relative;
+}
+
+.vertical-bar-container {
+  position: absolute;
+  top: 10%; /* Start at 50% from the top */
+  right: 3rem; /* Adjust as needed to move the bar to the right */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.bar-number {
+  font-size: 1.25em; /* Large size for the number, adjust as needed */
+  position: absolute; /* Absolute position within the .vertical-bar-container */
+  right: 0;
+}
+
+.vertical-bar {
+  display: block;
+  height: 100vh;
+  max-height: 35rem; /* Set to the height you want for the vertical bar */
+  margin-top: 4rem;
+}
+
+
 
 /* Hide on mobile, display on desktop */
 .hide-on-mobile {
@@ -453,8 +485,6 @@ footer {
     height: 78px;
     width: 100%;
   }
-
-  
 
   .menu-icon {
     width: 50%;
