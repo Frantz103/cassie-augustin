@@ -20,7 +20,6 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
     <style>
        .hero-text {
         position: absolute;
-        top: 25%;
         font-size: 2.5rem;
         z-index: 1;
         height: 8rem;
@@ -39,8 +38,17 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
             font-size: 1.75rem;
             font-family: 'Playfair Display', serif;
             letter-spacing: 1.2px;
+
         }
-        
+
+        .hero-image .sunflower-decor {
+            position: absolute;
+            top: 35%; /* Adjust as needed */
+            right: 0;
+            width: 100px; /* Adjust as needed */
+            height: auto; /* Maintain aspect ratio */
+            z-index: 10; /* Ensure it's above the other elements */
+}
        }
 
        @media screen and (min-width: 768px) {
@@ -48,6 +56,7 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
         .hero-text {
             margin-left: 6.875rem;
             color: var(--black);
+            top: 25%;
         }
         .hero-text p:first-child {
             font-size: 2.5rem;
@@ -71,6 +80,8 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
           <p>The Nourished </br>Runway</p>
           <p>A blog by Cassie Augustin</p>
         </div>
+        <img src="/assets/img/sunflower-clear.png" alt="" class=" hide-on-desktop sunflower-decor" /> <!-- Sunflower image -->
+
       </div>
     <main>
         <div class="container">
