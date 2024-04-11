@@ -3,8 +3,10 @@ import type { CollectionEntry } from 'astro:content';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import BaseHead from './BaseHead.astro';
+import Modal from '../components/Modal.astro';
 import '../styles/base.css';
 import '../styles/modal.css';
+import '../styles/blog.css';
 import FormattedDate from '../components/FormattedDate.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
@@ -14,47 +16,25 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
 ---
 
 <BaseHead title="Blog" />
-
-<style>
-    article {
-        padding: 2rem;
-        max-width: 900px;
-        width: 100%;
-        padding-bottom: 4rem;
-        box-sizing: border-box;
-    }
-    article .prose p {
-        max-width: 900px;!important
-        line-height: 200%;
-        width: 95%;
-    }
-    .date {
-        font-size: 1rem;
-    }
-
-    @media (max-width: 768px) {
-        body:before{
-            background: #fff;
-        }
-        body:after {
-            background: rgba(0, 0, 0, 0);
-        }
-        article h1 {
-            font-size: 2rem;
-            word-wrap: normal;
-        }
-    }
-
-</style>
-
 <body>
+    <div class="overlay" id="overlay"></div>
     <Header />
+    <div class="hero-image">
+        <picture>
+          <!-- Use source elements for different screen sizes -->
+          <source media="(max-width: 768px)" srcset="/assets/img/banner-image-mobile.png">
+          <source media="(min-width: 769px)" srcset="/assets/img/banner-image-desktop.png">
+          <!-- Fallback image -->
+          <img src="/assets/img/banner-image-desktop.png" alt="">
+        </picture>
+      </div>
     <main>
         <div class="container">
-        <article>
-            <div class="hero-image">
-             <!--  {heroImage && <img width={1020} height={510} src={heroImage} alt="" />} -->
-            </div>
+        
+            <div class="row">
+                <div class=" eight columns posts">
+            <article>
+                <div class="breadcrumb"><a href="/">Home </a> / <a href="/blog">Blog</a></p></div>
             <div class="prose">
                 <div class="title">
                     <div class="date">
@@ -73,7 +53,19 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
                 <slot />
             </div>
         </article>
+          </div>
+          <div class=" four columns hide-on-mobile">
+            <aside>
+            <div class="side-images">
+            <img class="flower" src="/assets/img/flower-square.png" alt="" />
+            <img class="cross" src="/assets/img/health-cross.png" alt="" />
+            <img class="flower" src="/assets/img/flower-square.png" alt="" />
+            </aside> 
+            </div>
+            </div>
+        </div>
     </div>
+    <Modal />
     </main>
     <Footer />
 </body>

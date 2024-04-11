@@ -1,0 +1,105 @@
+
+/* blog */
+
+section {
+    margin-top: 2rem;
+    max-width: 1200px;
+}
+
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+.blog p, .posts p {
+    line-height: 150%;
+    letter-spacing: 0.5px;
+    margin-bottom: 2rem;
+    max-width: 720px;
+    width: 100%;
+}
+
+section a {
+    text-decoration: underline;
+    color: #333;
+}
+section .h-link {
+    text-decoration: none ;
+}
+
+@media (max-width: 768px) {
+    body:before{
+        background: #fff;
+    }
+    body:after {
+        background: rgba(0, 0, 0, 0);
+    }
+    .blog {
+        padding: 0 1.5rem;
+    }
+
+}/* end of media query for all mobile devices */
+
+@media (min-width: 769px) { 
+    nav {
+        margin-left: 4.875rem;
+    } 
+}/* end of media query for all desktop devices */
+
+/* Post */
+.hero-image {
+    border-top: solid 1px #000;
+    height: auto;
+    width: 100%;
+    margin: 0;
+    }
+
+.hero-image picture img {
+    width: 100%; 
+    height: auto; 
+    display: block;
+}
+
+    article {
+        padding: 2rem;
+        width: 100%;
+        padding-bottom: 4rem;
+    }
+
+    .date {
+        font-size: 1rem;
+    }
+
+    .breadcrumb {
+            margin-bottom: 1.5rem;
+        }
+
+.side-images img {
+    display: block; /* ensures the images don't display inline */
+    max-width: 100%; /* limits image width to the column width */
+    height: auto; /* maintains the aspect ratio */
+    margin: 3rem auto;
+}
+
+.flower {
+    width: 14.5625rem;
+}
+.cross {
+    width: 17rem;
+}
+
+ @media (max-width: 768px) {
+     .hero-image picture img {
+        position: relative;
+        top: -60px;
+        width: 100%;
+        margin: 0;
+        }
+
+    article h1 {
+            font-size: 2rem;
+            word-wrap: normal;
+    }
+    
+    }

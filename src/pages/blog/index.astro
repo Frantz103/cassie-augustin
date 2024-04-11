@@ -5,6 +5,7 @@ import Footer from '../../components/Footer.astro';
 import Modal from '../../components/Modal.astro';
 import '../../styles/base.css'; 
 import '../../styles/modal.css';
+import '../../styles/blog.css';
 import BaseHead from '../../components/BaseHead.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import { getCollection } from 'astro:content';
@@ -17,52 +18,12 @@ const posts = (await getCollection('blog')).sort(
 ---
 <BaseHead title="Blog" />
 
-<style>
-    section {
-        margin-top: 2rem;
-        max-width: 1200px;
-        width: 100%;
-    }
-
-    section p {
-        line-height: 175%;
-    }
-
-    ul {
-        list-style: none;
-        padding: 0;
-        margin: 0 6rem;
-    }
-   section a {
-        text-decoration: underline;
-        color: #333;
-    }
-    section .h-link {
-        text-decoration: none ;
-    }
-
-    @media (max-width: 768px) {
-        body:before{
-            background: #fff;
-        }
-        body:after {
-            background: rgba(0, 0, 0, 0);
-        }
-    }
-
-    @media (min-width: 769px) { 
-        nav {
-            margin-left: 4.875rem;
-        } 
-    }
-</style>
-
-
-<body class="blog">
+<body>
+    <div class="overlay" id="overlay"></div>
     <Header />
     <main>
         <div class="container">
-        <section>
+        <section class="blog">
             <ul>
                 {
                     posts.map((post) => (

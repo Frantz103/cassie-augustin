@@ -92,6 +92,10 @@ body {
   margin: 0 auto;
 }
 
+footer {
+  margin: 0 auto;
+}
+
 /* header, images, etc. */
 .image-container {
   position: relative;
@@ -130,11 +134,7 @@ h6 {
 p {
   font-family: lato;
   font-size: 1rem;
-  line-height: normal;
-}
-
-p:first-child {
-  margin-top: 0.5rem;
+ 
 }
 
 h1 {
@@ -150,36 +150,10 @@ h2 {
   font-weight: 700;
 }
 
-.hide-on-mobile {
-  position: relative; /* This will be the reference for the absolute positioning */
+.breadcrumb a {
+  font-size: 1.125rem;
+  text-transform: uppercase;
 }
-
-.image-and-bar-container {
-  position: relative;
-}
-
-.vertical-bar-container {
-  position: absolute;
-  top: 10%; /* Start at 50% from the top */
-  right: 3rem; /* Adjust as needed to move the bar to the right */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.bar-number {
-  font-size: 1.25em; /* Large size for the number, adjust as needed */
-  position: absolute; /* Absolute position within the .vertical-bar-container */
-  right: 0;
-}
-
-.vertical-bar {
-  display: block;
-  height: 100vh;
-  max-height: 35rem; /* Set to the height you want for the vertical bar */
-  margin-top: 4rem;
-}
-
 
 
 /* Hide on mobile, display on desktop */
@@ -534,6 +508,13 @@ footer li {
 
 }/* End of braket for media query */
 
+@media screen and (max-width: 1278px){
+  .vertical-bar-container {
+    display: none;
+  
+  }
+}
+
 @media (min-width: 1279px){
   .float-image {
     position: absolute;
@@ -541,6 +522,40 @@ footer li {
     right: 8rem;
     z-index: 10;
     width: 95%;
+    overflow-y: hidden;
+  }
+
+  .hide-on-mobile {
+    position: relative; /* This will be the reference for the absolute positioning */
+  }
+  
+  .vertical-bar-container {
+    position: absolute;
+    right: 0; /* Adjust as needed to move the bar to the right */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 8rem; /* Set to the width you want for the vertical bar */
+  }
+  
+  .bar-number {
+    font-size: 1.25em; /* Large size for the number, adjust as needed */
+    position: relative; /* Absolute position within the .vertical-bar-container */
+    top: 2rem;
+    margin-bottom: 3rem;
+    display: block;
+  }
+  
+  .vertical-bar {
+    display: block;
+    height: 100vh;
+    max-height: 32rem; /* Set to the height you want for the vertical bar */
+    margin-top: 1rem;
+  }
+
+  .blog ul {
+    margin-left: 6.875rem;
   }
 }
 
