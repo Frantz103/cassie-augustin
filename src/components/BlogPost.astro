@@ -17,6 +17,46 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
 
 <BaseHead title="Blog" />
 <body>
+    <style>
+       .hero-text {
+        position: absolute;
+        top: 25%;
+        font-size: 2.5rem;
+        z-index: 1;
+        height: 8rem;
+    
+       }
+
+
+       @media screen and (min-width: 320px) {
+        .hero-text {
+            margin-left: 2.125rem;
+            height: 4rem;
+            top: 15%;
+            color: var(--white);
+        }
+        .hero-text p:first-child {
+            font-size: 1.75rem;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1.2px;
+        }
+        
+       }
+
+       @media screen and (min-width: 768px) {
+
+        .hero-text {
+            margin-left: 6.875rem;
+            color: var(--black);
+        }
+        .hero-text p:first-child {
+            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
+            letter-spacing: 1.2px;
+        }
+       }
+
+    </style>
     <div class="overlay" id="overlay"></div>
     <Header />
     <div class="hero-image">
@@ -27,6 +67,10 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
           <!-- Fallback image -->
           <img src="/assets/img/banner-image-desktop.png" alt="">
         </picture>
+        <div class="hero-text">
+          <p>The Nourished </br>Runway</p>
+          <p>A blog by Cassie Augustin</p>
+        </div>
       </div>
     <main>
         <div class="container">
