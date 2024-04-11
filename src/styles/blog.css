@@ -39,6 +39,11 @@ section .h-link {
         padding: 0 1.5rem;
     }
 
+    article {
+        padding: 0 1rem;
+        box-sizing: border-box;
+    }
+
 }/* end of media query for all mobile devices */
 
 @media (min-width: 769px) { 
@@ -91,6 +96,9 @@ section .h-link {
         top: -60px;
         width: 100%;
         margin: 0;
+        padding: 0;
+        border: 0;
+        z-index: -1;
         }
 
     article h1 {

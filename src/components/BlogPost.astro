@@ -27,6 +27,15 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
        }
 
        @media screen and (min-width: 320px) {
+
+        .hero-image {
+            height: 21rem;
+            max-height: 23rem;
+        }
+
+        .breadcrumb {
+         margin-top: 0.5rem;
+        }
         .hero-text {
             margin-left: 2.125rem;
             height: 4rem;
@@ -41,7 +50,7 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
 
         .hero-image .sunflower-decor {
             position: absolute;
-            top: 35%; /* Adjust as needed */
+            top: 37%; /* Adjust as needed */
             right: 0;
             width: 100px; /* Adjust as needed */
             height: auto; /* Maintain aspect ratio */
@@ -50,6 +59,15 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
        }
 
        @media screen and (min-width: 768px) {
+
+        .hero-image {
+            height: auto;
+            max-height: 50rem;
+        }
+
+        .breadcrumb {
+         margin-top: 1.5rem;
+        }
 
         .hero-text {
             margin-left: 6.875rem;

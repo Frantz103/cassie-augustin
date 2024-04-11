@@ -16,7 +16,7 @@ const posts = (await getCollection('blog')).sort(
 	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
 );
 ---
-<BaseHead title="Blog" />
+<BaseHead title="Blog Homepage" />
 
 <body>
     <div class="overlay" id="overlay"></div>
