@@ -50,10 +50,21 @@ const { title } = Astro.props;
           disableFocus: false,
           awaitOpenAnimation: false,
           awaitCloseAnimation: true,
-          debugMode: true
+          debugMode: false
       });
   });
   </script>
+
+<script>
+ document.addEventListener('DOMContentLoaded', function() {
+    const header = document.querySelector('header'); // Select the header element
+    // Check if the current URL includes 'lookbook' or 'blog'
+    if (window.location.href.includes("/lookbook") || window.location.href.includes("/blog")) {
+        header.style.backgroundColor = "var(--pastel-pink)"; // Change the header's background color
+    }
+});
+
+</script>
 
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0M6Z3LTZNX"></script>

@@ -1,0 +1,57 @@
+---
+import Layout from '../components/Layout.astro';
+import Modal from '../components/Modal.astro';
+
+//import content from '../data/content.json';
+---
+<Layout title="Ludnie Cassie Augustin - Lookbook">
+  <main class="photos-gallery">
+    <div class="pl-desktop-6">
+    <h1>My Lookbook</h1>
+    <p class="subtitle"> My fashion visual journey</p>
+    </div>
+  <section class="pl-desktop-6 mb-desktop-6 photos-section">
+    <div class="row">
+        <div class="four columns"><img class="u-max-full-width drop-shadow"src="/assets/img/lookbook/ludnie-4.jpg" alt=""/></div>
+        <div class="four columns"><img class="u-max-full-width drop-shadow"src="/assets/img/lookbook/Ludnie-2.jpg"alt=""/></div>
+        <div class="four columns"><img class="u-max-full-width drop-shadow"src="/assets/img/lookbook/ludnie-3.jpg"alt=""/></div>
+    </div>
+
+    <div class="row">
+        <div class="four columns"><img class="u-max-full-width drop-shadow"src="/assets/img/lookbook/ludnie-1.jpg"alt=""/></div>
+        <div class="four columns"><img class="u-max-full-width drop-shadow"src="/assets/img/lookbook/ludnie-6.jpg"alt=""/></div>
+        <div class="four columns"><img class="u-max-full-width drop-shadow"src="/assets/img/lookbook/ludnie-5.jpg"alt=""/></div>
+    </div>
+
+    <div class="row">
+        <div class="four columns"><img class="u-max-full-width drop-shadow"src="/assets/img/lookbook/ludnie-10.jpg"alt=""/></div>
+        <div class="four columns"><img class="u-max-full-width drop-shadow"src="/assets/img/lookbook/ludnie-8.jpg"alt=""/></div>
+        <div class="four columns"><img class="u-max-full-width drop-shadow"src="/assets/img/lookbook/ludnie-9.jpg"alt=""/></div>
+    </div>
+
+    <div class="row">
+        <div class="four columns"><img class="u-max-full-width drop-shadow"src="/assets/img/lookbook/ludnie-14.jpg"alt=""/></div>
+        <div class="four columns"><img class="u-max-full-width drop-shadow"src="/assets/img/lookbook/ludnie-13.jpg"alt=""/></div>
+        <div class="four columns"><img class="u-max-full-width drop-shadow"src="/assets/img/lookbook/ludnie-15.jpg"alt=""/></div>
+    </div>
+    <div><a href="/assets/Docs/ludnie-comp-card-print-web.pdf" target="_blank" class="cta-button">Download Comp Card</a></div>
+   
+</section>
+    
+  <Modal />
+</Layout>
+</main>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    if (window.location.href.includes("/lookbook")) {
+        var style = document.createElement('style');
+        style.innerHTML = `
+            body::before, body::after {
+                display: none !important;
+            }
+        `;
+        document.head.appendChild(style);
+    }
+});
+
+</script>

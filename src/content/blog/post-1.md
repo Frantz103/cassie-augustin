@@ -7,25 +7,19 @@ HeroImage: '/test/1.jpg'
 url: 'representing-haiti-miss-choucoune'
 ---
 
-I am honored to represent the resilient spirit and vibrant culture of Haiti as I run for the Miss Choucoune International pageant.
+My name is Cassie Augustin, I am contesting for the first Miss Choucoune international pageant. I was born in Les Cayes, a seaport town in the south department of Haiti. Growing up, my passion for nutrition took root in my childhood home, where I witnessed my mother cooking simple and healthy recipes.You would always find me in the kitchen learning how to cut a whole chicken and how to bake a cake. I couldn’t wait for the time where my mom would finally let me take care of the Sunday dinner, a family tradition that I hold close to my heart.
 
-Amidst the challenges we face, this pageant stands as a source of hope, illuminating the beauty, grace and resiliency that define us.
+I’ve always wanted to be a chef but I was told that it would be harder for me to make a living cooking. I spent years looking for a major suitable for me. Being told that I could be a great nurse due to my caring attributes, I decided to pursue this route without hesitation. This is where I experienced God’s redirection. Through the process I’ve learned the true meaning of vocation and how God’s gift are not to be left behind. 
 
-My journey in this pageant is fueled by a profound commitment to Empowerher Health—a platform that transcends borders to champion the well-being of women.
-In our nurturing essence, we often place the needs of others above our own, neglecting our fundamental right to self-care.
-As pillars of society, we carry the weight of countless responsibilities, yet it is necessary that we prioritize our physical, mental, and emotional health.
+I learned about the bachelor of nutrition, two years later, after dedicating my all into nursing. But it made so much sense for me to switch my major that I couldn’t care less about the set back! I was determined to transfer to a different state and begin my journey, studying nutrition, dietitian, and food management. 
+Quickly, I grew a passion for nutrition and education. 
 
-Miss Choucoune is inspired by a love song to a beautiful marabout, which term describes the offspring of a haitian person with mixed race.
-A woman who knew her worth and refused to be caged by the love of an unfaithful man. She was a free bird who prioritized her independence.
-She was fluid and firm, graceful and stern. As she seemed to have been ahead of her time, we should strive to embody her resilient soul.
+As a woman who struggled with chronic anemia, weight retention, heavy menstrual cycles, I knew that I needed to learn so I could help myself. Even with all the knowledge I acquired, my healing was never linear. I quickly realized that I wasn’t alone. Whenever I would share my health issues with other women, they would most likely empathize and say “Me too”. All these experiences have contributed to my desire to encourage women to have a better quality of life.
 
-Through Empowerher Health, I aspire to foster a culture of self-love and empowerment, where every woman feels deserving of care and attention.
-Together, we will shatter the barriers that inhibit our pursuit of wellness, paving the way for a future where women stand tall in their strength and vitality.
+My platform is Empowerher health is  a safe space where women can feel welcome to learn, to grow and to thrive. Empowerher health is about educating and empowering women to care for themselves through nutrition. As women, we tend to put the need of others before our own and it’s about time we start taking care of ourselves.I’ve always loved the saying: you can’t poor out of an empty cup. When we are at our best, we can do whatever we put our mind to do! 
 
-My vision for Empowerher Health extends beyond individual transformation—it encompasses a collective movement towards holistic well-being.
-By amplifying our voices and advocating for accessible healthcare resources, we will dismantle systemic inequities that perpetuate disparities in women's health.
+One word to describe my pageantry journey as a Miss Choucoune contestant would be serendipity: a beautiful accident. I knew I needed to step out of my comfort zone in order to grow but I didn’t know what to do . My best friend saw the advertisement post on instagram for recruitment and said I should do it. Instantly, I felt inclined to the idea and begin to mentally prepare myself for the task. Amidst the glamour, I’ve always admire the sisterhood and the community one can build through pageantry. It also helps with discipline, leadership skills, entrepreneurship and many more.
 
-I am privileged to showcase the resilience and grace in the Haitian culture. With each step I take on this journey,
-I carry the hopes and dreams of my beloved nation, striving to inspire the heart of women worldwide.
+I am so excited to be a part of the first Miss Choucoune international Pageant. If am fortunate enough to win, I am committed to sharing some of my winnings with those in my hometown struggling to afford balanced meals while educating families on the benefits of healthy eating. It is my way to start giving back and making a positive impact on the lives of others.
 
-Together, let us celebrate the beauty of diversity, the power of unity, and the unwavering strength of the female spirit.
+I’m so thankful for the opportunity to build my platform as a contestant in this prestigious pageant. I am excited to showcase my Haitian heritage's beauty, richness, and diversity internationally.
