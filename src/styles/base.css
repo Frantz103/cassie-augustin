@@ -606,67 +606,181 @@ footer li {
 
 
 /* ******************************************
-  Lookbook page adjustement start here
+  LOOKBOOK - HIGH-END EDITORIAL DESIGN
  *********************************************/
 
-
- @media (max-width: 768px) {
-
-  .photos-gallery {
-    margin: 1rem;
-    margin-bottom: 6rem;
-  }
+.lookbook-editorial {
+  background: #fff;
+  padding-bottom: 120px;
 }
-  
- .photos-gallery section {
-  max-width: 1200px;
-  margin-top: 4rem;
- }
 
- .photos-gallery h1 {
-  margin-top: 4rem;
-  color: var(--dark-green); 
- }
- .subtitle {
-  font-size: 1.25rem; /* Smaller size for subtitle */
-  color: var(--dark-green); /* Subtle grey to keep it less prominent than the title */
-  letter-spacing: 0.5px; ;
+/* Hero Section */
+.lookbook-hero {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   margin-bottom: 4rem;
 }
 
-.photos-gallery .photos-section img {
+.hero-content {
+  text-align: center;
+}
+
+.lookbook-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  color: var(--black);
+}
+
+.lookbook-year {
+  font-family: 'Lato', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+/* Editorial Grid */
+.editorial-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 3rem;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1.5rem;
+}
+
+/* Grid Items */
+.grid-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.grid-item img {
   width: 100%;
-  height: 22.75rem;
+  height: 100%;
   object-fit: cover;
-  margin-bottom: 2rem;
+  display: block;
+  transition: transform 0.6s ease, filter 0.6s ease;
+  filter: grayscale(0%);
 }
 
-.photos-gallery .icon {
-  width: 3.5rem;
-  height: 3.5rem;
+.grid-item:hover img {
+  transform: scale(1.02);
+  filter: grayscale(5%);
 }
 
-.link-box-2 {
-  display: flex;
-  align-items: center; /* This will vertically center the flex items */
-  height: auto;
+/* Layout Variations */
+.grid-item.featured {
+  grid-column: span 12;
+  aspect-ratio: 16 / 9;
 }
 
-.cta-modal-box .cta-button {
-  display: inline-flex; /* Make the button use flexbox as well */
-  align-items: center; /* Center align items vertically inside the button */
-  margin-right: 20px; /* Adds space between the button and the link */
-  margin-bottom: 0;
+.grid-item.half {
+  grid-column: span 6;
+  aspect-ratio: 4 / 5;
 }
 
-.cta-modal-box a {
-  display: inline-flex; /* Applies flex layout to links */
-  align-items: center; /* Centers items vertically within the link */
-  text-decoration: none; /* Optional: Removes underline from links */
-  margin-top: 30px;
+.grid-item.third {
+  grid-column: span 4;
+  aspect-ratio: 3 / 4;
 }
 
-.cta-modal-box .icon {
-  margin-left: 10px; /* Adds a little space between the text and the icon */
-  margin-bottom: 0;
+.grid-item.two-thirds {
+  grid-column: span 8;
+  aspect-ratio: 16 / 10;
+}
+
+.grid-item.one-third {
+  grid-column: span 4;
+  aspect-ratio: 3 / 4;
+}
+
+/* CTA Section */
+.lookbook-cta {
+  text-align: center;
+  margin: 6rem auto 4rem;
+  padding: 0 2rem;
+}
+
+.comp-card-link {
+  display: inline-block;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--black);
+  border: 1px solid var(--black);
+  padding: 1rem 3rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.comp-card-link:hover {
+  background: var(--black);
+  color: #fff;
+  opacity: 1;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .lookbook-hero {
+    min-height: 40vh;
+  }
+
+  .lookbook-title {
+    font-size: 2.5rem;
+    letter-spacing: 0.1em;
+  }
+
+  .lookbook-year {
+    font-size: 0.75rem;
+  }
+
+  .editorial-grid {
+    padding: 0 1.5rem;
+    gap: 1rem;
+  }
+
+  /* Mobile: All items full width */
+  .grid-item.featured,
+  .grid-item.half,
+  .grid-item.third,
+  .grid-item.two-thirds,
+  .grid-item.one-third {
+    grid-column: span 12;
+    aspect-ratio: 3 / 4;
+  }
+
+  .grid-item.featured {
+    aspect-ratio: 4 / 5;
+  }
+
+  .comp-card-link {
+    font-size: 0.75rem;
+    padding: 0.875rem 2rem;
+  }
+}
+
+/* Tablet Responsive */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .lookbook-title {
+    font-size: 3.5rem;
+  }
+
+  .editorial-grid {
+    padding: 0 2rem;
+  }
+
+  .grid-item.third {
+    grid-column: span 6;
+  }
 }
