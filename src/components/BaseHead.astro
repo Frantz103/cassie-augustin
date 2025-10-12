@@ -65,10 +65,20 @@ const { title, description = "Ludnie Cassie Augustin - Nutritionist, Model, and 
 
 <script>
  document.addEventListener('DOMContentLoaded', function() {
-    const header = document.querySelector('header'); // Select the header element
+    const header = document.querySelector('header');
+    const menuIcons = document.querySelectorAll('.menu-icon'); // Get all menu icons
+
     // Check if the current URL includes 'lookbook' or 'blog'
     if (window.location.href.includes("/lookbook") || window.location.href.includes("/blog")) {
-        header.style.backgroundColor = "var(--pastel-pink)"; // Change the header's background color
+        header.style.backgroundColor = "var(--pastel-pink)";
+
+        // For lookbook specifically, ensure dark menu icons are visible on white bg
+        if (window.location.href.includes("/lookbook")) {
+            menuIcons.forEach(icon => {
+                icon.style.filter = "invert(0)"; // Dark icon on white
+                icon.style.opacity = "1"; // Full visibility
+            });
+        }
     }
 });
 
