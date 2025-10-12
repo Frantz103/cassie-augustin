@@ -46,9 +46,10 @@
     }
 
 .modal__content p {
-  font-size: 1rem;
-  max-width: 520px;
-  line-height: 156.25%;
+  font-size: 1.0625rem; /* Match improved base font size */
+  max-width: 560px; /* Slightly wider for better reading */
+  line-height: 1.65; /* More comfortable line spacing */
+  margin-bottom: 1rem; /* Better paragraph spacing */
 }
 
   .modal__title {
@@ -114,10 +115,11 @@
     .modal__content h2 {
       font-family: Playfair Display;
       font-size: 56px;
-      font-weight: 700;
-      line-height: 50px;
-      letter-spacing: 0.25em;
+      font-weight: 600; /* Slightly lighter for elegance */
+      line-height: 1.15; /* Better proportional spacing */
+      letter-spacing: 0.22em; /* Slightly tighter for better readability */
       text-transform: uppercase;
+      margin-bottom: 1.5rem;
       }
 
     .modal-img {

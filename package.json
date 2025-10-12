@@ -1,7 +1,9 @@
 {
-  "name": "@example/basics",
-  "version": "0.0.1",
+  "name": "cassie-augustin-portfolio",
+  "version": "1.0.0",
   "private": true,
+  "description": "Personal portfolio website for Ludnie Cassie Augustin - Nutritionist & Model",
+  "author": "Ludnie Cassie Augustin",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -10,7 +12,7 @@
   },
   "devDependencies": {
     "@types/micromodal": "^0.3.5",
-    "astro": "^4.5.3",
+    "astro": "^5.14.4",
     "prettier-plugin-astro": "^0.13.0"
   },
   "dependencies": {

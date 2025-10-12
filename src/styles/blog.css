@@ -13,11 +13,12 @@ ul {
 }
 
 .blog p, .posts p {
-    line-height: 150%;
-    letter-spacing: 0.5px;
-    margin-bottom: 2rem;
-    max-width: 720px;
+    line-height: 1.7; /* More generous line spacing for long-form content */
+    letter-spacing: 0.3px; /* Slightly tighter for better flow */
+    margin-bottom: 1.5rem; /* Better paragraph rhythm */
+    max-width: 680px; /* Optimal line length for reading (45-75 chars) */
     width: 100%;
+    font-size: 1.0625rem; /* Match improved base size */
 }
 
 section a {

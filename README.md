@@ -1,182 +1,190 @@
-[![Netlify + Astro](https://user-images.githubusercontent.com/43764894/223559085-8ff69d2f-4247-427f-a3a6-d2036b00082a.png)](https://ntl.fyi/3LZGn73)
+# Ludnie Cassie Augustin - Personal Portfolio Website
 
-# Astro Quickstart Template   
+A personal portfolio and blog website for Ludnie Cassie Augustin, nutritionist, model, and Miss Choucoune International 2024 contestant. Built with Astro and deployed on Netlify.
 
-This is a bare-bones Astro project that has everything you need to quickly deploy it to [Netlify](https://netlify.com). 
+## About This Project
 
-Hate reading, here's a video: https://youtu.be/SknFflQVOys!
+This website showcases Cassie's work as a nutritionist passionate about women's health, her modeling portfolio, and her journey with the Miss Choucoune International pageant.
 
-Love reading, here's blog post: www.netlify.app/blog/deploy-your-astro-project-fast/!
+## Features
 
-## Table of Contents:
+- **Home Page** - Hero section with introduction and call-to-action
+- **Blog** - Content-driven blog using Astro's content collections
+- **Lookbook** - Photography portfolio showcasing modeling work
+- **Modal Navigation** - About, Miss Choucoune info, and Contact modals using MicroModal
+- **Responsive Design** - Mobile-first design with hamburger menu
+- **Downloadable Assets** - Comp card PDF available for download
 
-- [Quick Setup + Deploy Option](#quick-setup--deploy-option)
-- [Regular Setup](#regular-setup)
-  - [Cloning + Install Packages](#1-cloning--install-packages)
-  - [Deploying](#2-deploying)
-- [Astro + Netlify Resources](#astro--netlify-resources)
-- [Project Structure](#project-structure)
-- [Styling](#styling)
-  - [Notes on Styling](#notes-on-styling)
-  - [Remove Styling](#remove-styling)
-- [Commands](#commands)
-- [Testing](#testing)
-  - [Included Default Testing](#included-default-testing)
-  - [Removing Renovate](#removing-renovate)
-  - [Removing Cypress](#removing-cypress)
-- [Want to learn more?](#want-to-learn-more)
+## Tech Stack
 
-## Quick Setup + Deploy Option
+- **Framework:** Astro 4.5.3
+- **Styling:** Skeleton CSS + Custom CSS
+- **Interactions:** MicroModal for modal dialogs
+- **Testing:** Cypress for E2E testing
+- **Deployment:** Netlify
+- **Content:** Markdown-based blog posts with content collections
 
-Click this button and it will help you create a new repo, create a new Netlify project, and deploy!
+## Quick Start
 
-[![Deploy to Netlify Button](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify-templates/astro-quickstart)
+### Installation
 
-## Regular Setup
+```bash
+npm install
+```
 
- ### 1. Cloning + Install Packages
+### Development
 
-  - Clone this repo with one of these options:
+```bash
+npm run dev
+```
 
-    - Click the 'Use this template' button at the top of the page
-    - Or via the command line `git clone https://github.com/netlify-templates/astro-quickstart`
+Visit `http://localhost:4321` to view the site locally.
 
-  - Then install the necessary packages and run the project locally to make sure everything works.
+### Build
 
-    ```bash
-    npm install
-    npm run dev
-    ```
+```bash
+npm run build
+```
 
-  > Alternatively, you can run this locally with [the Netlify CLI](https://docs.netlify.com/cli/get-started/)'s by running the `netlify dev` command for more options like receiving a live preview to share (`netlify dev --live`) and the ability to test [Netlify Functions](https://www.netlify.com/products/functions) and [redirects](https://docs.netlify.com/routing/redirects/). 
+### Preview Production Build
 
-  ### 2. Deploying
-  - Install the Netlify CLI globally `npm install netlify-cli -g`
-    
-  - Run `npm run build`
+```bash
+npm run preview
+```
 
-  - Then use the `netlify deploy` for a deploy preview link or `netlify deploy --prod` to deploy to production
+## Deployment
 
-  Here are a few other ways you can deploy this template:
-    
-  - Use the Netlify CLI's create from template command `netlify sites:create-template astro-quickstart` which will create a repo, Netlify project, and deploy it
-    
-  - If you want to utilize continuous deployment through GitHub webhooks, run the Netlify command `netlify init` to create a new project based on your repo or `netlify link` to connect your repo to an existing project
-
-## Astro + Netlify Resources
-
-Here are some resources to help you on your Astro + Netlify coding fun!
-
-- [Astro on Netlify Integration Page](https://docs.netlify.com/integrations/frameworks/astro)
-
-- [Build wicked fast sites with Astro: An Introduction](https://www.netlify.com/blog/2021/07/08/build-wicked-fast-sites-with-astro-an-introduction/#main)
-
-- [A Template for Building Shopify Stores with Astro and the Storefront API](https://www.netlify.com/blog/2021/07/23/build-a-modern-shopping-site-with-astro-and-serverless-functions)
-
-Hope this template helps :) Happy coding 👩🏻‍💻!
+This site is configured for deployment on Netlify. The build settings are defined in `netlify.toml`:
+- Build command: `astro build`
+- Publish directory: `dist`
 
 ---
 
 ## Project Structure
 
-Inside of your Astro project, you'll see the following folders and files:
-
 ```
 /
 ├── public/
-│   └── favicon.ico
+│   ├── assets/
+│   │   ├── Docs/              # PDF files (comp card)
+│   │   ├── icons/             # UI icons
+│   │   ├── img/               # Images
+│   │   │   └── lookbook/      # Modeling portfolio photos
+│   │   └── js/                # Client-side JavaScript
+│   ├── favicon.ico
+│   ├── skeleton.css
+│   ├── normalize.css
+│   └── modal.css
 ├── src/
 │   ├── components/
-│   │   └── Layout.astro
+│   │   ├── BaseHead.astro     # HTML head meta tags
+│   │   ├── BlogPost.astro     # Blog post component
+│   │   ├── Footer.astro       # Site footer with navigation
+│   │   ├── FormattedDate.astro
+│   │   ├── Header.astro       # Site header with menu
+│   │   ├── Layout.astro       # Main layout wrapper
+│   │   └── Modal.astro        # MicroModal dialogs
+│   ├── content/
+│   │   ├── blog/              # Blog post markdown files
+│   │   │   └── post-1.md
+│   │   └── config.ts          # Content collection schema
 │   ├── pages/
-│   │   └── index.astro
-│   └── style/
-│       └── demo-styling.css
+│   │   ├── blog/
+│   │   │   ├── index.astro    # Blog listing page
+│   │   │   └── [...slug].astro # Dynamic blog post pages
+│   │   ├── index.astro        # Home page
+│   │   └── lookbook.astro     # Photo gallery page
+│   └── styles/
+│       ├── base.css           # Main styles
+│       ├── blog.css           # Blog-specific styles
+│       └── modal.css          # Modal styles
+├── astro.config.mjs
+├── netlify.toml
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Key Directories
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components or layouts.
-
-Any static assets, like images, can be placed in the `public/` directory.
+- **`src/pages/`** - File-based routing. Each `.astro` file becomes a route
+- **`src/content/`** - Content collections for blog posts with type-safe frontmatter
+- **`src/components/`** - Reusable Astro components
+- **`public/`** - Static assets served as-is
 
 ## Styling
 
-We've added some modern styling to this template using css within an external stylesheet, this will allow you to easily remove our styling and add in your own. 
+The site uses a combination of:
+- **Skeleton CSS** - Lightweight responsive grid framework
+- **Normalize.css** - Cross-browser consistency
+- **Custom CSS** - Located in `src/styles/` for component-specific styling
 
-If you decide that you want to keep our styling you can review our style notes below. 
+The color scheme features warm tones with `#FFF0E1` (off-white/peach) as the primary background color.
 
-### Notes on Styling
-
-The variables below give you the ability to change the gradient colors of the blobs and are interpolated into the URL string of the background-img within the body. 
-
-```css
-// Controls the blob blur gradient colors within the main tag's svg
---top-right-blur-1: #20C6B7;
---top-right-blur-2: #4D9ABF;
---bttm-left-blur-1: #FF5C02;
---bttm-left-blur-2: #FFCDB1;
-```
-
-### Remove Styling
-
-If you decide that our styling is not for you, all you'll need to do is remove the [demo-styling.css](https://github.com/netlify-templates/astro-quickstart/tree/main/src/style/demo-styling.css) file. 
-
-
-## Commands
-
-All commands are run from the root of the project, from a terminal:
+## Available Commands
 
 | Command           | Action                                       |
 | :---------------- | :------------------------------------------- |
 | `npm install`     | Installs dependencies                        |
-| `npm run dev`     | Starts local dev server at `localhost:3000`  |
+| `npm run dev`     | Starts local dev server at `localhost:4321`  |
+| `npm run start`   | Alias for `npm run dev`                      |
 | `npm run build`   | Build your production site to `./dist/`      |
 | `npm run preview` | Preview your build locally, before deploying |
 
+## Content Management
+
+### Adding Blog Posts
+
+1. Create a new `.md` file in `src/content/blog/`
+2. Add frontmatter with required fields:
+
+```yaml
+---
+title: "Your Post Title"
+pubDate: 'Month Day, Year'
+description: "Post description"
+author: "Ludnie Cassie Augustin"
+heroImage: '/path/to/image.jpg' # Optional
+url: 'post-slug' # Optional
+---
+```
+
+3. The blog post will automatically appear in the blog listing
+
+### Updating Lookbook Photos
+
+Add new images to `public/assets/img/lookbook/` and update `src/pages/lookbook.astro` to include them in the gallery grid.
+
 ## Testing
 
-### Included Default Testing
+This project includes:
+- **Renovate** - Automated dependency updates (configured in `renovate.json`)
+- **Cypress** - E2E testing framework (currently disabled in `netlify.toml`)
 
-We’ve included some tooling that helps us maintain these templates. This template currently uses:
+## Dependencies
 
-- [Renovate](https://www.mend.io/free-developer-tools/renovate/) - to regularly update our dependencies
-- [Cypress](https://www.cypress.io/) - to run tests against how the template runs in the browser
-- [Cypress Netlify Build Plugin](https://github.com/cypress-io/netlify-plugin-cypress) - to run our tests during our build process
+### Current Versions
+- Astro: 4.5.3
+- @astrojs/react: 3.0.10
+- MicroModal: 0.4.10
+- Cypress: 13.6.6
 
-If your team is not interested in this tooling, you can remove them with ease!
+### Updating Dependencies
 
-### Removing Renovate
-
-In order to keep our project up-to-date with dependencies we use a tool called [Renovate](https://github.com/marketplace/renovate). If you’re not interested in this tooling, delete the `renovate.json` file and commit that onto your main branch.
-
-### Removing Cypress
-
-For our testing, we use [Cypress](https://www.cypress.io/) for end-to-end testing. This makes sure that we can validate that our templates are rendering and displaying as we’d expect. By default, we have Cypress not generate deploy links if our tests don’t pass. If you’d like to keep Cypress and still generate the deploy links, go into your `netlify.toml` and delete the plugin configuration lines:
-
-```diff
-[[plugins]]
-  package = "netlify-plugin-cypress"
--  [plugins.inputs.postBuild]
--    enable = true
--
--  [plugins.inputs]
--    enable = false 
-```
-
-If you’d like to remove the `netlify-plugin-cypress` build plugin entirely, you’d need to delete the entire block above instead. And then make sure sure to remove the package from the dependencies using:
-
+To check for outdated packages:
 ```bash
-npm uninstall -D netlify-plugin-cypress
+npm outdated
 ```
 
-And lastly if you’d like to remove Cypress entirely, delete the entire `cypress` folder and the `cypress.config.ts` file. Then remove the dependency using:
-
+To update packages:
 ```bash
-npm uninstall cypress
+npm update
 ```
 
-## Want to learn more?
+## Learn More
 
-Feel free to check [our documentation](https://github.com/withastro/astro) or jump into our [Discord server](https://astro.build/chat).
+- [Astro Documentation](https://docs.astro.build)
+- [Skeleton CSS Documentation](http://getskeleton.com/)
+- [MicroModal Documentation](https://micromodal.vercel.app/)
+
+---
+
+Built with care for Ludnie Cassie Augustin.
