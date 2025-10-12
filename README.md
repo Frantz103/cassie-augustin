@@ -10,8 +10,13 @@ This website showcases Cassie's work as a nutritionist passionate about women's 
 
 - **Home Page** - Hero section with "Let's Connect" CTA to engage with visitors
 - **Blog** - Content-driven blog with wellness and nutrition insights
-- **Lookbook** - Professional modeling portfolio with gallery layout
-- **Modal Navigation** - About, Lookbook preview, and Contact modals using MicroModal
+- **Lookbook** - High-end editorial portfolio with fashion magazine aesthetic
+  - Dynamic asymmetric grid layout
+  - Full-width hero images, two-column, three-column variations
+  - Elegant typography with wide letter spacing
+  - Professional hover effects and smooth transitions
+  - Comp card download CTA
+- **Modal Navigation** - About and Contact modals using MicroModal
 - **Responsive Design** - Mobile-first design with optimized typography
 - **Contact Integration** - Direct links to Instagram (@cassie.augustin) and email
 - **Downloadable Assets** - Professional comp card PDF available
@@ -173,7 +178,14 @@ url: 'post-slug' # Optional
 
 ### Updating Lookbook Photos
 
-Add new images to `public/assets/img/lookbook/` and update `src/pages/lookbook.astro` to include them in the gallery grid.
+1. Add new images to `public/assets/img/lookbook/`
+2. Update `src/pages/lookbook.astro` to include them in the editorial grid
+3. Use the grid-item classes for layout control:
+   - `.featured` - Full-width hero shots (16:9)
+   - `.half` - Two-column layout (4:5)
+   - `.third` - Three-column layout (3:4)
+   - `.two-thirds` + `.one-third` - Asymmetric split
+4. Maintain visual rhythm by mixing layout variations
 
 ## Testing
 
@@ -184,6 +196,12 @@ This project includes:
 ## Recent Updates (2025)
 
 - ✅ Updated Astro from 4.5.3 to 5.14.4
+- ✅ **Redesigned Lookbook** - Complete high-end editorial makeover with:
+  - Minimalist, fashion-forward layout inspired by Vogue/Harper's Bazaar
+  - Dynamic asymmetric grid (featured, half, third, 2/3-1/3 layouts)
+  - Elegant hero section with vintage typography
+  - Subtle hover interactions and smooth transitions
+  - Removed lookbook modal in favor of dedicated page
 - ✅ Improved typography and readability across the site
 - ✅ Enhanced SEO with meta tags and Open Graph integration
 - ✅ Updated homepage CTA from pageant voting to "Let's Connect"
