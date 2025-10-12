@@ -1,28 +1,30 @@
 # Ludnie Cassie Augustin - Personal Portfolio Website
 
-A personal portfolio and blog website for Ludnie Cassie Augustin, nutritionist, model, and Miss Choucoune International 2024 contestant. Built with Astro and deployed on Netlify.
+A personal portfolio and blog website for Ludnie Cassie Augustin, nutritionist and model passionate about empowering women through wellness. Built with Astro and deployed on Netlify.
 
 ## About This Project
 
-This website showcases Cassie's work as a nutritionist passionate about women's health, her modeling portfolio, and her journey with the Miss Choucoune International pageant.
+This website showcases Cassie's work as a nutritionist passionate about women's health, her modeling portfolio, and her platform for wellness education and inspiration.
 
 ## Features
 
-- **Home Page** - Hero section with introduction and call-to-action
-- **Blog** - Content-driven blog using Astro's content collections
-- **Lookbook** - Photography portfolio showcasing modeling work
-- **Modal Navigation** - About, Miss Choucoune info, and Contact modals using MicroModal
-- **Responsive Design** - Mobile-first design with hamburger menu
-- **Downloadable Assets** - Comp card PDF available for download
+- **Home Page** - Hero section with "Let's Connect" CTA to engage with visitors
+- **Blog** - Content-driven blog with wellness and nutrition insights
+- **Lookbook** - Professional modeling portfolio with gallery layout
+- **Modal Navigation** - About, Lookbook preview, and Contact modals using MicroModal
+- **Responsive Design** - Mobile-first design with optimized typography
+- **Contact Integration** - Direct links to Instagram (@cassie.augustin) and email
+- **Downloadable Assets** - Professional comp card PDF available
 
 ## Tech Stack
 
-- **Framework:** Astro 4.5.3
-- **Styling:** Skeleton CSS + Custom CSS
+- **Framework:** Astro 5.14.4
+- **Styling:** Skeleton CSS + Custom CSS with optimized typography
 - **Interactions:** MicroModal for modal dialogs
 - **Testing:** Cypress for E2E testing
-- **Deployment:** Netlify
+- **Deployment:** Netlify with continuous deployment
 - **Content:** Markdown-based blog posts with content collections
+- **Analytics:** Google Analytics integration
 
 ## Quick Start
 
@@ -54,9 +56,29 @@ npm run preview
 
 ## Deployment
 
-This site is configured for deployment on Netlify. The build settings are defined in `netlify.toml`:
-- Build command: `astro build`
-- Publish directory: `dist`
+This site is deployed on Netlify with continuous deployment from the `main` branch.
+
+### Netlify Configuration
+
+Build settings are defined in `netlify.toml`:
+- **Base directory:** Leave blank (uses root)
+- **Build command:** `astro build`
+- **Publish directory:** `dist`
+
+### Manual Deployment
+
+If you need to deploy manually:
+
+```bash
+npm run build
+netlify deploy --prod
+```
+
+Or set up a new site:
+
+```bash
+netlify init
+```
 
 ---
 
@@ -159,10 +181,21 @@ This project includes:
 - **Renovate** - Automated dependency updates (configured in `renovate.json`)
 - **Cypress** - E2E testing framework (currently disabled in `netlify.toml`)
 
+## Recent Updates (2025)
+
+- ✅ Updated Astro from 4.5.3 to 5.14.4
+- ✅ Improved typography and readability across the site
+- ✅ Enhanced SEO with meta tags and Open Graph integration
+- ✅ Updated homepage CTA from pageant voting to "Let's Connect"
+- ✅ Refreshed contact modal with Instagram and email links
+- ✅ Streamlined navigation (removed outdated pageant references)
+- ✅ Added focus states for better accessibility
+- ✅ Optimized line heights and font sizes for comfortable reading
+
 ## Dependencies
 
 ### Current Versions
-- Astro: 4.5.3
+- Astro: 5.14.4
 - @astrojs/react: 3.0.10
 - MicroModal: 0.4.10
 - Cypress: 13.6.6
@@ -179,12 +212,18 @@ To update packages:
 npm update
 ```
 
-## Learn More
+## Connect with Cassie
+
+- **Instagram:** [@cassie.augustin](https://www.instagram.com/cassie.augustin)
+- **Email:** augustincassie@gmail.com
+
+## Resources
 
 - [Astro Documentation](https://docs.astro.build)
 - [Skeleton CSS Documentation](http://getskeleton.com/)
 - [MicroModal Documentation](https://micromodal.vercel.app/)
+- [Netlify Documentation](https://docs.netlify.com)
 
 ---
 
-Built with care for Ludnie Cassie Augustin.
+Built with care for Ludnie Cassie Augustin | Last updated: January 2025
