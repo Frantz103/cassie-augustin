@@ -1,0 +1,196 @@
+/* Homepage - Intro, CTA, Hero Image */
+
+/* Mobile intro */
+@media (max-width: 321px) {
+  .intro-container {
+    padding-top: 1rem;
+  }
+}
+
+@media (max-width: 395px) {
+  .intro-container {
+    padding-top: 30%;
+  }
+}
+
+@media (min-width: 396px) and (max-width: 480px) {
+  .intro-container {
+    padding-top: 40%;
+    width: 95%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .cta-button {
+    padding: 0.75rem 1.5rem;
+    margin-top: 1rem;
+    width: 15.625rem;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    box-sizing: border-box;
+  }
+
+  .cta-button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .cta-container p {
+    color: var(--white);
+    letter-spacing: 1px;
+  }
+
+  .intro-container {
+    min-height: 300px;
+    z-index: 1;
+  }
+
+  .intro-container h1 {
+    color: var(--white);
+    letter-spacing: 0.25rem;
+    word-wrap: initial;
+    font-size: 2.25rem;
+  }
+
+  .intro {
+    font-size: 1.25rem;
+  }
+
+  .pr-mobile-2 {
+    padding-right: 2rem;
+  }
+
+  body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('/assets/img/ludnie-mobile.JPG') no-repeat center center;
+    background-size: cover;
+    z-index: -1;
+  }
+
+  body::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.10);
+    z-index: 0;
+  }
+}
+
+@media screen and (max-width: 319px) {
+  .ml-2 {
+    margin-left: 0;
+  }
+}
+
+/* Desktop intro */
+@media (min-width: 769px) {
+  .intro-container {
+    min-height: 300px;
+    margin-top: 20%;
+    margin-bottom: 3rem;
+  }
+
+  .intro-container h1 {
+    font-size: 56px;
+    font-family: Playfair Display;
+    font-style: normal;
+    font-weight: 400;
+    letter-spacing: 5.60px;
+    word-wrap: break-word;
+    text-transform: uppercase;
+  }
+
+  .intro {
+    color: black;
+    font-size: 28px;
+    font-family: Lato;
+    font-weight: 300;
+    line-height: 1.55;
+    letter-spacing: 0.70px;
+    word-wrap: break-word;
+    max-width: 85%;
+    margin-right: 2rem;
+  }
+}
+
+/* Vertical bar (desktop hero) */
+@media screen and (max-width: 1278px) {
+  .vertical-bar-container {
+    display: none;
+  }
+}
+
+@media (min-width: 1279px) {
+  .float-image {
+    position: absolute;
+    top: -10rem;
+    right: 8rem;
+    z-index: 10;
+    width: 95%;
+    overflow-y: hidden;
+  }
+
+  .hide-on-mobile {
+    position: relative;
+  }
+
+  .vertical-bar-container {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 8rem;
+  }
+
+  .bar-number {
+    font-size: 1.25em;
+    position: relative;
+    top: 2rem;
+    margin-bottom: 3rem;
+    display: block;
+  }
+
+  .vertical-bar {
+    display: block;
+    height: 100vh;
+    max-height: 32rem;
+    margin-top: 1rem;
+  }
+}
+
+.left-box, .right-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60vh;
+}
+
+/* Larger than desktop */
+@media (min-width: 1000px) {
+  .left-box img, .right-box img {
+    max-width: 14.75rem;
+    height: 18.875rem;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .center-box img {
+    max-width: 21.375rem;
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .mb-desktop-6 {
+    margin-bottom: 6rem;
+  }
+}

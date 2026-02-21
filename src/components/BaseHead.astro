@@ -1,6 +1,22 @@
 ---
 const gaId = import.meta.env.PUBLIC_GA_ID || '';
+const siteUrl = import.meta.env.SITE_URL || '';
 const { title, description = "Ludnie Cassie Augustin - Nutritionist, Model, and Miss Choucoune International 2024 contestant. Empowering women through nutrition and wellness." } = Astro.props;
+const canonicalUrl = siteUrl ? new URL(Astro.url.pathname, siteUrl).href : '';
+const ogImageUrl = siteUrl ? `${siteUrl}/assets/img/Ludnie.jpg` : '/assets/img/Ludnie.jpg';
+
+const personJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Ludnie Cassie Augustin",
+  "url": siteUrl || undefined,
+  "image": ogImageUrl,
+  "jobTitle": "Nutritionist",
+  "description": description,
+  "sameAs": [
+    "https://www.instagram.com/cassie.augustin"
+  ]
+});
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -10,12 +26,18 @@ const { title, description = "Ludnie Cassie Augustin - Nutritionist, Model, and 
     <meta name="description" content={description}>
     <meta name="author" content="Ludnie Cassie Augustin">
 
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:title" content={title}>
     <meta property="og:description" content={description}>
-    <meta property="og:image" content="/assets/img/Ludnie.jpg">
+    <meta property="og:image" content={ogImageUrl}>
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
     <meta name="google-site-verification" content="aULVjtuSRDv7GETE3xCgYPGdyXaP6FNkono6cHGYpV8" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={personJsonLd} />
 
     <link rel="icon" type="image/x-icon" href="/assets/favicon.png"/>
     <!-- Ensure the paths here are correct -->

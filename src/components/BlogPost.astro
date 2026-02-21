@@ -5,6 +5,8 @@ import Footer from '../components/Footer.astro';
 import BaseHead from './BaseHead.astro';
 import Modal from '../components/Modal.astro';
 import '../styles/base.css';
+import '../styles/header.css';
+import '../styles/footer.css';
 import '../styles/modal.css';
 import '../styles/blog.css';
 import FormattedDate from '../components/FormattedDate.astro';
@@ -19,7 +21,7 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
 <body>
     <div class="overlay" id="overlay"></div>
     <Header />
-    <div class="hero-image">
+    <div id="main-content" class="hero-image">
         <picture>
           <!-- Use source elements for different screen sizes -->
           <source media="(max-width: 768px)" srcset="/assets/img/banner-image-mobile.png">
