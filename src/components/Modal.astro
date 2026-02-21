@@ -3,6 +3,7 @@ import { useSanity } from '../lib/useSanity';
 import { getAbout, getSiteSettings } from '../lib/sanityQueries';
 import { urlFor } from '../lib/sanity';
 import PortableText from './PortableText';
+import { sanitizeCmsText, safeExternalUrl } from '../lib/contentSafety';
 
 const useCms = useSanity();
 const [aboutData, settingsData] = await Promise.all([
@@ -14,14 +15,20 @@ const [aboutData, settingsData] = await Promise.all([
 const aboutTitle = aboutData?.title || 'About';
 const aboutImage = aboutData?.image ? urlFor(aboutData.image).url() : '/assets/img/ludnie-pink-dress.jpg';
 const aboutImageAlt = aboutData?.imageAlt || '';
-const aboutClosing = aboutData?.closing || 'Xoxo,\nCassie';
+const aboutClosingRaw = aboutData?.closing || 'Xoxo,\nCassie';
+const aboutClosing = sanitizeCmsText(aboutClosingRaw);
 
 // Fallbacks for Contact (Site Settings)
 const contactIntro = settingsData?.contactIntro || "I'd love to connect with you! Whether you're interested in nutrition guidance, modeling collaborations, or just want to say hello, I'm here for it.";
 const contactOutro = settingsData?.contactOutro || "I share nutrition tips, wellness insights, behind-the-scenes from photoshoots, and everything in between. Let's start this journey together!";
 const email = settingsData?.email || 'augustincassie@gmail.com';
 const instagram = settingsData?.instagram || '@cassie.augustin';
-const instagramUrl = settingsData?.instagramUrl || 'https://www.instagram.com/cassie.augustin';
+const defaultInstagramUrl = 'https://www.instagram.com/cassie.augustin';
+const instagramUrl = safeExternalUrl(settingsData?.instagramUrl, {
+	fallback: defaultInstagramUrl,
+	allowedHosts: ['instagram.com', 'www.instagram.com'],
+	allowedProtocols: ['https:'],
+});
 ---
 <!-- Modal for About -->
 <div class="modal micromodal-slide" id="modal-about" aria-hidden="true">
@@ -57,7 +64,7 @@ const instagramUrl = settingsData?.instagramUrl || 'https://www.instagram.com/ca
                     <p>Make yourself at home!! And I mean that will all my heart.</p>
                 </Fragment>
             )}
-            <p set:html={aboutClosing.replace(/\n/g, '<br/>')}></p>
+            <p style="white-space: pre-line;">{aboutClosing}</p>
             </div>
             <div class="one-half column"><img class="modal-img" src={aboutImage} alt={aboutImageAlt}/></div>
 

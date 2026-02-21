@@ -3,30 +3,28 @@ import imageUrlBuilder from '@sanity/image-url';
 
 const projectId = import.meta.env.PUBLIC_SANITY_PROJECT_ID;
 const dataset = import.meta.env.PUBLIC_SANITY_DATASET || 'production';
-const token = import.meta.env.SANITY_READ_TOKEN;
 
-let client: ReturnType<typeof createClient> | null = null;
+let publicClient: ReturnType<typeof createClient> | null = null;
 let builder: ReturnType<typeof imageUrlBuilder> | null = null;
 
-export function getSanityClient() {
+export function getPublicSanityClient() {
 	if (!projectId) {
 		throw new Error('Sanity project ID missing; set PUBLIC_SANITY_PROJECT_ID or disable PUBLIC_USE_SANITY');
 	}
-	if (!client) {
-		client = createClient({
+	if (!publicClient) {
+		publicClient = createClient({
 			projectId,
 			dataset,
 			apiVersion: '2023-01-01',
-			useCdn: !token,
-			...(token && { token }),
+			useCdn: true,
 		});
 	}
-	return client;
+	return publicClient;
 }
 
 export function urlFor(source: any) {
 	if (!builder) {
-		builder = imageUrlBuilder(getSanityClient());
+		builder = imageUrlBuilder(getPublicSanityClient());
 	}
 	return builder.image(source);
 }

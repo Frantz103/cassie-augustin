@@ -1,5 +1,5 @@
 import groq from 'groq';
-import { getSanityClient } from './sanity';
+import { getSanityClient } from './sanity.server';
 
 export type SanityImage = {
 	asset: { _ref?: string; url?: string };

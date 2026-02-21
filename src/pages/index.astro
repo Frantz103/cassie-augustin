@@ -4,6 +4,7 @@ import Modal from '../components/Modal.astro';
 import { useSanity } from '../lib/useSanity';
 import { getHomepage } from '../lib/sanityQueries';
 import { urlFor } from '../lib/sanity';
+import { sanitizeCmsText } from '../lib/contentSafety';
 
 const useCms = useSanity();
 const homeData = useCms ? await getHomepage() : null;
@@ -12,7 +13,9 @@ const homeData = useCms ? await getHomepage() : null;
 const heroTitle = homeData?.heroTitle || "Hi, I'm Cassie";
 const heroSubtitle = homeData?.heroSubtitle || "I am a nutritionist passionate about women health, fashion, and modeling.";
 const ctaText = homeData?.ctaText || "Let's Connect";
-const ctaSubtext = homeData?.ctaSubtext || "Follow along for nutrition tips, modeling work, <br/> and wellness inspiration.";
+const ctaSubtextRaw =
+	homeData?.ctaSubtext || 'Follow along for nutrition tips, modeling work,\n and wellness inspiration.';
+const ctaSubtext = sanitizeCmsText(ctaSubtextRaw);
 const heroImage = homeData?.heroImage ? urlFor(homeData.heroImage).url() : "/assets/img/Ludnie.jpg";
 const heroImageAlt = homeData?.heroImageAlt || "A portrait of Ludnie Augustin showcasing her natural curly hair and bold makeup, with a focus on her expressive eyes and glossy lips, complemented by elegant earrings.";
 ---
@@ -27,7 +30,7 @@ const heroImageAlt = homeData?.heroImageAlt || "A portrait of Ludnie Augustin sh
       
        <div class="cta-container ml-2">
           <a href="#" data-micromodal-trigger="modal-contact" class="cta-button">{ctaText}</a>
-          <p set:html={ctaSubtext}></p>
+          <p style="white-space: pre-line;">{ctaSubtext}</p>
         </div> 
       </div>
     </div>

@@ -9,9 +9,9 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "sanity": "cd sanity && sanity dev",
-    "sanity:deploy": "cd sanity && sanity deploy",
-    "sanity:init": "cd sanity && sanity init"
+    "sanity": "npm --prefix sanity run dev",
+    "sanity:deploy": "npm --prefix sanity run deploy",
+    "sanity:init": "npm --prefix sanity exec -- sanity init"
   },
   "devDependencies": {
     "@types/micromodal": "^0.3.5",
@@ -22,13 +22,10 @@
     "@astrojs/markdown-remark": "^4.3.2",
     "@astrojs/react": "^3.0.10",
     "@portabletext/react": "^3.0.19",
-    "@sanity/astro": "^3.2.11",
     "@sanity/client": "^7.6.0",
     "@sanity/image-url": "^1.0.2",
-    "@sanity/vision": "^3.38.0",
     "groq": "^3.64.0",
     "cypress": "^13.6.6",
-    "micromodal": "^0.4.10",
-    "sanity": "^3.38.0"
+    "micromodal": "^0.4.10"
   }
 }
