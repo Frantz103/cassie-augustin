@@ -4,7 +4,7 @@
   top: 0;
   left: 0;
   width: 100%; /* Full width of the viewport */
-  height: 100vh; /* Full height of the viewport */
+  height: 100%; /* Full height of the viewport */
   background: rgba(0, 0, 0, 0.6);
   z-index: 2001;
 }
@@ -22,7 +22,7 @@
   padding: 2rem;
   max-width: 1560px; /* Maximum width */
   width: 100%; /* This makes it take the full width of the modal */
-  height: 100vh; /* Adjusts the modal container to take up to 90% of the viewport height */
+  max-height: 100vh; /* Limit modal container to viewport height */
   min-height: 16rem; /* Ensures a minimum height */
   overflow-y: auto; /* Allows scrolling within the modal if the content exceeds the modal's height */
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -94,8 +94,8 @@
   }
   
   .modal__btn-primary {
-    background-color: #007bff;
-    color: white;
+    background-color: var(--dark-green);
+    color: var(--white);
     border: none;
     border-radius: 5px;
   }

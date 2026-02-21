@@ -23,7 +23,7 @@ ul {
 
 section a {
     text-decoration: underline;
-    color: #333;
+    color: var(--text-dark);
 }
 section .h-link {
     text-decoration: none ;

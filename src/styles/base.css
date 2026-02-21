@@ -25,6 +25,7 @@ nav, .intro-container, article {
   --dusty-rose: #C09A8A;
   --black: #000;
   --white: #fff;
+  --text-dark: #333;
 }
 
 .white {
@@ -85,8 +86,13 @@ html {
 }
 
 body {
-  padding-bottom: 85px;
   box-sizing: border-box;
+}
+
+@media (min-width: 769px) {
+  body {
+    padding-bottom: 85px;
+  }
 }
 
 /* Layout and Grid */
@@ -395,12 +401,17 @@ a:focus {
 
 /* Footer */
 footer {
-  position: fixed;
   background-color: var(--pastel-pink);
   height: 85px;
-  bottom: 0;
-  z-index: 9999999;
   border-top: 2px solid var(--dark-green);
+}
+
+@media (min-width: 769px) {
+  footer {
+    position: fixed;
+    bottom: 0;
+    z-index: 9999999;
+  }
 }
 
 /* Desktop styles inside this media query */

@@ -44,12 +44,12 @@ const posts = cmsPosts.length
     <main>
         <div class="container">
         <section class="blog">
+            {posts.length > 0 ? (
             <ul>
                 {
                     posts.map((post) => (
                         <li>
                             <a class="h-link" href={`/blog/${post.slug}/`}>
-                               <!-- <img width={720} height={360} src={post.heroImage} alt="" />--> 
                                 <h4 class="title">{post.title}</h4></a>
                                 <p class="date">
                                     <FormattedDate date={post.pubDate} />
@@ -57,11 +57,13 @@ const posts = cmsPosts.length
                                 <hr />
                                 <p>{post.description}</p>
                                 <p><a href={`/blog/${post.slug}/`}>Continue reading...</a></p>
-                            
                         </li>
                     ))
                 }
             </ul>
+            ) : (
+                <p style="text-align:center; padding:4rem 1rem;">New posts coming soon — stay tuned!</p>
+            )}
         </section>
     </div>
     <Modal />
