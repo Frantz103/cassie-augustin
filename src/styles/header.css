@@ -9,7 +9,7 @@ header, nav, .brand {
   header {
     background-color: var(--overlay-medium);
     height: auto;
-    z-index: 999999;
+    z-index: var(--z-mobile-header);
   }
 
   header, nav {
@@ -22,8 +22,9 @@ header, nav, .brand {
 
   .menu {
     float: right;
-    z-index: 2000;
+    z-index: var(--z-mobile-menu-btn);
     position: relative;
+    background: none;
     border: none;
     padding: 0;
     cursor: pointer;
@@ -54,11 +55,11 @@ header, nav, .brand {
 
   .brand p {
     color: var(--black);
-    font-size: 1.5rem;
+    font-size: var(--text-xl);
     font-family: var(--font-body);
     font-weight: 300;
     letter-spacing: 6px;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     text-transform: uppercase;
     padding-top: 1.25rem;
     padding-bottom: 1.5625rem;
@@ -82,7 +83,7 @@ header, nav, .brand {
 
   header {
     position: relative;
-    z-index: 1;
+    z-index: var(--z-content);
     background-color: var(--pastel-pink);
   }
 }
@@ -94,8 +95,9 @@ header, nav, .brand {
   position: fixed;
   width: 100%;
   max-width: 400px;
-  z-index: 99999999;
+  z-index: var(--z-nav-panel);
   height: 100vh;
+  height: 100dvh;
   top: 0;
   right: 0;
   display: none;
@@ -129,7 +131,7 @@ header, nav, .brand {
 
 #navigation-links .menu-top li {
   font-family: var(--font-heading);
-  font-size: 2.5rem;
+  font-size: var(--text-nav);
   line-height: 4rem;
   text-align: left;
   border-bottom: 2px solid var(--black);
@@ -146,7 +148,7 @@ header, nav, .brand {
 .menu-footer ul li {
   display: inline;
   padding-right: 0;
-  font-size: 0.9375rem;
+  font-size: var(--text-base);
 }
 
 #navigation-links .menu-footer {
@@ -162,7 +164,7 @@ header, nav, .brand {
   position: absolute;
   top: -100%;
   left: 1rem;
-  z-index: 999999999;
+  z-index: var(--z-skip-link);
   background: var(--sunflower-yellow);
   color: var(--black);
   padding: 0.5rem 1rem;

@@ -13,7 +13,7 @@
     margin-bottom: 1.5rem;
     max-width: 680px;
     width: 100%;
-    font-size: 1.0625rem;
+    font-size: var(--text-body);
 }
 
 .blog a {
@@ -42,11 +42,7 @@
 
 }/* end of media query for all mobile devices */
 
-@media (min-width: 769px) {
-    nav {
-        margin-left: 4.875rem;
-    }
-}/* end of media query for all desktop devices */
+/* nav margin-left handled by base.css */
 
 /* Post */
 .hero-image {
@@ -65,7 +61,7 @@
     }
 
     .date {
-        font-size: 1rem;
+        font-size: var(--text-md);
     }
 
     .breadcrumb {
@@ -98,16 +94,16 @@
         }
 
     article h1 {
-            font-size: 2rem;
-            word-wrap: normal;
+            font-size: var(--text-article-h1-mobile);
+            overflow-wrap: normal;
     }
 
     }
 
 .hero-text {
     position: absolute;
-    font-size: 2.5rem;
-    z-index: 1;
+    font-size: var(--text-h1);
+    z-index: var(--z-content);
     height: 8rem;
 }
 
@@ -140,7 +136,7 @@
         right: 0;
         width: 100px;
         height: auto;
-        z-index: 10;
+        z-index: var(--z-decorative);
     }
 }
 
@@ -155,7 +151,7 @@
     }
 
     .hero-text {
-        margin-left: 6.875rem;
+        margin-left: var(--space-content-indent-wide);
         color: var(--black);
         top: 25%;
     }

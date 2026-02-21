@@ -2,17 +2,14 @@
 import Layout from '../components/Layout.astro';
 import '../styles/homepage.css';
 import { useSanity } from '../lib/useSanity';
-import { getHomepage, getRecentBlogPosts, getTestimonials, getSiteSettings } from '../lib/sanityQueries';
-import { getLookbookItems } from '../lib/lookbookQueries';
+import { getHomepage, getTestimonials, getSiteSettings } from '../lib/sanityQueries';
 import { urlFor } from '../lib/sanity';
 import { sanitizeCmsText } from '../lib/contentSafety';
 
 const useCms = useSanity();
-const [homeData, recentPosts, testimonials, lookbookItems, settings] = await Promise.all([
+const [homeData, testimonials, settings] = await Promise.all([
 	useCms ? getHomepage() : null,
-	useCms ? getRecentBlogPosts(3) : [],
 	useCms ? getTestimonials() : [],
-	useCms ? getLookbookItems() : [],
 	useCms ? getSiteSettings() : null,
 ]);
 
@@ -27,13 +24,6 @@ const ctaSubtext = sanitizeCmsText(ctaSubtextRaw);
 const heroImage = homeData?.heroImage ? urlFor(homeData.heroImage).url() : "/assets/img/Ludnie.jpg";
 const heroImageAlt = homeData?.heroImageAlt || "Portrait of Ludnie Cassie Augustin";
 
-// Lookbook preview — pick up to 4 featured or first items
-const featuredLookbook = lookbookItems
-	.filter((item) => item.featured)
-	.slice(0, 4);
-const lookbookPreview = featuredLookbook.length > 0
-	? featuredLookbook
-	: lookbookItems.slice(0, 4);
 ---
 <Layout title={`Ludnie Cassie Augustin - ${heroTitle}`}>
   <main>
@@ -62,58 +52,6 @@ const lookbookPreview = featuredLookbook.length > 0
     </div>
   </div>
   </div>
-
-  <!-- Latest Blog Posts -->
-  {recentPosts.length > 0 && (
-  <section class="homepage-section">
-    <div class="container">
-      <h2 class="section-heading">Latest Articles</h2>
-      <div class="post-grid">
-        {recentPosts.map((post) => {
-          const img = post.heroImage?.url
-            ? urlFor(post.heroImage).width(600).auto('format').url()
-            : null;
-          return (
-            <a href={`/blog/${post.slug}/`} class="post-card">
-              {img && <img src={img} alt={post.heroImage?.alt || post.title} loading="lazy" width="600" height="400" />}
-              <div class="post-card-body">
-                {post.category && <span class="post-category">{post.category}</span>}
-                <h3>{post.title}</h3>
-                {post.description && <p>{post.description.slice(0, 120)}{post.description.length > 120 ? '…' : ''}</p>}
-              </div>
-            </a>
-          );
-        })}
-      </div>
-      <div class="section-cta">
-        <a href="/blog" class="outline-link">View All Articles</a>
-      </div>
-    </div>
-  </section>
-  )}
-
-  <!-- Featured Lookbook -->
-  {lookbookPreview.length > 0 && (
-  <section class="homepage-section lookbook-preview-section">
-    <div class="container">
-      <h2 class="section-heading">Lookbook</h2>
-      <div class="lookbook-preview-grid">
-        {lookbookPreview.map((item) => {
-          const image = item.images?.[0];
-          const imgUrl = image ? urlFor(image).width(800).auto('format').url() : '';
-          return (
-            <div class="lookbook-preview-item">
-              {imgUrl && <img src={imgUrl} alt={image?.alt || item.title} loading="lazy" width="800" height="1000" />}
-            </div>
-          );
-        })}
-      </div>
-      <div class="section-cta">
-        <a href="/lookbook" class="outline-link">View Full Lookbook</a>
-      </div>
-    </div>
-  </section>
-  )}
 
   <!-- Testimonials -->
   {testimonials.length > 0 && (

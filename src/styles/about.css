@@ -5,7 +5,7 @@
 
 .about-title {
   font-family: var(--font-heading);
-  font-size: 2.25rem;
+  font-size: var(--text-page-title);
   font-weight: 600;
   line-height: 1.4;
   letter-spacing: 0.26em;
@@ -14,7 +14,7 @@
 }
 
 .about-text p {
-  font-size: 1.0625rem;
+  font-size: var(--text-body);
   max-width: 560px;
   line-height: 1.65;
   margin-bottom: 1rem;
@@ -29,11 +29,10 @@
 
 @media (min-width: 769px) {
   .about-content {
-    margin-left: 4.875rem;
+    margin-left: var(--space-content-indent);
   }
 
   .about-title {
-    font-size: 3.5rem;
     font-weight: 600;
     line-height: 1.15;
     letter-spacing: 0.22em;

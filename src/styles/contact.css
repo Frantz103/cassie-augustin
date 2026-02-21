@@ -5,7 +5,7 @@
 
 .contact-title {
   font-family: var(--font-heading);
-  font-size: 2.25rem;
+  font-size: var(--text-page-title);
   font-weight: 600;
   line-height: 1.4;
   letter-spacing: 0.26em;
@@ -13,12 +13,18 @@
   margin-bottom: 1.5rem;
 }
 
-.contact-body {
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.contact-info {
   max-width: 560px;
 }
 
-.contact-body p {
-  font-size: 1.0625rem;
+.contact-info p {
+  font-size: var(--text-body);
   line-height: 1.65;
   margin-bottom: 1rem;
 }
@@ -38,8 +44,8 @@
 
 /* Netlify Form */
 .form-heading {
-  font-size: 1.875rem;
-  margin-top: 2.5rem;
+  font-size: var(--text-h2);
+  margin-top: 0;
   margin-bottom: 1rem;
 }
 
@@ -54,7 +60,7 @@
 .form-group label {
   display: block;
   font-family: var(--font-body);
-  font-size: 0.9375rem;
+  font-size: var(--text-base);
   font-weight: 700;
   margin-bottom: 0.35rem;
   color: var(--black);
@@ -67,7 +73,7 @@
   border: 1px solid var(--border-color);
   border-radius: var(--radius-sm);
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: var(--text-md);
   color: var(--black);
   background: var(--white);
   transition: border-color var(--transition-fast);
@@ -81,7 +87,12 @@
 }
 
 .contact-form .cta-button {
+  width: auto;
+  max-width: none;
+  padding: 0.75rem 2.5rem;
   margin-top: 0.5rem;
+  font-size: var(--text-base-sm);
+  letter-spacing: 1.5px;
 }
 
 .hidden {
@@ -90,13 +101,22 @@
 
 @media (min-width: 769px) {
   .contact-content {
-    margin-left: 4.875rem;
+    margin-left: var(--space-content-indent);
   }
 
   .contact-title {
-    font-size: 3.5rem;
     font-weight: 600;
     line-height: 1.15;
     letter-spacing: 0.22em;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .contact-form-col {
+    padding-top: 0.25rem;
   }
 }

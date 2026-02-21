@@ -11,7 +11,7 @@ footer {
   footer {
     position: fixed;
     bottom: 0;
-    z-index: 9999999;
+    z-index: var(--z-footer);
   }
 }
 
@@ -46,9 +46,9 @@ footer {
 
   footer li a {
     color: var(--black);
-    font-size: 1rem;
+    font-size: var(--text-md);
     font-weight: 400;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
     line-height: 85px;
   }
 

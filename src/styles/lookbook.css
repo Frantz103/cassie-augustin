@@ -23,7 +23,7 @@
 
 .lookbook-title {
   font-family: var(--font-heading);
-  font-size: 5rem;
+  font-size: var(--text-lookbook-title);
   font-weight: 400;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -33,7 +33,7 @@
 
 .lookbook-year {
   font-family: var(--font-body);
-  font-size: 0.875rem;
+  font-size: var(--text-base-sm);
   font-weight: 300;
   letter-spacing: 0.3em;
   text-transform: uppercase;
@@ -106,7 +106,7 @@
 .comp-card-link {
   display: inline-block;
   font-family: var(--font-body);
-  font-size: 0.8125rem;
+  font-size: var(--text-sm);
   font-weight: 400;
   letter-spacing: 0.25em;
   text-transform: uppercase;
@@ -130,12 +130,11 @@
   }
 
   .lookbook-title {
-    font-size: 2.5rem;
     letter-spacing: 0.1em;
   }
 
   .lookbook-year {
-    font-size: 0.75rem;
+    font-size: var(--text-xs);
   }
 
   .editorial-grid {
@@ -157,16 +156,14 @@
   }
 
   .comp-card-link {
-    font-size: 0.75rem;
+    font-size: var(--text-xs);
     padding: 0.875rem 2rem;
   }
 }
 
 /* Tablet Responsive */
 @media (min-width: 769px) and (max-width: 1024px) {
-  .lookbook-title {
-    font-size: 3.5rem;
-  }
+  /* lookbook-title size handled by clamp token */
 
   .editorial-grid {
     padding: 0 2rem;

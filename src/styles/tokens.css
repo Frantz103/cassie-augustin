@@ -46,6 +46,41 @@
   --font-body: 'Lato', sans-serif;
   --font-heading: 'Playfair Display', serif;
 
+  /* Type scale — fixed */
+  --text-xs:      0.75rem;
+  --text-sm:      0.8125rem;
+  --text-base-sm: 0.875rem;
+  --text-base:    0.9375rem;
+  --text-md:      1rem;
+  --text-body:    1.0625rem;
+  --text-lg:      1.125rem;
+  --text-xl:      1.5rem;
+  --text-h2:      1.875rem;
+  --text-h1:      2.5rem;
+  --text-nav:     2.5rem;
+  --text-article-h1-mobile: 2rem;
+
+  /* Type scale — fluid (replaces mobile/desktop media query pairs) */
+  --text-page-title:    clamp(2.25rem, 1.636rem + 1.636vw, 3.5rem);
+  --text-intro:         clamp(1.25rem, 1.119rem + 0.347vw, 1.75rem);
+  --text-lookbook-title: clamp(2.5rem, 1.458rem + 2.778vw, 5rem);
+
+  /* Spacing */
+  --space-content-indent:      4.875rem;
+  --space-content-indent-wide: 6.875rem;
+
+  /* Z-index */
+  --z-behind:          -1;
+  --z-base:             0;
+  --z-content:          1;
+  --z-decorative:      10;
+  --z-overlay:         20;
+  --z-mobile-menu-btn: 2000;
+  --z-mobile-header:   10000;
+  --z-footer:          10100;
+  --z-nav-panel:       10200;
+  --z-skip-link:       10300;
+
   /* Breakpoints (reference only - can't use in @media)
    *   Mobile:    max 768px
    *   Desktop:   min 769px
