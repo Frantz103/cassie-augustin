@@ -1,5 +1,7 @@
 import groq from 'groq';
 import { getSanityClient } from './sanity.server';
+import { DEFAULT_LOCALE, type Locale } from '../i18n/config';
+import type { UIStrings } from '../i18n/types';
 
 export type SanityImage = {
 	asset: { _ref?: string; url?: string };
@@ -35,18 +37,19 @@ const blogPostFields = groq`{
   body
 }`;
 
-export async function getBlogPosts(): Promise<SanityBlogPost[]> {
+export async function getBlogPosts(locale: Locale = DEFAULT_LOCALE): Promise<SanityBlogPost[]> {
 	const client = getSanityClient();
 	return client.fetch(
-		groq`*[_type == "blogPost" && defined(slug.current)] | order(publishedAt desc) ${blogPostFields}`
+		groq`*[_type == "blogPost" && defined(slug.current) && language == $locale] | order(publishedAt desc) ${blogPostFields}`,
+		{ locale }
 	);
 }
 
-export async function getBlogPost(slug: string): Promise<SanityBlogPost | null> {
+export async function getBlogPost(slug: string, locale: Locale = DEFAULT_LOCALE): Promise<SanityBlogPost | null> {
 	const client = getSanityClient();
 	return client.fetch(
-		groq`*[_type == "blogPost" && slug.current == $slug][0] ${blogPostFields}`,
-		{ slug }
+		groq`*[_type == "blogPost" && slug.current == $slug && language == $locale][0] ${blogPostFields}`,
+		{ slug, locale }
 	);
 }
 
@@ -76,27 +79,48 @@ export type SanityAbout = {
 	imageAlt?: string;
 };
 
-export type SanitySiteSettings = {
+export type SanityContact = {
+	title?: string;
+	introText?: string;
 	email?: string;
 	instagram?: string;
 	instagramUrl?: string;
-	contactIntro?: string;
-	contactOutro?: string;
+	outroText?: string;
 };
 
-export async function getHomepage(): Promise<SanityHomepage | null> {
+export type SanitySiteSettings = {
+};
+
+export async function getHomepage(locale: Locale = DEFAULT_LOCALE): Promise<SanityHomepage | null> {
 	const client = getSanityClient();
-	return client.fetch(groq`*[_type == "homepage"][0]`);
+	return client.fetch(
+		groq`*[_type == "homepage" && language == $locale][0]`,
+		{ locale }
+	);
 }
 
-export async function getAbout(): Promise<SanityAbout | null> {
+export async function getAbout(locale: Locale = DEFAULT_LOCALE): Promise<SanityAbout | null> {
 	const client = getSanityClient();
-	return client.fetch(groq`*[_type == "about"][0]`);
+	return client.fetch(
+		groq`*[_type == "about" && language == $locale][0]`,
+		{ locale }
+	);
 }
 
-export async function getSiteSettings(): Promise<SanitySiteSettings | null> {
+export async function getContact(locale: Locale = DEFAULT_LOCALE): Promise<SanityContact | null> {
 	const client = getSanityClient();
-	return client.fetch(groq`*[_type == "siteSettings"][0]`);
+	return client.fetch(
+		groq`*[_type == "contact" && language == $locale][0]`,
+		{ locale }
+	);
+}
+
+export async function getSiteSettings(locale: Locale = DEFAULT_LOCALE): Promise<SanitySiteSettings | null> {
+	const client = getSanityClient();
+	return client.fetch(
+		groq`*[_type == "siteSettings" && language == $locale][0]`,
+		{ locale }
+	);
 }
 
 export type SanityPage = {
@@ -117,44 +141,68 @@ const pageFields = groq`{
   showInNav
 }`;
 
-export async function getPages(): Promise<SanityPage[]> {
+export async function getPages(locale: Locale = DEFAULT_LOCALE): Promise<SanityPage[]> {
 	const client = getSanityClient();
 	return client.fetch(
-		groq`*[_type == "page" && defined(slug.current)] | order(title asc) ${pageFields}`
+		groq`*[_type == "page" && defined(slug.current) && language == $locale] | order(title asc) ${pageFields}`,
+		{ locale }
 	);
 }
 
-export async function getPageBySlug(slug: string): Promise<SanityPage | null> {
+export async function getPageBySlug(slug: string, locale: Locale = DEFAULT_LOCALE): Promise<SanityPage | null> {
 	const client = getSanityClient();
 	return client.fetch(
-		groq`*[_type == "page" && slug.current == $slug][0] ${pageFields}`,
-		{ slug }
+		groq`*[_type == "page" && slug.current == $slug && language == $locale][0] ${pageFields}`,
+		{ slug, locale }
 	);
 }
 
-export async function getTestimonials(): Promise<SanityTestimonial[]> {
+export async function getTestimonials(locale: Locale = DEFAULT_LOCALE): Promise<SanityTestimonial[]> {
 	const client = getSanityClient();
 	return client.fetch(
-		groq`*[_type == "testimonial"] | order(order asc, _createdAt desc) {
+		groq`*[_type == "testimonial" && language == $locale] | order(order asc, _createdAt desc) {
 			_id, name, content, service, order
-		}`
+		}`,
+		{ locale }
 	);
 }
 
-export async function getRecentBlogPosts(limit = 3): Promise<SanityBlogPost[]> {
+export async function getRecentBlogPosts(limit = 3, locale: Locale = DEFAULT_LOCALE): Promise<SanityBlogPost[]> {
 	const client = getSanityClient();
 	return client.fetch(
-		groq`*[_type == "blogPost" && defined(slug.current)] | order(publishedAt desc) [0...$limit] ${blogPostFields}`,
-		{ limit }
+		groq`*[_type == "blogPost" && defined(slug.current) && language == $locale] | order(publishedAt desc) [0...$limit] ${blogPostFields}`,
+		{ limit, locale }
 	);
 }
 
-export async function getNavPages(): Promise<Pick<SanityPage, 'title' | 'slug'>[]> {
+export async function getNavPages(locale: Locale = DEFAULT_LOCALE): Promise<Pick<SanityPage, 'title' | 'slug'>[]> {
 	const client = getSanityClient();
 	return client.fetch(
-		groq`*[_type == "page" && showInNav == true && defined(slug.current)] | order(title asc) {
+		groq`*[_type == "page" && showInNav == true && defined(slug.current) && language == $locale] | order(title asc) {
 			title,
 			"slug": slug.current
-		}`
+		}`,
+		{ locale }
 	);
+}
+
+export async function getUIStrings(locale: Locale = DEFAULT_LOCALE): Promise<UIStrings | null> {
+	const client = getSanityClient();
+	return client.fetch(
+		groq`*[_type == "uiStrings" && language == $locale][0]{
+			nav, homepage, blog, contact, lookbook, notFound, breadcrumbs, footer, seo, languageSwitcher
+		}`,
+		{ locale }
+	);
+}
+
+/** Fetch with locale fallback: tries requested locale, then English */
+export async function getWithFallback<T>(
+	fetcher: (locale: Locale) => Promise<T | null>,
+	locale: Locale
+): Promise<T | null> {
+	const result = await fetcher(locale);
+	if (result) return result;
+	if (locale !== DEFAULT_LOCALE) return fetcher(DEFAULT_LOCALE);
+	return null;
 }

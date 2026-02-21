@@ -1,59 +1,17 @@
-import { defineField, defineType } from 'sanity';
+import { defineType } from 'sanity';
+import {languageField} from './fields/languageField'
 
 export default defineType({
     name: 'siteSettings',
-    title: 'Site Settings & Contact Info',
+    title: 'Site Settings',
     type: 'document',
     fields: [
-        defineField({
-            name: 'email',
-            title: 'Contact Email',
-            type: 'string',
-            validation: (Rule) => Rule.email(),
-        }),
-        defineField({
-            name: 'instagram',
-            title: 'Instagram Handle',
-            type: 'string',
-            description: 'e.g. "@cassie.augustin" or "cassie.augustin"',
-        }),
-        defineField({
-            name: 'instagramUrl',
-            title: 'Instagram Profile URL',
-            type: 'url',
-            validation: (Rule) =>
-                Rule.uri({
-                    scheme: ['https'],
-                }).custom((value) => {
-                    if (!value) return true;
-                    try {
-                        const url = new URL(value);
-                        const allowedHosts = new Set(['instagram.com', 'www.instagram.com']);
-                        return allowedHosts.has(url.hostname)
-                            ? true
-                            : 'Use a valid Instagram profile URL on instagram.com';
-                    } catch {
-                        return 'Use a valid Instagram profile URL';
-                    }
-                }),
-        }),
-        defineField({
-            name: 'contactIntro',
-            title: 'Contact Intro Text',
-            type: 'text',
-            description: 'Text shown at the top of the Contact modal',
-        }),
-        defineField({
-            name: 'contactOutro',
-            title: 'Contact Outro Text',
-            type: 'text',
-            description: 'Text shown at the bottom of the Contact modal',
-        }),
+        languageField,
     ],
     preview: {
         prepare() {
             return {
-                title: 'Site Settings & Contact Info',
+                title: 'Site Settings',
             };
         },
     },

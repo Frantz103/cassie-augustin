@@ -1,0 +1,75 @@
+---
+import { useSanity } from '../../lib/useSanity';
+import { getContact, getWithFallback } from '../../lib/sanityQueries';
+import { safeExternalUrl } from '../../lib/contentSafety';
+import { getLocale, localePath } from '../../i18n/utils';
+import { getStrings } from '../../i18n/getStrings';
+import type { Locale } from '../../i18n/config';
+
+const locale = getLocale(Astro) as Locale;
+const ui = await getStrings(locale);
+
+const useCms = useSanity();
+const contactData = useCms ? await getWithFallback(getContact, locale) : null;
+
+const contactIntro = contactData?.introText || "I'd love to connect with you! Whether you're interested in nutrition guidance, modeling collaborations, or just want to say hello, I'm here for it.";
+const contactOutro = contactData?.outroText || "I share nutrition tips, wellness insights, behind-the-scenes from photoshoots, and everything in between. Let's start this journey together!";
+const email = contactData?.email || 'augustincassie@gmail.com';
+const instagram = contactData?.instagram || '@cassie.augustin';
+const defaultInstagramUrl = 'https://www.instagram.com/cassie.augustin';
+const instagramUrl = safeExternalUrl(contactData?.instagramUrl, {
+  fallback: defaultInstagramUrl,
+  allowedHosts: ['instagram.com', 'www.instagram.com'],
+  allowedProtocols: ['https:'],
+});
+---
+
+<main>
+  <div class="container">
+    <article class="contact-content">
+      <div class="breadcrumb pl-2">
+        <a href={localePath('/', locale)}>{ui.breadcrumbs.home}</a> / {ui.nav.contact}
+      </div>
+      <h1 class="contact-title pl-2">{ui.contact.heading}</h1>
+
+      <div class="contact-grid pl-2 pr-mobile-2">
+        <div class="contact-info">
+          <p>{contactIntro}</p>
+
+          <div class="contact-links">
+            <p><strong>{ui.contact.followInstagram}</strong><br/>
+            <a href={instagramUrl} target="_blank" rel="noopener noreferrer">{instagram}</a></p>
+
+            <p><strong>{ui.contact.emailMe}</strong><br/>
+            <a href={`mailto:${email}`}>{email}</a></p>
+          </div>
+
+          <p>{contactOutro}</p>
+        </div>
+
+        <div class="contact-form-col">
+          <h2 class="form-heading">{ui.contact.formHeading}</h2>
+          <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="contact-form">
+            <input type="hidden" name="form-name" value="contact" />
+            <p class="hidden" aria-hidden="true">
+              <label>Don't fill this out: <input name="bot-field" /></label>
+            </p>
+            <div class="form-group">
+              <label for="name">{ui.contact.nameLabel}</label>
+              <input type="text" id="name" name="name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">{ui.contact.emailLabel}</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+            <div class="form-group">
+              <label for="message">{ui.contact.messageLabel}</label>
+              <textarea id="message" name="message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="cta-button">{ui.contact.sendButton}</button>
+          </form>
+        </div>
+      </div>
+    </article>
+  </div>
+</main>
