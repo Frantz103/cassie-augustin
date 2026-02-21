@@ -24,6 +24,7 @@ const client = createClient({
 const i18nTypes = [
   'homepage',
   'about',
+  'contact',
   'siteSettings',
   'blogPost',
   'lookbookItem',

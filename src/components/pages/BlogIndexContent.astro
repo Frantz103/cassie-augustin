@@ -14,7 +14,7 @@ const ui = await getStrings(locale);
 const useCms = useSanity();
 
 const markdownPosts = (await getCollection('blog')).sort(
-	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
 const cmsPosts = useCms ? (await getWithFallback(getBlogPosts, locale)) || [] : [];
