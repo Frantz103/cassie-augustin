@@ -1,6 +1,5 @@
 ---
 import Layout from '../components/Layout.astro';
-import Modal from '../components/Modal.astro';
 import PortableText from '../components/PortableText';
 import { useSanity } from '../lib/useSanity';
 import { getPages, type SanityPage } from '../lib/sanityQueries';
@@ -31,6 +30,5 @@ const { page } = Astro.props;
 				</div>
 			</article>
 		</div>
-		<Modal />
 	</main>
 </Layout>

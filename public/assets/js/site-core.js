@@ -3,22 +3,6 @@
   const isBlogOrLookbookRoute = () =>
     window.location.pathname.startsWith('/lookbook') || window.location.pathname.startsWith('/blog');
 
-  const initMicroModal = () => {
-    const modal = window.MicroModal;
-    if (!modal) return;
-
-    modal.init({
-      openTrigger: 'data-micromodal-trigger',
-      closeTrigger: 'data-micromodal-close',
-      openClass: 'is-open',
-      disableScroll: true,
-      disableFocus: false,
-      awaitOpenAnimation: false,
-      awaitCloseAnimation: true,
-      debugMode: false,
-    });
-  };
-
   const initHeaderTheme = () => {
     const header = document.querySelector('header');
     if (!header || !isBlogOrLookbookRoute()) return;
@@ -104,7 +88,6 @@
   };
 
   document.addEventListener('DOMContentLoaded', () => {
-    initMicroModal();
     initHeaderTheme();
     initNavigationMenu();
     initMoreMenu();

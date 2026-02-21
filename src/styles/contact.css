@@ -1,0 +1,102 @@
+.contact-content {
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+.contact-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  font-weight: 600;
+  line-height: 50px;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.contact-body {
+  max-width: 560px;
+}
+
+.contact-body p {
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+.contact-links {
+  margin: 2rem 0;
+}
+
+.contact-links a {
+  text-decoration: underline;
+  color: var(--text-dark);
+}
+
+.contact-links a:hover {
+  color: var(--dark-green);
+}
+
+/* Netlify Form */
+.form-heading {
+  font-size: 1.875rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.contact-form {
+  margin-top: 1rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+  color: var(--black);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Lato', sans-serif;
+  font-size: 1rem;
+  color: var(--black);
+  background: var(--white);
+  transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--sunflower-yellow);
+  box-shadow: 0 0 0 2px rgba(241, 176, 65, 0.25);
+}
+
+.contact-form .cta-button {
+  margin-top: 0.5rem;
+}
+
+.hidden {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .contact-content {
+    margin-left: 4.875rem;
+  }
+
+  .contact-title {
+    font-size: 56px;
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: 0.22em;
+  }
+}

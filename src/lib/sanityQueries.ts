@@ -13,6 +13,7 @@ export type SanityBlogPost = {
 	description?: string;
 	publishedAt?: string;
 	updatedAt?: string;
+	category?: string;
 	heroImage?: SanityImage;
 	body?: any[];
 	externalUrl?: string;
@@ -25,6 +26,7 @@ const blogPostFields = groq`{
   description,
   publishedAt,
   updatedAt,
+  category,
   externalUrl,
   heroImage{
     ...,
@@ -55,6 +57,15 @@ export type SanityHomepage = {
 	ctaSubtext?: string;
 	heroImage?: SanityImage;
 	heroImageAlt?: string;
+	credentials?: string;
+};
+
+export type SanityTestimonial = {
+	_id: string;
+	name: string;
+	content: string;
+	service?: string;
+	order?: number;
 };
 
 export type SanityAbout = {
@@ -118,6 +129,23 @@ export async function getPageBySlug(slug: string): Promise<SanityPage | null> {
 	return client.fetch(
 		groq`*[_type == "page" && slug.current == $slug][0] ${pageFields}`,
 		{ slug }
+	);
+}
+
+export async function getTestimonials(): Promise<SanityTestimonial[]> {
+	const client = getSanityClient();
+	return client.fetch(
+		groq`*[_type == "testimonial"] | order(order asc, _createdAt desc) {
+			_id, name, content, service, order
+		}`
+	);
+}
+
+export async function getRecentBlogPosts(limit = 3): Promise<SanityBlogPost[]> {
+	const client = getSanityClient();
+	return client.fetch(
+		groq`*[_type == "blogPost" && defined(slug.current)] | order(publishedAt desc) [0...$limit] ${blogPostFields}`,
+		{ limit }
 	);
 }
 

@@ -40,7 +40,13 @@ export default defineType({
             name: 'heroImageAlt',
             title: 'Hero Image Alt Text',
             type: 'string',
-        })
+        }),
+        defineField({
+            name: 'credentials',
+            title: 'Credentials Line',
+            type: 'string',
+            description: 'e.g. "Certified Nutritionist | Model | Wellness Advocate"',
+        }),
     ],
     preview: {
         prepare() {

@@ -1,18 +1,16 @@
-
 ---
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
-import Modal from '../../components/Modal.astro';
 import '../../styles/base.css';
 import '../../styles/header.css';
 import '../../styles/footer.css';
-import '../../styles/modal.css';
 import '../../styles/blog.css';
 import BaseHead from '../../components/BaseHead.astro';
 import FormattedDate from '../../components/FormattedDate.astro';
 import { getCollection } from 'astro:content';
 import { useSanity } from '../../lib/useSanity';
 import { getBlogPosts } from '../../lib/sanityQueries';
+import { urlFor } from '../../lib/sanity';
 
 const useCms = useSanity();
 
@@ -28,7 +26,9 @@ const posts = cmsPosts.length
 			slug: post.slug,
 			description: post.description,
 			pubDate: post.publishedAt ? new Date(post.publishedAt) : new Date(),
-			heroImage: post.heroImage?.url,
+			heroImage: post.heroImage?.url ? urlFor(post.heroImage).width(600).auto('format').url() : null,
+			heroImageAlt: post.heroImage?.alt || post.title,
+			category: post.category,
 	  }))
 	: markdownPosts.map((post) => ({
 			title: post.data.title,
@@ -36,9 +36,11 @@ const posts = cmsPosts.length
 			description: post.data.description,
 			pubDate: post.data.pubDate,
 			heroImage: post.data.heroImage,
+			heroImageAlt: post.data.title,
+			category: null,
 	  }));
 ---
-<BaseHead title="Blog Homepage" />
+<BaseHead title="Blog" />
 
 <body>
     <div class="overlay" id="overlay"></div>
@@ -46,29 +48,30 @@ const posts = cmsPosts.length
     <main id="main-content">
         <div class="container">
         <section class="blog">
+            <h1 class="blog-page-title">Blog</h1>
             {posts.length > 0 ? (
-            <ul>
-                {
-                    posts.map((post) => (
-                        <li>
-                            <a class="h-link" href={`/blog/${post.slug}/`}>
-                                <h4 class="title">{post.title}</h4></a>
-                                <p class="date">
-                                    <FormattedDate date={post.pubDate} />
-                                </p>
-                                <hr />
-                                <p>{post.description}</p>
-                                <p><a href={`/blog/${post.slug}/`}>Continue reading...</a></p>
-                        </li>
-                    ))
-                }
-            </ul>
+            <div class="blog-grid">
+                {posts.map((post) => (
+                    <a class="blog-card" href={`/blog/${post.slug}/`}>
+                        {post.heroImage && (
+                            <img src={post.heroImage} alt={post.heroImageAlt} loading="lazy" width="600" height="400" />
+                        )}
+                        <div class="blog-card-body">
+                            <div class="blog-card-meta">
+                                {post.category && <span class="blog-category">{post.category}</span>}
+                                <span class="blog-date"><FormattedDate date={post.pubDate} /></span>
+                            </div>
+                            <h2>{post.title}</h2>
+                            {post.description && <p>{post.description}</p>}
+                        </div>
+                    </a>
+                ))}
+            </div>
             ) : (
                 <p style="text-align:center; padding:4rem 1rem;">New posts coming soon — stay tuned!</p>
             )}
         </section>
     </div>
-    <Modal />
     </main>
     <Footer />
 </body>

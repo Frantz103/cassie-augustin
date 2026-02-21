@@ -3,11 +3,9 @@ import type { CollectionEntry } from 'astro:content';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import BaseHead from './BaseHead.astro';
-import Modal from '../components/Modal.astro';
 import '../styles/base.css';
 import '../styles/header.css';
 import '../styles/footer.css';
-import '../styles/modal.css';
 import '../styles/blog.css';
 import FormattedDate from '../components/FormattedDate.astro';
 
@@ -38,7 +36,7 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
       </div>
     <main>
         <div class="container">
-        
+
             <div class="row">
                 <div class=" eight columns posts">
             <article>
@@ -71,7 +69,6 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
           </div>
         </div>
     </div>
-    <Modal />
     </main>
     <Footer />
 </body>

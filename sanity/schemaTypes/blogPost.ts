@@ -48,6 +48,20 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'category',
+      type: 'string',
+      title: 'Category',
+      options: {
+        list: [
+          {title: 'Nutrition', value: 'nutrition'},
+          {title: 'Wellness', value: 'wellness'},
+          {title: 'Lifestyle', value: 'lifestyle'},
+          {title: 'Fashion', value: 'fashion'},
+          {title: 'Faith', value: 'faith'},
+        ],
+      },
+    }),
+    defineField({
       name: 'body',
       type: 'array',
       title: 'Body',
@@ -73,8 +87,13 @@ export default defineType({
   preview: {
     select: {
       title: 'title',
-      subtitle: 'publishedAt',
+      subtitle: 'category',
+      date: 'publishedAt',
       media: 'heroImage',
+    },
+    prepare({title, subtitle, date}) {
+      const label = subtitle ? `${subtitle} — ${date?.slice(0, 10) || ''}` : date?.slice(0, 10) || ''
+      return {title, subtitle: label}
     },
   },
 })
