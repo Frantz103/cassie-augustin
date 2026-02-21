@@ -19,16 +19,22 @@ footer {
 @media (max-width: 768px) {
   .footer-menu ul {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
-    line-height: 5.3125rem;
+    gap: 1.25rem;
+    line-height: 85px;
     margin: 0 1rem;
   }
 
   .footer-menu li {
     margin: 0;
     list-style: none;
+  }
+
+  .footer-menu li a {
+    font-size: var(--text-base-sm);
+    white-space: nowrap;
   }
 }
 

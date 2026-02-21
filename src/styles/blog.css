@@ -35,6 +35,10 @@
         padding: 0 1.5rem;
     }
 
+    .blog ul {
+        margin: 0;
+    }
+
     article {
         padding: 0 1rem;
         box-sizing: border-box;
