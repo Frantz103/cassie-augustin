@@ -5,6 +5,8 @@ import {schemaTypes} from './schemaTypes'
 import type {StructureBuilder} from 'sanity/structure'
 
 const singletonTypes = new Set(['homepage', 'about', 'siteSettings'])
+const isDev = process.env.NODE_ENV !== 'production'
+const enableVision = isDev || process.env.SANITY_STUDIO_ENABLE_VISION === 'true'
 
 const deskStructure = (S: StructureBuilder) =>
   S.list()
@@ -59,7 +61,7 @@ export default defineConfig({
 
   plugins: [
     structureTool({structure: deskStructure}),
-    visionTool(),
+    ...(enableVision ? [visionTool()] : []),
   ],
 
   schema: {

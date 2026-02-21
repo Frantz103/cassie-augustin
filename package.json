@@ -9,14 +9,27 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "test": "npm run test:unit",
+    "test:unit": "vitest run",
+    "test:unit:watch": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "cypress run --browser electron --headless",
+    "test:e2e:ci": "start-server-and-test \"npm run preview -- --host 0.0.0.0 --port 4321\" http://127.0.0.1:4321 \"npm run test:e2e\"",
     "sanity": "npm --prefix sanity run dev",
     "sanity:deploy": "npm --prefix sanity run deploy",
     "sanity:init": "npm --prefix sanity exec -- sanity init"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@vitest/coverage-v8": "^4.0.18",
     "@types/micromodal": "^0.3.5",
     "astro": "^5.14.4",
-    "prettier-plugin-astro": "^0.13.0"
+    "cypress": "^13.6.6",
+    "jsdom": "^26.1.0",
+    "prettier-plugin-astro": "^0.13.0",
+    "start-server-and-test": "^2.1.0",
+    "vitest": "^4.0.18"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^4.3.2",
@@ -25,7 +38,6 @@
     "@sanity/client": "^7.6.0",
     "@sanity/image-url": "^1.0.2",
     "groq": "^3.64.0",
-    "cypress": "^13.6.6",
     "micromodal": "^0.4.10"
   }
 }

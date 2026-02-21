@@ -1,0 +1,65 @@
+name: Security CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  root-app:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Unit tests with coverage
+        run: npm run test:coverage
+
+      - name: E2E smoke tests
+        run: npm run test:e2e:ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Audit production dependencies
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Secret boundary check
+        run: |
+          if grep -RIn --exclude-dir=node_modules --exclude='sanity.server.ts' --exclude='env.d.ts' "SANITY_READ_TOKEN" src; then
+            echo "SANITY_READ_TOKEN must stay server-only."
+            exit 1
+          fi
+
+  sanity-studio:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: sanity/package-lock.json
+
+      - name: Install dependencies
+        run: npm --prefix sanity ci
+
+      - name: Build studio
+        run: npm --prefix sanity run build
+
+      - name: Audit production dependencies
+        run: npm --prefix sanity audit --omit=dev --audit-level=high

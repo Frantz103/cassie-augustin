@@ -21,6 +21,21 @@ export default defineType({
             name: 'instagramUrl',
             title: 'Instagram Profile URL',
             type: 'url',
+            validation: (Rule) =>
+                Rule.uri({
+                    scheme: ['https'],
+                }).custom((value) => {
+                    if (!value) return true;
+                    try {
+                        const url = new URL(value);
+                        const allowedHosts = new Set(['instagram.com', 'www.instagram.com']);
+                        return allowedHosts.has(url.hostname)
+                            ? true
+                            : 'Use a valid Instagram profile URL on instagram.com';
+                    } catch {
+                        return 'Use a valid Instagram profile URL';
+                    }
+                }),
         }),
         defineField({
             name: 'contactIntro',

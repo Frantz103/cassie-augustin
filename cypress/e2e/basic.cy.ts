@@ -1,17 +1,9 @@
-describe('empty spec', () => {
-  beforeEach(() => {
-    cy.visit('/')
-  })
+describe('homepage smoke', () => {
+  it('renders the homepage shell and key navigation', () => {
+    cy.visit('/');
 
-  it('displays the resources text', () => {
-    cy.get('h1').contains('Ludnie Cassie Augustin');
-  })
-
-  // it('renders the image', () => {
-  //   cy.get('img')
-  //     .should('be.visible')
-  //     .and(($img) => {
-  //       expect($img[0].naturalWidth).to.be.greaterThan(0);
-  //     })
-  // })
-})
+    cy.url().should('include', '/');
+    cy.get('h1').should('be.visible').invoke('text').should('not.be.empty');
+    cy.contains('a', 'Lookbook').should('have.attr', 'href', '/lookbook');
+  });
+});

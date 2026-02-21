@@ -27,36 +27,10 @@ const { page } = Astro.props;
 				</div>
 				<h1 class="pl-2">{page.title}</h1>
 				<div class="prose pl-2 pr-2">
-					{page.body && <PortableText value={page.body} client:load />}
+					{page.body && <PortableText value={page.body} />}
 				</div>
 			</article>
 		</div>
 		<Modal />
 	</main>
 </Layout>
-
-<style>
-	.page-content {
-		max-width: 800px;
-		padding-top: 2rem;
-		padding-bottom: 4rem;
-	}
-	.page-content h1 {
-		margin-bottom: 2rem;
-	}
-	.breadcrumb {
-		margin-bottom: 1rem;
-		font-size: 0.875rem;
-	}
-	.breadcrumb a {
-		text-decoration: none;
-	}
-	.prose {
-		line-height: 1.8;
-	}
-	@media (min-width: 769px) {
-		.page-content {
-			margin-left: 4.875rem;
-		}
-	}
-</style>

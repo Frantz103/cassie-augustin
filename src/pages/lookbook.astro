@@ -113,17 +113,3 @@ const hasCmsItems = cmsItems.length > 0;
   <Modal />
 </Layout>
 </main>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-    if (window.location.href.includes("/lookbook")) {
-        var style = document.createElement('style');
-        style.innerHTML = `
-            body::before, body::after {
-                display: none !important;
-            }
-        `;
-        document.head.appendChild(style);
-    }
-});
-
-</script>
