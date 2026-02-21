@@ -18,7 +18,7 @@ const legalLinks = navPages.length > 0
         <a href="/"><p class="logo pl-2 hide-on-mobile">Ludnie Cassie Augustin</p></a>
       </div>
        <!-- This can be a button or an icon that toggles a mobile menu -->
-       <button class="menu" id="menu" aria-label="Toggle menu" type="button">
+       <button class="menu" id="menu" aria-label="Toggle menu" aria-expanded="false" aria-controls="navigation-links" type="button">
         <img class="menu-icon hide-on-mobile" src="/assets/icons/menu.png" alt=""/>
         <img class="menu-icon mobile hide-on-desktop" id="menu-mobile" src="/assets/icons/menu.png" alt=""/>
       </button>
@@ -26,7 +26,7 @@ const legalLinks = navPages.length > 0
   </header>
 
   <div id="navigation-links" class="navigation-links off-white-bg">
-    <p class="text-align-right"><a href="#" class="btn-close">Close <img class="close-icon" src="/assets/icons/close.png"/></a>
+    <p class="text-align-right"><button type="button" class="btn-close">Close <img class="close-icon" src="/assets/icons/close.png" alt=""/></button>
     </p>
     <ul class="menu-top">
       <li><a href="/">Home</a></li>

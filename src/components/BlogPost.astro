@@ -22,10 +22,10 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
     <Header />
     <div id="main-content" class="hero-image">
         <picture>
-          <!-- Use source elements for different screen sizes -->
-          <source media="(max-width: 768px)" srcset="/assets/img/banner-image-mobile.png">
-          <source media="(min-width: 769px)" srcset="/assets/img/banner-image-desktop.png">
-          <!-- Fallback image -->
+          <source media="(max-width: 768px)" srcset="/assets/img/banner-image-mobile.webp" type="image/webp">
+          <source media="(max-width: 768px)" srcset="/assets/img/banner-image-mobile.png" type="image/png">
+          <source media="(min-width: 769px)" srcset="/assets/img/banner-image-desktop.webp" type="image/webp">
+          <source media="(min-width: 769px)" srcset="/assets/img/banner-image-desktop.png" type="image/png">
           <img src="/assets/img/banner-image-desktop.png" alt="">
         </picture>
         <div class="hero-text">

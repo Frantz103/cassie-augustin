@@ -1,6 +1,6 @@
 ---
 const gaId = import.meta.env.PUBLIC_GA_ID || '';
-const siteUrl = import.meta.env.SITE_URL || '';
+const siteUrl = import.meta.env.SITE_URL || 'https://cassieaugustin.com';
 const { title, description = "Ludnie Cassie Augustin - Nutritionist, Model, and Miss Choucoune International 2024 contestant. Empowering women through nutrition and wellness." } = Astro.props;
 const canonicalUrl = siteUrl ? new URL(Astro.url.pathname, siteUrl).href : '';
 const ogImageUrl = siteUrl ? `${siteUrl}/assets/img/Ludnie.jpg` : '/assets/img/Ludnie.jpg';
@@ -45,8 +45,8 @@ const personJsonLd = JSON.stringify({
     <link rel="stylesheet" href="/skeleton.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"></noscript>
 	<title>{title}</title>
   <script src="/assets/js/site-core.js" defer></script>
 

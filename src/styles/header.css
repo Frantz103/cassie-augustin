@@ -109,6 +109,11 @@ header, nav, .brand {
 
 .btn-close {
   padding-right: 0.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
 }
 
 .close-icon {
@@ -131,13 +136,25 @@ header, nav, .brand {
   padding-bottom: 0.25rem;
 }
 
+.menu-footer ul {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 0;
+}
+
 .menu-footer ul li {
   display: inline;
-  padding-right: 1rem;
+  padding-right: 0;
+  font-size: 0.9375rem;
 }
 
 #navigation-links .menu-footer {
   margin-top: 1.25rem;
+}
+
+#navigation-links .menu-footer > p {
+  text-align: center;
 }
 
 /* Skip to content link */

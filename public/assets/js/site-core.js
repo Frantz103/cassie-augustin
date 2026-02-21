@@ -19,11 +19,13 @@
   const toggleNav = () => {
     const navigationLinks = document.getElementById('navigation-links');
     const overlay = document.getElementById('overlay');
+    const menu = document.getElementById('menu');
     if (!navigationLinks || !overlay) return;
 
     navigationLinks.classList.toggle('active');
-    overlay.style.display =
-      overlay.style.display === 'none' || overlay.style.display === '' ? 'block' : 'none';
+    const isOpen = navigationLinks.classList.contains('active');
+    if (menu) menu.setAttribute('aria-expanded', String(isOpen));
+    overlay.style.display = isOpen ? 'block' : 'none';
   };
 
   const initNavigationMenu = () => {
