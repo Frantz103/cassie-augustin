@@ -1,21 +1,15 @@
 /* Homepage - Intro, CTA, Hero Image */
 
-/* Mobile intro */
-@media (max-width: 321px) {
+/* Mobile intro — small phones vs regular phones */
+@media (max-width: 374px) {
   .intro-container {
     padding-top: 1rem;
   }
 }
 
-@media (max-width: 395px) {
+@media (min-width: 375px) and (max-width: 480px) {
   .intro-container {
-    padding-top: 30%;
-  }
-}
-
-@media (min-width: 396px) and (max-width: 480px) {
-  .intro-container {
-    padding-top: 40%;
+    padding-top: 35%;
     width: 95%;
     margin: 0 auto;
   }
@@ -56,19 +50,19 @@
   }
 
   body::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('/assets/img/ludnie-mobile.JPG') no-repeat center center;
+    background: url("/assets/img/ludnie-mobile.JPG") no-repeat center center;
     background-size: cover;
     z-index: var(--z-behind);
   }
 
   body::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -107,7 +101,7 @@
     font-family: var(--font-body);
     font-weight: 300;
     line-height: 1.55;
-    letter-spacing: 0.70px;
+    letter-spacing: 0.7px;
     overflow-wrap: break-word;
     max-width: 85%;
     margin-right: 2rem;
@@ -161,7 +155,8 @@
   }
 }
 
-.left-box, .right-box {
+.left-box,
+.right-box {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -170,7 +165,8 @@
 
 /* Larger than desktop */
 @media (min-width: 1000px) {
-  .left-box img, .right-box img {
+  .left-box img,
+  .right-box img {
     max-width: 14.75rem;
     height: 18.875rem;
     width: 100%;
@@ -266,7 +262,9 @@
   font-size: var(--text-base-sm);
   letter-spacing: 1.5px;
   text-decoration: none;
-  transition: background-color var(--transition-base), color var(--transition-base);
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base);
 }
 
 .outline-link:hover {
@@ -298,7 +296,9 @@
   text-decoration: none;
   border: 1px solid var(--border-subtle);
   overflow: hidden;
-  transition: box-shadow var(--transition-base), transform var(--transition-base);
+  transition:
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
 }
 
 .post-card:hover {

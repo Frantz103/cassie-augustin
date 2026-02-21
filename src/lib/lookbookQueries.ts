@@ -1,24 +1,24 @@
-import groq from 'groq';
-import { getSanityClient } from './sanity.server';
-import { DEFAULT_LOCALE, type Locale } from '../i18n/config';
+import groq from "groq";
+import { getSanityClient } from "./sanity.server";
+import { DEFAULT_LOCALE, type Locale } from "../i18n/config";
 
 export type SanityLookbookImage = {
-	asset: { _ref?: string; url?: string };
-	alt?: string;
-	caption?: string;
-	metadata?: { dimensions?: { width?: number; height?: number } };
+  asset: { _ref?: string; url?: string };
+  alt?: string;
+  caption?: string;
+  metadata?: { dimensions?: { width?: number; height?: number } };
 };
 
 export type SanityLookbookItem = {
-	_id: string;
-	title: string;
-	slug: string;
-	category?: string;
-	date?: string;
-	featured?: boolean;
-	layout?: 'featured' | 'half' | 'third' | 'two-thirds' | 'one-third';
-	order?: number;
-	images?: SanityLookbookImage[];
+  _id: string;
+  title: string;
+  slug: string;
+  category?: string;
+  date?: string;
+  featured?: boolean;
+  layout?: "featured" | "half" | "third" | "two-thirds" | "one-third";
+  order?: number;
+  images?: SanityLookbookImage[];
 };
 
 const lookbookFields = groq`{
@@ -37,11 +37,14 @@ const lookbookFields = groq`{
   }
 }`;
 
-export async function getLookbookItems(locale: Locale = DEFAULT_LOCALE): Promise<SanityLookbookItem[]> {
-	const client = getSanityClient();
-	return client.fetch(
-		groq`*[_type == "lookbookItem" && defined(slug.current) && language == $locale]
-      | order(order asc, date desc, _createdAt desc) ${lookbookFields}`,
-		{ locale }
-	);
+export async function getLookbookItems(
+  locale: Locale = DEFAULT_LOCALE,
+  limit = 100,
+): Promise<SanityLookbookItem[]> {
+  const client = getSanityClient();
+  return client.fetch(
+    groq`*[_type == "lookbookItem" && defined(slug.current) && language == $locale]
+      | order(order asc, date desc, _createdAt desc) [0...$limit] ${lookbookFields}`,
+    { limit, locale },
+  );
 }

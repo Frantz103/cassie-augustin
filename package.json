@@ -17,7 +17,8 @@
     "test:e2e:ci": "start-server-and-test \"npm run preview -- --host 0.0.0.0 --port 4321\" http://127.0.0.1:4321 \"npm run test:e2e\"",
     "sanity": "npm --prefix sanity run dev",
     "sanity:deploy": "npm --prefix sanity run deploy",
-    "sanity:init": "npm --prefix sanity exec -- sanity init"
+    "sanity:init": "npm --prefix sanity exec -- sanity init",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.8.0",
@@ -25,7 +26,9 @@
     "@vitest/coverage-v8": "^4.0.18",
     "astro": "^5.14.4",
     "cypress": "^13.6.6",
+    "husky": "^9.1.7",
     "jsdom": "^26.1.0",
+    "lint-staged": "^16.2.7",
     "prettier-plugin-astro": "^0.13.0",
     "start-server-and-test": "^2.1.0",
     "vitest": "^4.0.18"
@@ -38,5 +41,10 @@
     "@sanity/client": "^7.6.0",
     "@sanity/image-url": "^1.0.2",
     "groq": "^3.64.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,mjs}": "prettier --write",
+    "*.astro": "prettier --write --plugin=prettier-plugin-astro",
+    "*.{json,css,md}": "prettier --write"
   }
 }
