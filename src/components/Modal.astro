@@ -37,7 +37,7 @@ const instagramUrl = safeExternalUrl(settingsData?.instagramUrl, {
       <header class="modal__header">
         <div></div>
         <button class="modal__close" aria-label="Close modal" data-micromodal-close>
-          <p class="text-align-right vertical-center">Close <img class="modal-icon-close" src="/assets/icons/close.png"/></a></p>
+          <p class="text-align-right vertical-center">Close <img class="modal-icon-close" src="/assets/icons/close.png"/></p>
           </button>
       </header>
       <main class="modal__content" id="modal-about-content">
@@ -64,12 +64,11 @@ const instagramUrl = safeExternalUrl(settingsData?.instagramUrl, {
                     <p>Make yourself at home!! And I mean that will all my heart.</p>
                 </Fragment>
             )}
-            <p style="white-space: pre-line;">{aboutClosing}</p>
+            <p class="preline-text">{aboutClosing}</p>
             </div>
             <div class="one-half column"><img class="modal-img" src={aboutImage} alt={aboutImageAlt}/></div>
 
           </div>
-        </div>
       </main>
       <footer class="modal__footer">
         <button class="modal__btn modal__btn-primary" data-micromodal-close aria-label="Close this dialog window">Close</button>
@@ -86,7 +85,7 @@ const instagramUrl = safeExternalUrl(settingsData?.instagramUrl, {
       <header class="modal__header">
         <div></div>
         <button class="modal__close" aria-label="Close modal" data-micromodal-close>
-          <p class="text-align-right vertical-center">Close <img class="modal-icon-close" src="/assets/icons/close.png"/></a></p>
+          <p class="text-align-right vertical-center">Close <img class="modal-icon-close" src="/assets/icons/close.png"/></p>
           </button>
       </header>
       <!-- Add content here -->
@@ -115,5 +114,6 @@ const instagramUrl = safeExternalUrl(settingsData?.instagramUrl, {
     <footer class="modal__footer">
       <button class="modal__btn modal__btn-primary" data-micromodal-close aria-label="Close this dialog window">Close</button>
     </footer>
-</div>
+    </div>
+  </div>
 </div>
