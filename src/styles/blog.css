@@ -1,32 +1,109 @@
 
 /* blog */
 
-section {
+.blog {
     margin-top: 2rem;
     max-width: 1200px;
 }
 
-
-ul {
-    list-style: none;
-    padding: 0;
-}
-
 .blog p, .posts p {
-    line-height: 1.7; /* More generous line spacing for long-form content */
-    letter-spacing: 0.3px; /* Slightly tighter for better flow */
-    margin-bottom: 1.5rem; /* Better paragraph rhythm */
-    max-width: 680px; /* Optimal line length for reading (45-75 chars) */
+    line-height: 1.7;
+    letter-spacing: 0.3px;
+    margin-bottom: 1.5rem;
+    max-width: 680px;
     width: 100%;
-    font-size: 1.0625rem; /* Match improved base size */
+    font-size: 1.0625rem;
 }
 
-section a {
+.blog a {
     text-decoration: underline;
     color: var(--text-dark);
 }
-section .h-link {
-    text-decoration: none ;
+
+/* Blog index page */
+.blog-page-title {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 600px) {
+    .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 960px) {
+    .blog-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.blog-card {
+    display: block;
+    text-decoration: none;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.blog-card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.blog-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.blog-card-body {
+    padding: 1.25rem;
+}
+
+.blog-card-body h2 {
+    font-size: 1.125rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.blog-card-body p {
+    font-size: 0.9375rem;
+    color: var(--text-dark);
+    line-height: 1.5;
+    margin: 0;
+    max-width: none;
+}
+
+.blog-card-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.blog-category {
+    display: inline-block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--olive-green);
+    font-weight: 600;
+}
+
+.blog-date {
+    font-size: 0.8125rem;
+    color: #888;
 }
 
 @media (max-width: 768px) {

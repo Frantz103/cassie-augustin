@@ -60,27 +60,6 @@
     });
   };
 
-  const initMoreMenu = () => {
-    const moreBtn = document.getElementById('more-btn');
-    const moreMenu = document.getElementById('more-menu');
-    if (!moreBtn || !moreMenu) return;
-
-    moreBtn.addEventListener('click', (event) => {
-      event.preventDefault();
-      moreMenu.style.display = moreMenu.style.display === 'block' ? 'none' : 'block';
-    });
-
-    document.addEventListener('click', (event) => {
-      const target = event.target;
-      if (!(target instanceof Node)) return;
-      const isClickInsideMenu = moreMenu.contains(target);
-      const isClickInsideMoreBtn = moreBtn.contains(target);
-      if (!isClickInsideMenu && !isClickInsideMoreBtn) {
-        moreMenu.style.display = 'none';
-      }
-    });
-  };
-
   const initLookbookBodyClass = () => {
     if (isLookbookRoute()) {
       document.body.classList.add('lookbook-page');
@@ -90,7 +69,6 @@
   document.addEventListener('DOMContentLoaded', () => {
     initHeaderTheme();
     initNavigationMenu();
-    initMoreMenu();
     initLookbookBodyClass();
   });
 })();
