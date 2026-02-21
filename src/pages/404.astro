@@ -1,14 +1,20 @@
 ---
 import Layout from '../components/Layout.astro';
+import { getLocale, localePath } from '../i18n/utils';
+import { getStrings } from '../i18n/getStrings';
+import type { Locale } from '../i18n/config';
+
+const locale = getLocale(Astro) as Locale;
+const ui = await getStrings(locale);
 ---
-<Layout title="Page Not Found — Ludnie Cassie Augustin">
+<Layout title={`${ui.notFound.title} — ${ui.seo.siteTitle}`} locale={locale} ui={ui}>
   <main>
     <div class="container">
       <div class="row">
         <div class="twelve columns" style="text-align:center; padding:6rem 1rem;">
-          <h1>404</h1>
-          <p class="intro">Sorry, that page doesn't exist.</p>
-          <a href="/" class="cta-button" style="margin-top:2rem; display:inline-block;">Back to Home</a>
+          <h1>{ui.notFound.title}</h1>
+          <p class="intro">{ui.notFound.message}</p>
+          <a href={localePath('/', locale)} class="cta-button" style="margin-top:2rem; display:inline-block;">{ui.notFound.backHome}</a>
         </div>
       </div>
     </div>

@@ -1,5 +1,4 @@
 ---
-// Import components
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/tokens.css';
@@ -7,17 +6,28 @@ import '../styles/base.css';
 import '../styles/header.css';
 import '../styles/footer.css';
 import BaseHead from '../components/BaseHead.astro';
+import type { Locale } from '../i18n/config';
+import { DEFAULT_LOCALE } from '../i18n/config';
+import { FALLBACK_EN } from '../i18n/fallbacks';
+import type { UIStrings } from '../i18n/types';
 
-const { title } = Astro.props;
+interface Props {
+	title: string;
+	locale?: Locale;
+	ui?: UIStrings;
+	description?: string;
+}
+
+const { title, locale = DEFAULT_LOCALE, ui = FALLBACK_EN, description } = Astro.props;
 ---
-<BaseHead title={title} />
+<BaseHead title={title} locale={locale} ui={ui} description={description} />
 
 <body>
     <div class="overlay" id="overlay"></div>
-    <Header />
+    <Header locale={locale} ui={ui} />
     <div id="main-content">
     <slot />
     </div>
-    <Footer />
+    <Footer locale={locale} ui={ui} />
 </body>
 </html>

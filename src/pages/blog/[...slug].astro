@@ -4,9 +4,13 @@ import BlogPost from '../../components/BlogPost.astro';
 import { useSanity } from '../../lib/useSanity';
 import { getBlogPosts, type SanityBlogPost } from '../../lib/sanityQueries';
 import PortableText from '../../components/PortableText';
+import { getLocale } from '../../i18n/utils';
+import { getStrings } from '../../i18n/getStrings';
+import type { Locale } from '../../i18n/config';
+import { DEFAULT_LOCALE } from '../../i18n/config';
 
 export async function getStaticPaths() {
-	const cmsPosts = useSanity() ? await getBlogPosts() : [];
+	const cmsPosts = useSanity() ? await getBlogPosts(DEFAULT_LOCALE) : [];
 
 	if (cmsPosts.length) {
 		return cmsPosts.map((post) => ({
@@ -28,6 +32,8 @@ type Props = {
 };
 
 const { cmsPost, markdownPost } = Astro.props as Props;
+const locale = getLocale(Astro) as Locale;
+const ui = await getStrings(locale);
 
 const isCms = Boolean(cmsPost);
 
@@ -63,7 +69,7 @@ if (isCms && cmsPost) {
 }
 ---
 
-<BlogPost {...data}>
+<BlogPost {...data} locale={locale} ui={ui}>
 	{
 		isCms
 			? data.body && <PortableText value={data.body} />

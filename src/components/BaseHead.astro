@@ -1,46 +1,75 @@
 ---
+import type { Locale } from '../i18n/config';
+import { DEFAULT_LOCALE } from '../i18n/config';
+import { getAlternateLinks } from '../i18n/utils';
+import { FALLBACK_EN } from '../i18n/fallbacks';
+import type { UIStrings } from '../i18n/types';
+
 const gaId = import.meta.env.PUBLIC_GA_ID || '';
 const siteUrl = import.meta.env.SITE_URL || 'https://cassieaugustin.com';
-const { title, description = "Ludnie Cassie Augustin - Nutritionist, Model, and Miss Choucoune International 2024 contestant. Empowering women through nutrition and wellness." } = Astro.props;
+
+interface Props {
+	title: string;
+	description?: string;
+	locale?: Locale;
+	ui?: UIStrings;
+}
+
+const {
+	title,
+	description,
+	locale = DEFAULT_LOCALE,
+	ui = FALLBACK_EN,
+} = Astro.props;
+
+const metaDescription = description || ui.seo.defaultDescription;
 const canonicalUrl = siteUrl ? new URL(Astro.url.pathname, siteUrl).href : '';
 const ogImageUrl = siteUrl ? `${siteUrl}/assets/img/Ludnie.jpg` : '/assets/img/Ludnie.jpg';
+const alternateLinks = getAlternateLinks(Astro.url.pathname, siteUrl);
 
 const personJsonLd = JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Person",
-  "name": "Ludnie Cassie Augustin",
+  "name": ui.seo.siteTitle,
   "url": siteUrl || undefined,
   "image": ogImageUrl,
   "jobTitle": "Nutritionist",
-  "description": description,
+  "description": metaDescription,
+  "inLanguage": locale,
   "sameAs": [
     "https://www.instagram.com/cassie.augustin"
   ]
 });
 ---
 <!DOCTYPE html>
-<html lang="en">
+<html lang={locale}>
 <head>
 	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <meta name="description" content={description}>
-    <meta name="author" content="Ludnie Cassie Augustin">
+    <meta name="description" content={metaDescription}>
+    <meta name="author" content={ui.seo.siteTitle}>
 
     {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
+    <!-- hreflang alternate links -->
+    {alternateLinks.map(({ hreflang, href }) => (
+      <link rel="alternate" hreflang={hreflang} href={href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={`${siteUrl}${Astro.url.pathname.replace(/^\/(fr|ht)(\/|$)/, '/')}`} />
 
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
     <meta property="og:title" content={title}>
-    <meta property="og:description" content={description}>
+    <meta property="og:description" content={metaDescription}>
     <meta property="og:image" content={ogImageUrl}>
     {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+    <meta property="og:locale" content={locale}>
     <meta name="google-site-verification" content="aULVjtuSRDv7GETE3xCgYPGdyXaP6FNkono6cHGYpV8" />
 
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={personJsonLd} />
 
     <link rel="icon" type="image/x-icon" href="/assets/favicon.png"/>
-    <!-- Ensure the paths here are correct -->
     <link rel="stylesheet" href="/normalize.css"/>
     <link rel="stylesheet" href="/skeleton.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">

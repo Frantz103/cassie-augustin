@@ -1,53 +1,14 @@
 ---
 import Layout from '../components/Layout.astro';
 import '../styles/about.css';
-import { useSanity } from '../lib/useSanity';
-import { getAbout } from '../lib/sanityQueries';
-import { urlFor } from '../lib/sanity';
-import PortableText from '../components/PortableText';
-import { sanitizeCmsText } from '../lib/contentSafety';
+import { getLocale } from '../i18n/utils';
+import { getStrings } from '../i18n/getStrings';
+import type { Locale } from '../i18n/config';
+import AboutContent from '../components/pages/AboutContent.astro';
 
-const useCms = useSanity();
-const aboutData = useCms ? await getAbout() : null;
-
-const aboutTitle = aboutData?.title || 'About';
-const aboutImage = aboutData?.image ? urlFor(aboutData.image).url() : '/assets/img/ludnie-pink-dress.jpg';
-const aboutImageAlt = aboutData?.imageAlt || 'Portrait of Ludnie Cassie Augustin';
-const aboutClosingRaw = aboutData?.closing || 'Xoxo,\nCassie';
-const aboutClosing = sanitizeCmsText(aboutClosingRaw);
+const locale = getLocale(Astro) as Locale;
+const ui = await getStrings(locale);
 ---
-<Layout title={`${aboutTitle} - Ludnie Cassie Augustin`}>
-  <main>
-    <div class="container">
-      <article class="about-content">
-        <div class="breadcrumb pl-2">
-          <a href="/">Home</a> / {aboutTitle}
-        </div>
-        <h1 class="about-title pl-2">{aboutTitle}</h1>
-        <div class="about-grid">
-          <div class="about-text pl-2 pr-mobile-2">
-            {aboutData?.body ? (
-              <PortableText value={aboutData.body} />
-            ) : (
-              <Fragment>
-                <p>I am Ludnie Cassie Augustin, your newfound online bestie <span aria-label="Heart">&#x1F496;</span>.</p>
-                <p>As a dedicated nutritionist with an unwavering faith In God,
-                I am deeply passionate about empowering women to embrace holistic wellness.</p>
-                <p>My journey transcends the boundaries of conventional nutrition. With a heart for women's health,
-                a flair for fashion and an eye for modeling, I am committed to uplift and hopefully inspire you
-                to embrace self-love and acceptance.</p>
-                <p>Here you will find a harmonious fusion of nutrition insight, faith-based guidance, Style inspirations and glimpses into the world of modeling.
-                Together let's embark on a transformative journey toward a healthier and more radiant you.</p>
-                <p>Make yourself at home!! And I mean that will all my heart.</p>
-              </Fragment>
-            )}
-            <p class="preline-text">{aboutClosing}</p>
-          </div>
-          <div class="about-image-col">
-            <img class="about-img" src={aboutImage} alt={aboutImageAlt} />
-          </div>
-        </div>
-      </article>
-    </div>
-  </main>
+<Layout title={`${ui.nav.about} - ${ui.seo.siteTitle}`} locale={locale} ui={ui}>
+  <AboutContent />
 </Layout>

@@ -1,9 +1,22 @@
 ---
 import { useSanity } from '../lib/useSanity';
 import { getNavPages } from '../lib/sanityQueries';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import type { Locale } from '../i18n/config';
+import { DEFAULT_LOCALE } from '../i18n/config';
+import { localePath } from '../i18n/utils';
+import { FALLBACK_EN } from '../i18n/fallbacks';
+import type { UIStrings } from '../i18n/types';
+
+interface Props {
+	locale?: Locale;
+	ui?: UIStrings;
+}
+
+const { locale = DEFAULT_LOCALE, ui = FALLBACK_EN } = Astro.props;
 
 const useCms = useSanity();
-const navPages = useCms ? await getNavPages() : [];
+const navPages = useCms ? await getNavPages(locale) : [];
 const legalLinks = navPages.length > 0
   ? navPages
   : [
@@ -11,14 +24,13 @@ const legalLinks = navPages.length > 0
       { title: 'Privacy', slug: 'privacy-policy' },
     ];
 ---
-<a class="skip-link" href="#main-content">Skip to content</a>
+<a class="skip-link" href="#main-content">{ui.nav.skipToContent}</a>
 <header class="header">
     <nav>
       <div class="brand">
-        <a href="/"><p class="logo pl-2 hide-on-mobile">Ludnie Cassie Augustin</p></a>
+        <a href={localePath('/', locale)}><p class="logo pl-2 hide-on-mobile">{ui.seo.siteTitle}</p></a>
       </div>
-       <!-- This can be a button or an icon that toggles a mobile menu -->
-       <button class="menu" id="menu" aria-label="Toggle menu" aria-expanded="false" aria-controls="navigation-links" type="button">
+       <button class="menu" id="menu" aria-label={ui.nav.toggleMenu} aria-expanded="false" aria-controls="navigation-links" type="button">
         <img class="menu-icon hide-on-mobile" src="/assets/icons/menu.png" alt=""/>
         <img class="menu-icon mobile hide-on-desktop" id="menu-mobile" src="/assets/icons/menu-2.png" alt=""/>
       </button>
@@ -26,22 +38,23 @@ const legalLinks = navPages.length > 0
   </header>
 
   <div id="navigation-links" class="navigation-links off-white-bg">
-    <p class="text-align-right"><button type="button" class="btn-close">Close <img class="close-icon" src="/assets/icons/close.png" alt=""/></button>
+    <p class="text-align-right"><button type="button" class="btn-close">{ui.nav.close} <img class="close-icon" src="/assets/icons/close.png" alt=""/></button>
     </p>
     <ul class="menu-top">
-      <li><a href="/">Home</a></li>
-     <li><a href="/about">About</a></li>
-      <li><a href="/lookbook">Lookbook</a></li>
-      <li><a href="/blog">Blog</a></li>
-      <li><a href="/contact">Contact</a></li>
+      <li><a href={localePath('/', locale)}>{ui.nav.home}</a></li>
+     <li><a href={localePath('/about', locale)}>{ui.nav.about}</a></li>
+      <li><a href={localePath('/lookbook', locale)}>{ui.nav.lookbook}</a></li>
+      <li><a href={localePath('/blog', locale)}>{ui.nav.blog}</a></li>
+      <li><a href={localePath('/contact', locale)}>{ui.nav.contact}</a></li>
     </ul>
 
     <div class="menu-footer">
+      <LanguageSwitcher />
       <ul>
       {legalLinks.map((page) => (
-        <li><a href={`/${page.slug}`}>{page.title}</a></li>
+        <li><a href={localePath(`/${page.slug}`, locale)}>{page.title}</a></li>
       ))}
       </ul>
-      <p>&copy; Copyright {new Date().getFullYear()}</p>
+      <p>{ui.footer.copyright} {new Date().getFullYear()}</p>
     </div>
   </div>

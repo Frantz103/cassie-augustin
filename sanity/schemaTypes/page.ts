@@ -1,10 +1,12 @@
 import {defineField, defineType} from 'sanity'
+import {languageField} from './fields/languageField'
 
 export default defineType({
   name: 'page',
   title: 'Page',
   type: 'document',
   fields: [
+    languageField,
     defineField({
       name: 'title',
       type: 'string',

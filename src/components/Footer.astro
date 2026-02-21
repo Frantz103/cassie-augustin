@@ -1,18 +1,36 @@
+---
+import LanguageSwitcher from './LanguageSwitcher.astro';
+import type { Locale } from '../i18n/config';
+import { DEFAULT_LOCALE } from '../i18n/config';
+import { localePath } from '../i18n/utils';
+import { FALLBACK_EN } from '../i18n/fallbacks';
+import type { UIStrings } from '../i18n/types';
+
+interface Props {
+	locale?: Locale;
+	ui?: UIStrings;
+}
+
+const { locale = DEFAULT_LOCALE, ui = FALLBACK_EN } = Astro.props;
+---
 <footer class="footer">
     <nav class="footer-menu hide-on-mobile">
       <ul class="footer-desktop hide-on-mobile">
-        <li class="pl-2"><a class="footer-link" href="/about">About</a></li>
-        <li><a class="footer-link" href="/lookbook">Lookbook</a></li>
-        <li><a class="footer-link" href="/blog">Blog</a></li>
-        <li class="footer-link pr-2"><a href="/contact">Contact</a></li>
+        <li class="pl-2"><a class="footer-link" href={localePath('/about', locale)}>{ui.nav.about}</a></li>
+        <li><a class="footer-link" href={localePath('/lookbook', locale)}>{ui.nav.lookbook}</a></li>
+        <li><a class="footer-link" href={localePath('/blog', locale)}>{ui.nav.blog}</a></li>
+        <li class="footer-link pr-2"><a href={localePath('/contact', locale)}>{ui.nav.contact}</a></li>
       </ul>
+      <div class="footer-lang-switcher">
+        <LanguageSwitcher />
+      </div>
     </nav>
       <nav class="footer-menu hide-on-desktop">
        <ul class="footer-mobile hide-on-desktop">
-        <li class="pl-2"><a href="/about">About</a></li>
-        <li><a href="/lookbook">Lookbook</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li class="pr-2"><a href="/contact">Contact</a></li>
+        <li class="pl-2"><a href={localePath('/about', locale)}>{ui.nav.about}</a></li>
+        <li><a href={localePath('/lookbook', locale)}>{ui.nav.lookbook}</a></li>
+        <li><a href={localePath('/blog', locale)}>{ui.nav.blog}</a></li>
+        <li class="pr-2"><a href={localePath('/contact', locale)}>{ui.nav.contact}</a></li>
       </ul>
       </nav>
   </footer>

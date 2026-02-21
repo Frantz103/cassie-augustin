@@ -1,14 +1,20 @@
 ---
+import type { Locale } from '../i18n/config';
+import { DEFAULT_LOCALE } from '../i18n/config';
+import { getDateLocale } from '../i18n/utils';
+
 interface Props {
 	date: Date;
+	locale?: Locale;
 }
 
-const { date } = Astro.props;
+const { date, locale = DEFAULT_LOCALE } = Astro.props;
+const dateLocale = getDateLocale(locale);
 ---
 
 <time datetime={date.toISOString()}>
 	{
-		date.toLocaleDateString('en-us', {
+		date.toLocaleDateString(dateLocale, {
 			year: 'numeric',
 			month: 'short',
 			day: 'numeric',

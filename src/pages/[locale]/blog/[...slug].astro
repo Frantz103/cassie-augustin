@@ -1,0 +1,98 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+import BlogPost from '../../../components/BlogPost.astro';
+import { useSanity } from '../../../lib/useSanity';
+import { getBlogPosts, type SanityBlogPost } from '../../../lib/sanityQueries';
+import PortableText from '../../../components/PortableText';
+import { getStrings } from '../../../i18n/getStrings';
+import { LOCALE_CODES, type Locale } from '../../../i18n/config';
+
+export async function getStaticPaths() {
+	const paths: any[] = [];
+	const locales = LOCALE_CODES.filter((l) => l !== 'en');
+
+	for (const locale of locales) {
+		const cmsPosts = useSanity() ? await getBlogPosts(locale) : [];
+
+		if (cmsPosts.length) {
+			for (const post of cmsPosts) {
+				paths.push({
+					params: { locale, slug: post.slug },
+					props: { cmsPost: post, locale },
+				});
+			}
+		} else {
+			// Fall back to English CMS posts for this locale
+			const enPosts = useSanity() ? await getBlogPosts('en') : [];
+			if (enPosts.length) {
+				for (const post of enPosts) {
+					paths.push({
+						params: { locale, slug: post.slug },
+						props: { cmsPost: post, locale },
+					});
+				}
+			} else {
+				const mdPosts = await getCollection('blog');
+				for (const post of mdPosts) {
+					paths.push({
+						params: { locale, slug: post.slug },
+						props: { markdownPost: post, locale },
+					});
+				}
+			}
+		}
+	}
+
+	return paths;
+}
+
+type Props = {
+	cmsPost?: SanityBlogPost;
+	markdownPost?: CollectionEntry<'blog'>;
+	locale: Locale;
+};
+
+const { cmsPost, markdownPost, locale } = Astro.props as Props;
+const ui = await getStrings(locale);
+
+const isCms = Boolean(cmsPost);
+
+let Content;
+let data: {
+	title?: string;
+	description?: string;
+	pubDate?: Date;
+	updatedDate?: Date;
+	heroImage?: any;
+	body?: any[];
+	url?: string;
+};
+
+if (isCms && cmsPost) {
+	data = {
+		title: cmsPost.title,
+		description: cmsPost.description,
+		pubDate: cmsPost.publishedAt ? new Date(cmsPost.publishedAt) : undefined,
+		updatedDate: cmsPost.updatedAt ? new Date(cmsPost.updatedAt) : undefined,
+		heroImage: cmsPost.heroImage,
+		body: cmsPost.body,
+		url: cmsPost.externalUrl,
+	};
+} else if (markdownPost) {
+	const rendered = await markdownPost.render();
+	Content = rendered.Content;
+	data = {
+		...markdownPost.data,
+		pubDate: markdownPost.data.pubDate,
+		updatedDate: markdownPost.data.updatedDate,
+	};
+}
+---
+
+<BlogPost {...data} locale={locale} ui={ui}>
+	{
+		isCms
+			? data.body && <PortableText value={data.body} />
+			: <Content />
+	}
+</BlogPost>

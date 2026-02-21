@@ -1,10 +1,12 @@
 import {defineField, defineType} from 'sanity'
+import {languageField} from './fields/languageField'
 
 export default defineType({
   name: 'lookbookItem',
   title: 'Lookbook Item',
   type: 'document',
   fields: [
+    languageField,
     defineField({
       name: 'title',
       type: 'string',

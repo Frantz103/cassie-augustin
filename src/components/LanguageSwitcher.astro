@@ -1,0 +1,45 @@
+---
+import { LOCALES, LOCALE_CODES, type Locale } from '../i18n/config';
+import { getLocale, stripLocalePrefix, localePath } from '../i18n/utils';
+
+const locale = getLocale(Astro) as Locale;
+const barePath = stripLocalePrefix(Astro.url.pathname);
+---
+
+<nav class="language-switcher" aria-label="Language">
+  {LOCALE_CODES.map((code) => (
+    <a
+      href={localePath(barePath, code)}
+      class:list={['lang-link', { active: code === locale }]}
+      aria-current={code === locale ? 'page' : undefined}
+      hreflang={LOCALES[code].hreflang}
+    >
+      {LOCALES[code].label}
+    </a>
+  ))}
+</nav>
+
+<style>
+  .language-switcher {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  .lang-link {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    padding: 0.2rem 0.4rem;
+    border-radius: 2px;
+    transition: opacity 0.2s;
+  }
+  .lang-link:hover {
+    opacity: 0.7;
+  }
+  .lang-link.active {
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

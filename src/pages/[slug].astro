@@ -3,11 +3,15 @@ import Layout from '../components/Layout.astro';
 import PortableText from '../components/PortableText';
 import { useSanity } from '../lib/useSanity';
 import { getPages, type SanityPage } from '../lib/sanityQueries';
+import { getLocale, localePath } from '../i18n/utils';
+import { getStrings } from '../i18n/getStrings';
+import type { Locale } from '../i18n/config';
+import { DEFAULT_LOCALE } from '../i18n/config';
 
 export async function getStaticPaths() {
 	if (!useSanity()) return [];
 
-	const pages = await getPages();
+	const pages = await getPages(DEFAULT_LOCALE);
 	return pages.map((page) => ({
 		params: { slug: page.slug },
 		props: { page },
@@ -16,13 +20,15 @@ export async function getStaticPaths() {
 
 type Props = { page: SanityPage };
 const { page } = Astro.props;
+const locale = getLocale(Astro) as Locale;
+const ui = await getStrings(locale);
 ---
-<Layout title={`${page.title} - Ludnie Cassie Augustin`}>
+<Layout title={`${page.title} - ${ui.seo.siteTitle}`} locale={locale} ui={ui}>
 	<main>
 		<div class="container">
 			<article class="page-content">
 				<div class="breadcrumb pl-2">
-					<a href="/">Home</a> / {page.title}
+					<a href={localePath('/', locale)}>{ui.breadcrumbs.home}</a> / {page.title}
 				</div>
 				<h1 class="pl-2">{page.title}</h1>
 				<div class="prose pl-2 pr-2">

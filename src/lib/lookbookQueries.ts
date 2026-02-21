@@ -1,5 +1,6 @@
 import groq from 'groq';
 import { getSanityClient } from './sanity.server';
+import { DEFAULT_LOCALE, type Locale } from '../i18n/config';
 
 export type SanityLookbookImage = {
 	asset: { _ref?: string; url?: string };
@@ -36,10 +37,11 @@ const lookbookFields = groq`{
   }
 }`;
 
-export async function getLookbookItems(): Promise<SanityLookbookItem[]> {
+export async function getLookbookItems(locale: Locale = DEFAULT_LOCALE): Promise<SanityLookbookItem[]> {
 	const client = getSanityClient();
 	return client.fetch(
-		groq`*[_type == "lookbookItem" && defined(slug.current)] 
-      | order(order asc, date desc, _createdAt desc) ${lookbookFields}`
+		groq`*[_type == "lookbookItem" && defined(slug.current) && language == $locale]
+      | order(order asc, date desc, _createdAt desc) ${lookbookFields}`,
+		{ locale }
 	);
 }

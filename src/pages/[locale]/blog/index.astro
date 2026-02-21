@@ -1,0 +1,35 @@
+---
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import '../../../styles/tokens.css';
+import '../../../styles/base.css';
+import '../../../styles/header.css';
+import '../../../styles/footer.css';
+import '../../../styles/blog.css';
+import BaseHead from '../../../components/BaseHead.astro';
+import BlogIndexContent from '../../../components/pages/BlogIndexContent.astro';
+import { getStrings } from '../../../i18n/getStrings';
+import { LOCALE_CODES, type Locale } from '../../../i18n/config';
+
+export function getStaticPaths() {
+	return LOCALE_CODES.filter((l) => l !== 'en').map((locale) => ({
+		params: { locale },
+	}));
+}
+
+const locale = Astro.params.locale as Locale;
+const ui = await getStrings(locale);
+---
+<BaseHead title={ui.blog.pageTitle} locale={locale} ui={ui} />
+
+<body>
+    <div class="overlay" id="overlay"></div>
+    <Header locale={locale} ui={ui} />
+    <main id="main-content">
+        <div class="container">
+          <BlogIndexContent />
+        </div>
+    </main>
+    <Footer locale={locale} ui={ui} />
+</body>
+</html>

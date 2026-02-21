@@ -7,66 +7,24 @@ import '../../styles/header.css';
 import '../../styles/footer.css';
 import '../../styles/blog.css';
 import BaseHead from '../../components/BaseHead.astro';
-import FormattedDate from '../../components/FormattedDate.astro';
-import { getCollection } from 'astro:content';
-import { useSanity } from '../../lib/useSanity';
-import { getBlogPosts } from '../../lib/sanityQueries';
+import BlogIndexContent from '../../components/pages/BlogIndexContent.astro';
+import { getLocale } from '../../i18n/utils';
+import { getStrings } from '../../i18n/getStrings';
+import type { Locale } from '../../i18n/config';
 
-const useCms = useSanity();
-
-const markdownPosts = (await getCollection('blog')).sort(
-	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
-);
-
-const cmsPosts = useCms ? await getBlogPosts() : [];
-
-const posts = cmsPosts.length
-	? cmsPosts.map((post) => ({
-			title: post.title,
-			slug: post.slug,
-			description: post.description,
-			pubDate: post.publishedAt ? new Date(post.publishedAt) : new Date(),
-			heroImage: post.heroImage?.url,
-	  }))
-	: markdownPosts.map((post) => ({
-			title: post.data.title,
-			slug: post.slug,
-			description: post.data.description,
-			pubDate: post.data.pubDate,
-			heroImage: post.data.heroImage,
-	  }));
+const locale = getLocale(Astro) as Locale;
+const ui = await getStrings(locale);
 ---
-<BaseHead title="Blog Homepage" />
+<BaseHead title={ui.blog.pageTitle} locale={locale} ui={ui} />
 
 <body>
     <div class="overlay" id="overlay"></div>
-    <Header />
+    <Header locale={locale} ui={ui} />
     <main id="main-content">
         <div class="container">
-        <section class="blog">
-            {posts.length > 0 ? (
-            <ul>
-                {
-                    posts.map((post) => (
-                        <li>
-                            <a class="h-link" href={`/blog/${post.slug}/`}>
-                                <h4 class="title">{post.title}</h4></a>
-                                <p class="date">
-                                    <FormattedDate date={post.pubDate} />
-                                </p>
-                                <hr />
-                                <p>{post.description}</p>
-                                <p><a href={`/blog/${post.slug}/`}>Continue reading...</a></p>
-                        </li>
-                    ))
-                }
-            </ul>
-            ) : (
-                <p style="text-align:center; padding:4rem 1rem;">New posts coming soon — stay tuned!</p>
-            )}
-        </section>
-    </div>
+          <BlogIndexContent />
+        </div>
     </main>
-    <Footer />
+    <Footer locale={locale} ui={ui} />
 </body>
 </html>

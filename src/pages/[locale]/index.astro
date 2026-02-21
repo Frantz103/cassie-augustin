@@ -1,0 +1,19 @@
+---
+import Layout from '../../components/Layout.astro';
+import '../../styles/homepage.css';
+import { getStrings } from '../../i18n/getStrings';
+import { LOCALE_CODES, type Locale } from '../../i18n/config';
+import HomeContent from '../../components/pages/HomeContent.astro';
+
+export function getStaticPaths() {
+	return LOCALE_CODES.filter((l) => l !== 'en').map((locale) => ({
+		params: { locale },
+	}));
+}
+
+const locale = Astro.params.locale as Locale;
+const ui = await getStrings(locale);
+---
+<Layout title={`${ui.seo.siteTitle} - ${ui.nav.home}`} locale={locale} ui={ui}>
+  <HomeContent />
+</Layout>

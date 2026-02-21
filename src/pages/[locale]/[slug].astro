@@ -1,0 +1,50 @@
+---
+import Layout from '../../components/Layout.astro';
+import PortableText from '../../components/PortableText';
+import { useSanity } from '../../lib/useSanity';
+import { getPages, type SanityPage } from '../../lib/sanityQueries';
+import { localePath } from '../../i18n/utils';
+import { getStrings } from '../../i18n/getStrings';
+import { LOCALE_CODES, type Locale } from '../../i18n/config';
+
+export async function getStaticPaths() {
+	if (!useSanity()) return [];
+
+	const paths: any[] = [];
+	const locales = LOCALE_CODES.filter((l) => l !== 'en');
+
+	for (const locale of locales) {
+		let pages = await getPages(locale);
+		// Fall back to English pages if none for this locale
+		if (pages.length === 0) pages = await getPages('en');
+
+		for (const page of pages) {
+			paths.push({
+				params: { locale, slug: page.slug },
+				props: { page, locale },
+			});
+		}
+	}
+
+	return paths;
+}
+
+type Props = { page: SanityPage; locale: Locale };
+const { page, locale } = Astro.props;
+const ui = await getStrings(locale);
+---
+<Layout title={`${page.title} - ${ui.seo.siteTitle}`} locale={locale} ui={ui}>
+	<main>
+		<div class="container">
+			<article class="page-content">
+				<div class="breadcrumb pl-2">
+					<a href={localePath('/', locale)}>{ui.breadcrumbs.home}</a> / {page.title}
+				</div>
+				<h1 class="pl-2">{page.title}</h1>
+				<div class="prose pl-2 pr-2">
+					{page.body && <PortableText value={page.body} />}
+				</div>
+			</article>
+		</div>
+	</main>
+</Layout>

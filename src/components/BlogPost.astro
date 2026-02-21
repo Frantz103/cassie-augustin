@@ -9,17 +9,24 @@ import '../styles/header.css';
 import '../styles/footer.css';
 import '../styles/blog.css';
 import FormattedDate from '../components/FormattedDate.astro';
+import type { Locale } from '../i18n/config';
+import { DEFAULT_LOCALE } from '../i18n/config';
+import { localePath } from '../i18n/utils';
+import { FALLBACK_EN } from '../i18n/fallbacks';
+import type { UIStrings } from '../i18n/types';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<'blog'>['data'] & {
+	locale?: Locale;
+	ui?: UIStrings;
+};
 
-const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props;
-
+const { title, description, pubDate, updatedDate, heroImage, url, locale = DEFAULT_LOCALE, ui = FALLBACK_EN } = Astro.props;
 ---
 
-<BaseHead title="Blog" />
+<BaseHead title={ui.blog.pageTitle} locale={locale} ui={ui} />
 <body>
     <div class="overlay" id="overlay"></div>
-    <Header />
+    <Header locale={locale} ui={ui} />
     <div id="main-content" class="hero-image">
         <picture>
           <source media="(max-width: 768px)" srcset="/assets/img/banner-image-mobile.webp" type="image/webp">
@@ -29,10 +36,10 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
           <img src="/assets/img/banner-image-desktop.png" alt="">
         </picture>
         <div class="hero-text">
-          <p>The Nourished <br/>Runway</p>
-          <p>A blog by Cassie Augustin</p>
+          <p>{ui.blog.bannerTitle.split(' ').slice(0, -1).join(' ')} <br/>{ui.blog.bannerTitle.split(' ').slice(-1)}</p>
+          <p>{ui.blog.bannerSubtitle}</p>
         </div>
-        <img src="/assets/img/sunflower-clear.png" alt="" class=" hide-on-desktop sunflower-decor" /> <!-- Sunflower image -->
+        <img src="/assets/img/sunflower-clear.png" alt="" class=" hide-on-desktop sunflower-decor" />
 
       </div>
     <main>
@@ -41,15 +48,15 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
             <div class="row">
                 <div class=" eight columns posts">
             <article>
-                <div class="breadcrumb"><a href="/">Home </a> / <a href="/blog">Blog</a></div>
+                <div class="breadcrumb"><a href={localePath('/', locale)}>{ui.breadcrumbs.home} </a> / <a href={localePath('/blog', locale)}>{ui.breadcrumbs.blog}</a></div>
             <div class="prose">
                 <div class="title">
                     <div class="date">
-                        <FormattedDate date={pubDate} />
+                        <FormattedDate date={pubDate} locale={locale} />
                         {
                             updatedDate && (
                                 <div class="last-updated-on">
-                                    Last updated on <FormattedDate date={updatedDate} />
+                                    {ui.blog.lastUpdatedOn} <FormattedDate date={updatedDate} locale={locale} />
                                 </div>
                             )
                         }
@@ -71,6 +78,6 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
         </div>
     </div>
     </main>
-    <Footer />
+    <Footer locale={locale} ui={ui} />
 </body>
 </html>
