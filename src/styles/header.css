@@ -7,7 +7,7 @@ header, nav, .brand {
 /* Mobile header */
 @media (max-width: 768px) {
   header {
-    background-color: rgba(0, 0, 0, 0.45);
+    background-color: var(--overlay-medium);
     height: auto;
     z-index: 999999;
   }
@@ -47,21 +47,21 @@ header, nav, .brand {
   }
 
   .brand {
-    color: #000;
+    color: var(--black);
     width: 100%;
     min-width: 600px;
   }
 
   .brand p {
-    color: black;
-    font-size: 24px;
-    font-family: Lato;
+    color: var(--black);
+    font-size: 1.5rem;
+    font-family: var(--font-body);
     font-weight: 300;
     letter-spacing: 6px;
     word-wrap: break-word;
     text-transform: uppercase;
-    padding-top: 20px;
-    padding-bottom: 25px;
+    padding-top: 1.25rem;
+    padding-bottom: 1.5625rem;
   }
 
   .menu {
@@ -89,8 +89,8 @@ header, nav, .brand {
 
 /* Navigation slide-out panel */
 #navigation-links {
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-panel);
   position: fixed;
   width: 100%;
   max-width: 400px;
@@ -99,7 +99,7 @@ header, nav, .brand {
   top: 0;
   right: 0;
   display: none;
-  background-color: #FFF0E1;
+  background-color: var(--off-white);
   overflow-y: auto;
 }
 
@@ -123,11 +123,11 @@ header, nav, .brand {
 }
 
 #navigation-links .menu-top li {
-  font-family: Playfair Display;
+  font-family: var(--font-heading);
   font-size: 2.5rem;
   line-height: 4rem;
   text-align: left;
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid var(--black);
   padding-bottom: 0.25rem;
 }
 
@@ -137,7 +137,7 @@ header, nav, .brand {
 }
 
 #navigation-links .menu-footer {
-  margin-top: 20px;
+  margin-top: 1.25rem;
 }
 
 /* Skip to content link */

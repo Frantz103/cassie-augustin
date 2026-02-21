@@ -4,10 +4,10 @@
 }
 
 .about-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 36px;
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
   font-weight: 600;
-  line-height: 50px;
+  line-height: 1.4;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
@@ -23,7 +23,7 @@
 .about-img {
   width: 100%;
   max-width: 420px;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--shadow-sm);
   object-fit: cover;
 }
 
@@ -33,7 +33,7 @@
   }
 
   .about-title {
-    font-size: 56px;
+    font-size: 3.5rem;
     font-weight: 600;
     line-height: 1.15;
     letter-spacing: 0.22em;

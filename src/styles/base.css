@@ -13,19 +13,6 @@ nav, .intro-container, article {
  }
 }
 
-/* Brand Colors */
-:root {
-  --pastel-pink: #E5B6B0;
-  --sunflower-yellow: #F1B041;
-  --off-white: #FFF0E1;
-  --dark-green: #353E2D;
-  --olive-green: #6A7350;
-  --dusty-rose: #C09A8A;
-  --black: #000;
-  --white: #fff;
-  --text-dark: #333;
-}
-
 /* Color utilities */
 .white { color: var(--white); }
 .black { color: var(--black); }
@@ -50,7 +37,7 @@ nav, .intro-container, article {
 }
 
 .drop-shadow {
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--shadow-sm);
 }
 
 /* Base elements */
@@ -88,7 +75,7 @@ body {
   left: 0;
   width: 100%;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--overlay-heavy);
   display: none;
   z-index: 20;
 }
@@ -98,19 +85,19 @@ body,
 button,
 input,
 textarea {
-  font-family: 'Lato', sans-serif;
+  font-family: var(--font-body);
   color: var(--black);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-heading);
   color: var(--black);
 }
 
 p {
-  font-family: lato;
+  font-family: var(--font-body);
   font-size: 1.0625rem;
   line-height: 1.6;
 }
@@ -153,7 +140,7 @@ h2 {
 /* Intro text */
 .intro {
   font-size: 1.25rem;
-  font-family: Lato;
+  font-family: var(--font-body);
   font-weight: 400;
   letter-spacing: 0.50px;
   word-wrap: break-word;
@@ -168,7 +155,7 @@ button {
   padding: 1rem 2rem;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: background-color var(--transition-moderate);
 }
 
 button:hover {
@@ -177,9 +164,9 @@ button:hover {
 
 /* Links */
 a {
-  color: #000;
+  color: var(--black);
   text-decoration: none;
-  transition: color 0.25s ease, opacity 0.25s ease;
+  transition: color var(--transition-base), opacity var(--transition-base);
 }
 
 a:hover {
@@ -202,21 +189,21 @@ a:focus {
   text-align: center;
   display: inline-block;
   text-decoration: none;
-  margin-top: 30px;
+  margin-top: 1.875rem;
   max-width: 300px;
-  color: #000;
-  font-size: 16px;
-  font-family: Lato;
+  color: var(--black);
+  font-size: 1rem;
+  font-family: var(--font-body);
   font-weight: 400;
   word-wrap: break-word;
   text-transform: uppercase;
-  transition: background-color 0.3s ease;
+  transition: background-color var(--transition-moderate);
   margin-bottom: 1rem;
 }
 
 .cta-button:hover,
 .cta-button:focus {
-  background-color: #e09c32;
+  background-color: var(--sunflower-yellow-dark);
 }
 
 /* Section defaults */

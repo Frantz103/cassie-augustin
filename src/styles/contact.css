@@ -4,10 +4,10 @@
 }
 
 .contact-title {
-  font-family: 'Playfair Display', serif;
-  font-size: 36px;
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
   font-weight: 600;
-  line-height: 50px;
+  line-height: 1.4;
   letter-spacing: 0.26em;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
@@ -53,7 +53,7 @@
 
 .form-group label {
   display: block;
-  font-family: 'Lato', sans-serif;
+  font-family: var(--font-body);
   font-size: 0.9375rem;
   font-weight: 700;
   margin-bottom: 0.35rem;
@@ -64,20 +64,20 @@
 .form-group textarea {
   width: 100%;
   padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-family: 'Lato', sans-serif;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
   font-size: 1rem;
   color: var(--black);
   background: var(--white);
-  transition: border-color 0.2s ease;
+  transition: border-color var(--transition-fast);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
   outline: none;
   border-color: var(--sunflower-yellow);
-  box-shadow: 0 0 0 2px rgba(241, 176, 65, 0.25);
+  box-shadow: var(--shadow-focus);
 }
 
 .contact-form .cta-button {
@@ -94,7 +94,7 @@
   }
 
   .contact-title {
-    font-size: 56px;
+    font-size: 3.5rem;
     font-weight: 600;
     line-height: 1.15;
     letter-spacing: 0.22em;

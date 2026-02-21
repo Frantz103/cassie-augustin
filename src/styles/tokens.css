@@ -1,0 +1,57 @@
+:root {
+  /* Brand palette */
+  --pastel-pink: #E5B6B0;
+  --sunflower-yellow: #F1B041;
+  --sunflower-yellow-dark: #e09c32;
+  --off-white: #FFF0E1;
+  --dark-green: #353E2D;
+  --olive-green: #6A7350;
+  --dusty-rose: #C09A8A;
+  --black: #000;
+  --white: #fff;
+
+  /* Text */
+  --text-dark: #333;
+  --text-muted: #888;
+
+  /* Borders / UI */
+  --border-color: #ccc;
+  --border-color-light: #ddd;
+  --border-subtle: rgba(0, 0, 0, 0.08);
+
+  /* Overlays */
+  --overlay-heavy: rgba(0, 0, 0, 0.7);
+  --overlay-medium: rgba(0, 0, 0, 0.45);
+  --overlay-light: rgba(0, 0, 0, 0.1);
+  --overlay-muted: rgba(0, 0, 0, 0.5);
+
+  /* Shadows */
+  --shadow-sm: 0 4px 4px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.1);
+  --shadow-panel: 0 0 10px rgba(0, 0, 0, 0.1);
+  --shadow-focus: 0 0 0 2px rgba(241, 176, 65, 0.25);
+
+  /* Radius */
+  --radius-sm: 4px;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-base: 0.25s ease;
+  --transition-moderate: 0.3s ease;
+  --transition-slow: 0.4s ease;
+  --transition-slower: 0.6s ease;
+
+  /* Font families */
+  --font-body: 'Lato', sans-serif;
+  --font-heading: 'Playfair Display', serif;
+
+  /* Breakpoints (reference only - can't use in @media)
+   *   Mobile:    max 768px
+   *   Desktop:   min 769px
+   *   Grid 2-col: 600px
+   *   Grid 3-col: 960px
+   *   Tablet:    1024px
+   *   Wide:      1279px
+   */
+}
