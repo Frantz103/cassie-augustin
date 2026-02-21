@@ -119,9 +119,10 @@ h2 {
   margin-bottom: 0.75rem;
 }
 
-.breadcrumb a {
-  font-size: 1.125rem;
+.breadcrumb, .breadcrumb a {
+  font-size: 0.875rem;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 /* Visibility */
@@ -239,7 +240,6 @@ section .h-link {
 
 .breadcrumb {
   margin-bottom: 1rem;
-  font-size: 0.875rem;
 }
 
 .breadcrumb a {
