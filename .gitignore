@@ -4,6 +4,8 @@ dist/
 
 # dependencies
 node_modules/
+.npm-cache/
+.config/
 
 # logs
 npm-debug.log*

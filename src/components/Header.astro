@@ -1,3 +1,16 @@
+---
+import { useSanity } from '../lib/useSanity';
+import { getNavPages } from '../lib/sanityQueries';
+
+const useCms = useSanity();
+const navPages = useCms ? await getNavPages() : [];
+const legalLinks = navPages.length > 0
+  ? navPages
+  : [
+      { title: 'Terms', slug: 'terms-of-service' },
+      { title: 'Privacy', slug: 'privacy-policy' },
+    ];
+---
 <header class="header">
     <nav>
       <div class="brand">
@@ -24,10 +37,11 @@
 
     <div class="menu-footer">
       <ul>
-      <li><a href="#">Legal</a></li>
-      <li><a href="#">Privacy</a></li>
-      </ul> 
-      <p>&copy; Copyright 2024</p>
+      {legalLinks.map((page) => (
+        <li><a href={`/${page.slug}`}>{page.title}</a></li>
+      ))}
+      </ul>
+      <p>&copy; Copyright {new Date().getFullYear()}</p>
     </div>
   </div>
 

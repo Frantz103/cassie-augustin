@@ -1,20 +1,72 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
 import BlogPost from '../../components/BlogPost.astro';
+import { useSanity } from '../../lib/useSanity';
+import { getBlogPosts, type SanityBlogPost } from '../../lib/sanityQueries';
+import PortableText from '../../components/PortableText';
 
 export async function getStaticPaths() {
+	const cmsPosts = useSanity() ? await getBlogPosts() : [];
+
+	if (cmsPosts.length) {
+		return cmsPosts.map((post) => ({
+			params: { slug: post.slug },
+			props: { cmsPost: post },
+		}));
+	}
+
 	const posts = await getCollection('blog');
 	return posts.map((post) => ({
 		params: { slug: post.slug },
-		props: post,
+		props: { markdownPost: post },
 	}));
 }
-type Props = CollectionEntry<'blog'>;
 
-const post = Astro.props;
-const { Content } = await post.render();
+type Props = {
+	cmsPost?: SanityBlogPost;
+	markdownPost?: CollectionEntry<'blog'>;
+};
+
+const { cmsPost, markdownPost } = Astro.props as Props;
+
+const isCms = Boolean(cmsPost);
+
+let Content;
+let data: {
+	title?: string;
+	description?: string;
+	pubDate?: Date;
+	updatedDate?: Date;
+	heroImage?: any;
+	body?: any[];
+	url?: string;
+};
+
+if (isCms && cmsPost) {
+	data = {
+		title: cmsPost.title,
+		description: cmsPost.description,
+		pubDate: cmsPost.publishedAt ? new Date(cmsPost.publishedAt) : undefined,
+		updatedDate: cmsPost.updatedAt ? new Date(cmsPost.updatedAt) : undefined,
+		heroImage: cmsPost.heroImage,
+		body: cmsPost.body,
+		url: cmsPost.externalUrl,
+	};
+} else if (markdownPost) {
+	const rendered = await markdownPost.render();
+	Content = rendered.Content;
+	data = {
+		...markdownPost.data,
+		pubDate: markdownPost.data.pubDate,
+		updatedDate: markdownPost.data.updatedDate,
+	};
+}
 ---
 
-<BlogPost {...post.data}>
-	<Content />
+<BlogPost {...data}>
+	{
+		isCms
+			? data.body && <PortableText value={data.body} />
+			: <Content />
+	}
 </BlogPost>

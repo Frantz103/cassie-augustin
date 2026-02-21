@@ -8,7 +8,10 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "sanity": "cd sanity && sanity dev",
+    "sanity:deploy": "cd sanity && sanity deploy",
+    "sanity:init": "cd sanity && sanity init"
   },
   "devDependencies": {
     "@types/micromodal": "^0.3.5",
@@ -18,7 +21,14 @@
   "dependencies": {
     "@astrojs/markdown-remark": "^4.3.2",
     "@astrojs/react": "^3.0.10",
+    "@portabletext/react": "^3.0.19",
+    "@sanity/astro": "^3.2.11",
+    "@sanity/client": "^7.6.0",
+    "@sanity/image-url": "^1.0.2",
+    "@sanity/vision": "^3.38.0",
+    "groq": "^3.64.0",
     "cypress": "^13.6.6",
-    "micromodal": "^0.4.10"
+    "micromodal": "^0.4.10",
+    "sanity": "^3.38.0"
   }
 }

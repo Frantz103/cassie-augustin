@@ -4,15 +4,13 @@
   publish = "dist"
   functions = "netlify/functions"
 
-[[plugins]]
-  package = "netlify-plugin-cypress"
-  [plugins.inputs]
-    enable = false # Assuming you want this disabled globally
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://cdn.sanity.io data:; font-src https://fonts.gstatic.com 'self'; connect-src 'self' https://cdn.sanity.io; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
 
-  # The following section has been commented out because it seems you might have
-  # intended to configure something specific for postBuild but then chose to disable globally.
-  # If you have specific configurations for postBuild, ensure they're correctly nested
-  # and enabled as needed.
-
-  # [plugins.inputs.postBuild]
-  #   enable = true

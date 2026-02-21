@@ -87,6 +87,14 @@ netlify init
 
 ---
 
+## Rollback / Fallback (Disable Sanity Quickly)
+
+- Set `PUBLIC_USE_SANITY=false` in your `.env` and Netlify environment variables to bypass the CMS; the site will fall back to local Markdown blog posts and the static lookbook.
+- Removing `PUBLIC_SANITY_PROJECT_ID` also disables the integration for a build, but the toggle is the fastest switch.
+- Netlify adds security headers via `netlify.toml`; keep them enabled for clickjacking/abuse protection.
+
+---
+
 ## Project Structure
 
 ```

@@ -222,6 +222,12 @@ To make your site rebuild automatically when you update content:
 
 Now when you publish content in Sanity, your site will automatically rebuild!
 
+### Quick Rollback (temporarily disable CMS)
+
+- If you need to ship a build without Sanity, set `PUBLIC_USE_SANITY=false` in Netlify environment variables (and your local `.env`). The site will fall back to the Markdown blog and static lookbook without removing any Sanity setup.
+- Removing `PUBLIC_SANITY_PROJECT_ID` also disables the integration for that build, but the toggle is faster.
+- Security headers are defined in `netlify.toml`; keep them enabled for clickjacking/abuse protection.
+
 ## 🆘 Troubleshooting
 
 ### "Cannot find module" errors

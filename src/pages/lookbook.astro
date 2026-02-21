@@ -1,6 +1,13 @@
 ---
 import Layout from '../components/Layout.astro';
 import Modal from '../components/Modal.astro';
+import { useSanity } from '../lib/useSanity';
+import { getLookbookItems } from '../lib/lookbookQueries';
+import { urlFor } from '../lib/sanity';
+
+const useCms = useSanity();
+const cmsItems = useCms ? await getLookbookItems() : [];
+const hasCmsItems = cmsItems.length > 0;
 ---
 <Layout title="Ludnie Cassie Augustin - Lookbook">
   <main class="lookbook-editorial">
@@ -14,72 +21,91 @@ import Modal from '../components/Modal.astro';
     </div>
 
     <!-- Gallery Grid -->
-    <section class="editorial-grid">
+    {
+      hasCmsItems ? (
+        <section class="editorial-grid">
+          {
+            cmsItems.map((item) => {
+              const image = item.images?.[0];
+              const imgUrl = image ? urlFor(image).width(1600).auto('format').url() : '';
+              const layoutClass = item.layout || (item.featured ? 'featured' : 'third');
+              return (
+                <div class={`grid-item ${layoutClass}`} key={item._id}>
+                  {imgUrl && <img src={imgUrl} alt={image?.alt || item.title} loading="lazy" />}
+                </div>
+              );
+            })
+          }
+        </section>
+      ) : (
+        <section class="editorial-grid">
 
-      <!-- Row 1: Full width feature -->
-      <div class="grid-item featured">
-        <img src="/assets/img/lookbook/ludnie-4.jpg" alt="Ludnie Augustin Editorial"/>
-      </div>
+          <!-- Row 1: Full width feature -->
+          <div class="grid-item featured">
+            <img src="/assets/img/lookbook/ludnie-4.jpg" alt="Ludnie Augustin Editorial"/>
+          </div>
 
-      <!-- Row 2: Two column -->
-      <div class="grid-item half">
-        <img src="/assets/img/lookbook/Ludnie-2.jpg" alt="Ludnie Augustin Portrait"/>
-      </div>
-      <div class="grid-item half">
-        <img src="/assets/img/lookbook/ludnie-3.jpg" alt="Ludnie Augustin Fashion"/>
-      </div>
+          <!-- Row 2: Two column -->
+          <div class="grid-item half">
+            <img src="/assets/img/lookbook/Ludnie-2.jpg" alt="Ludnie Augustin Portrait"/>
+          </div>
+          <div class="grid-item half">
+            <img src="/assets/img/lookbook/ludnie-3.jpg" alt="Ludnie Augustin Fashion"/>
+          </div>
 
-      <!-- Row 3: Three column featured images -->
-      <div class="grid-item third">
-        <img src="/assets/img/lookbook/ludnie-1.jpg" alt="Ludnie Augustin"/>
-      </div>
-      <div class="grid-item third">
-        <img src="/assets/img/ludnie-pink-dress.jpg" alt="Ludnie Augustin Pink Dress"/>
-      </div>
-      <div class="grid-item third">
-        <img src="/assets/img/lookbook/Ludnie-2.jpg" alt="Ludnie Augustin"/>
-      </div>
+          <!-- Row 3: Three column featured images -->
+          <div class="grid-item third">
+            <img src="/assets/img/lookbook/ludnie-1.jpg" alt="Ludnie Augustin"/>
+          </div>
+          <div class="grid-item third">
+            <img src="/assets/img/ludnie-pink-dress.jpg" alt="Ludnie Augustin Pink Dress"/>
+          </div>
+          <div class="grid-item third">
+            <img src="/assets/img/lookbook/Ludnie-2.jpg" alt="Ludnie Augustin"/>
+          </div>
 
-      <!-- Row 4: Three column -->
-      <div class="grid-item third">
-        <img src="/assets/img/lookbook/ludnie-6.jpg" alt="Ludnie Augustin"/>
-      </div>
-      <div class="grid-item third">
-        <img src="/assets/img/lookbook/ludnie-5.jpg" alt="Ludnie Augustin"/>
-      </div>
-      <div class="grid-item third">
-        <img src="/assets/img/lookbook/ludnie-9.jpg" alt="Ludnie Augustin"/>
-      </div>
+          <!-- Row 4: Three column -->
+          <div class="grid-item third">
+            <img src="/assets/img/lookbook/ludnie-6.jpg" alt="Ludnie Augustin"/>
+          </div>
+          <div class="grid-item third">
+            <img src="/assets/img/lookbook/ludnie-5.jpg" alt="Ludnie Augustin"/>
+          </div>
+          <div class="grid-item third">
+            <img src="/assets/img/lookbook/ludnie-9.jpg" alt="Ludnie Augustin"/>
+          </div>
 
-      <!-- Row 5: Two column with asymmetry -->
-      <div class="grid-item two-thirds">
-        <img src="/assets/img/lookbook/ludnie-10.jpg" alt="Ludnie Augustin Editorial"/>
-      </div>
-      <div class="grid-item one-third">
-        <img src="/assets/img/lookbook/ludnie-8.jpg" alt="Ludnie Augustin"/>
-      </div>
+          <!-- Row 5: Two column with asymmetry -->
+          <div class="grid-item two-thirds">
+            <img src="/assets/img/lookbook/ludnie-10.jpg" alt="Ludnie Augustin Editorial"/>
+          </div>
+          <div class="grid-item one-third">
+            <img src="/assets/img/lookbook/ludnie-8.jpg" alt="Ludnie Augustin"/>
+          </div>
 
-      <!-- Row 6: Three column -->
-      <div class="grid-item third">
-        <img src="/assets/img/lookbook/ludnie-14.jpg" alt="Ludnie Augustin"/>
-      </div>
-      <div class="grid-item third">
-        <img src="/assets/img/lookbook/ludnie-13.jpg" alt="Ludnie Augustin"/>
-      </div>
-      <div class="grid-item third">
-        <img src="/assets/img/lookbook/ludnie-3.jpg" alt="Ludnie Augustin"/>
-      </div>
+          <!-- Row 6: Three column -->
+          <div class="grid-item third">
+            <img src="/assets/img/lookbook/ludnie-14.jpg" alt="Ludnie Augustin"/>
+          </div>
+          <div class="grid-item third">
+            <img src="/assets/img/lookbook/ludnie-13.jpg" alt="Ludnie Augustin"/>
+          </div>
+          <div class="grid-item third">
+            <img src="/assets/img/lookbook/ludnie-3.jpg" alt="Ludnie Augustin"/>
+          </div>
 
-      <!-- Row 7: Full width closing -->
-      <div class="grid-item featured">
-        <img src="/assets/img/lookbook/ludnie-15.jpg" alt="Ludnie Augustin Editorial"/>
-      </div>
+          <!-- Row 7: Full width closing -->
+          <div class="grid-item featured">
+            <img src="/assets/img/lookbook/ludnie-15.jpg" alt="Ludnie Augustin Editorial"/>
+          </div>
 
-    </section>
+        </section>
+      )
+    }
 
     <!-- CTA Section -->
     <div class="lookbook-cta">
-      <a href="/assets/Docs/ludnie-comp-card-print-web.pdf" target="_blank" class="comp-card-link">
+      <a href="/assets/Docs/ludnie-comp-card-print-web.pdf" target="_blank" rel="noopener noreferrer" class="comp-card-link">
         View Comp Card
       </a>
     </div>

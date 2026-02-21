@@ -1,5 +1,29 @@
+---
+import { useSanity } from '../lib/useSanity';
+import { getAbout, getSiteSettings } from '../lib/sanityQueries';
+import { urlFor } from '../lib/sanity';
+import PortableText from './PortableText';
 
- <!-- Modal for About -->
+const useCms = useSanity();
+const [aboutData, settingsData] = await Promise.all([
+	useCms ? getAbout() : null,
+	useCms ? getSiteSettings() : null,
+]);
+
+// Fallbacks for About
+const aboutTitle = aboutData?.title || 'About';
+const aboutImage = aboutData?.image ? urlFor(aboutData.image).url() : '/assets/img/ludnie-pink-dress.jpg';
+const aboutImageAlt = aboutData?.imageAlt || '';
+const aboutClosing = aboutData?.closing || 'Xoxo,\nCassie';
+
+// Fallbacks for Contact (Site Settings)
+const contactIntro = settingsData?.contactIntro || "I'd love to connect with you! Whether you're interested in nutrition guidance, modeling collaborations, or just want to say hello, I'm here for it.";
+const contactOutro = settingsData?.contactOutro || "I share nutrition tips, wellness insights, behind-the-scenes from photoshoots, and everything in between. Let's start this journey together!";
+const email = settingsData?.email || 'augustincassie@gmail.com';
+const instagram = settingsData?.instagram || '@cassie.augustin';
+const instagramUrl = settingsData?.instagramUrl || 'https://www.instagram.com/cassie.augustin';
+---
+<!-- Modal for About -->
 <div class="modal micromodal-slide" id="modal-about" aria-hidden="true">
   <div class="modal__overlay" tabindex="-1" data-micromodal-close>
     <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-about-title">
@@ -13,26 +37,29 @@
         <!-- About content goes here -->
         <div>
           <h2 id="modal-about-title" class="pl-desktop-6">
-            About
+            {aboutTitle}
           </h2>
         </div>
         <div class="row">
           <div class="one-half column modal-text pl-desktop-6 ">
-          <p>I am Ludnie Cassie Augustin, your newfound online bestie <span aria-label="Heart">💖</span>. </p>
-            <p>As a dedicated nutritionist with an unwavering faith In God,
-            I am deeply passionate about empowering women to embrace holistic wellness.</p>
-            <p>My journey transcends the boundaries of conventional nutrition. With a heart for women’s health, 
-            a flair for fashion and an eye for modeling, I am committed to uplift and hopefully inspire you 
-            to embrace self-love and acceptance. </p>        
-            <p>Here you will find a harmonious fusion of nutrition insight, faith-based guidance, Style inspirations and glimpses into the world of modeling. 
-            Together let’s embark on a transformative journey toward a healthier and more radiant you. </p>
-            <p>Make yourself at home!! And I mean that will all my heart.</p>
-              
-                <p>Xoxo,<br/>
-                Cassie</p>
-              
+            {aboutData?.body ? (
+                <PortableText value={aboutData.body} />
+            ) : (
+                <Fragment>
+                    <p>I am Ludnie Cassie Augustin, your newfound online bestie <span aria-label="Heart">💖</span>. </p>
+                    <p>As a dedicated nutritionist with an unwavering faith In God,
+                    I am deeply passionate about empowering women to embrace holistic wellness.</p>
+                    <p>My journey transcends the boundaries of conventional nutrition. With a heart for women’s health, 
+                    a flair for fashion and an eye for modeling, I am committed to uplift and hopefully inspire you 
+                    to embrace self-love and acceptance. </p>        
+                    <p>Here you will find a harmonious fusion of nutrition insight, faith-based guidance, Style inspirations and glimpses into the world of modeling. 
+                    Together let’s embark on a transformative journey toward a healthier and more radiant you. </p>
+                    <p>Make yourself at home!! And I mean that will all my heart.</p>
+                </Fragment>
+            )}
+            <p set:html={aboutClosing.replace(/\n/g, '<br/>')}></p>
             </div>
-            <div class="one-half column"><img class="modal-img" src="/assets/img/ludnie-pink-dress.jpg"/></div>
+            <div class="one-half column"><img class="modal-img" src={aboutImage} alt={aboutImageAlt}/></div>
 
           </div>
         </div>
@@ -65,15 +92,15 @@
 
         <div class="row">
       <div class="one-half column  modal-text pl-desktop-6">
-        <p>I'd love to connect with you! Whether you're interested in nutrition guidance, modeling collaborations, or just want to say hello, I'm here for it.</p>
+        <p>{contactIntro}</p>
 
         <p><strong>Follow me on Instagram:</strong><br/>
-        <a href="https://www.instagram.com/cassie.augustin" target="_blank" rel="noopener noreferrer">@cassie.augustin</a></p>
+        <a href={instagramUrl} target="_blank" rel="noopener noreferrer">{instagram}</a></p>
 
         <p><strong>Email me:</strong><br/>
-        <a href="mailto:augustincassie@gmail.com">augustincassie@gmail.com</a></p>
+        <a href={`mailto:${email}`}>{email}</a></p>
 
-        <p>I share nutrition tips, wellness insights, behind-the-scenes from photoshoots, and everything in between. Let's start this journey together!</p>
+        <p>{contactOutro}</p>
       </div>
       <div class="one-half column"><!-- Add images or other content here if needed --></div>
       </div>
@@ -83,7 +110,3 @@
     </footer>
 </div>
 </div>
-
-
-
-  

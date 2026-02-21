@@ -1,0 +1,62 @@
+---
+import Layout from '../components/Layout.astro';
+import Modal from '../components/Modal.astro';
+import PortableText from '../components/PortableText';
+import { useSanity } from '../lib/useSanity';
+import { getPages, type SanityPage } from '../lib/sanityQueries';
+
+export async function getStaticPaths() {
+	if (!useSanity()) return [];
+
+	const pages = await getPages();
+	return pages.map((page) => ({
+		params: { slug: page.slug },
+		props: { page },
+	}));
+}
+
+type Props = { page: SanityPage };
+const { page } = Astro.props;
+---
+<Layout title={`${page.title} - Ludnie Cassie Augustin`}>
+	<main>
+		<div class="container">
+			<article class="page-content">
+				<div class="breadcrumb pl-2">
+					<a href="/">Home</a> / {page.title}
+				</div>
+				<h1 class="pl-2">{page.title}</h1>
+				<div class="prose pl-2 pr-2">
+					{page.body && <PortableText value={page.body} client:load />}
+				</div>
+			</article>
+		</div>
+		<Modal />
+	</main>
+</Layout>
+
+<style>
+	.page-content {
+		max-width: 800px;
+		padding-top: 2rem;
+		padding-bottom: 4rem;
+	}
+	.page-content h1 {
+		margin-bottom: 2rem;
+	}
+	.breadcrumb {
+		margin-bottom: 1rem;
+		font-size: 0.875rem;
+	}
+	.breadcrumb a {
+		text-decoration: none;
+	}
+	.prose {
+		line-height: 1.8;
+	}
+	@media (min-width: 769px) {
+		.page-content {
+			margin-left: 4.875rem;
+		}
+	}
+</style>

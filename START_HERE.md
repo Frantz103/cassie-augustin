@@ -171,6 +171,9 @@ const imageUrl = urlFor(image).width(800).url()
 - Clicking "Save" only saves a draft
 - You must click "Publish" for content to appear on your site
 
+### Quick Rollback (Disable Sanity)
+- Set `PUBLIC_USE_SANITY=false` in your `.env` (and Netlify env vars) to temporarily use the original Markdown blog and static lookbook without removing any CMS setup.
+
 ### Generate Slugs Automatically
 - Always use the "Generate" button for slugs
 - Don't type slugs manually
