@@ -8,9 +8,9 @@ import '../styles/footer.css';
 import '../styles/modal.css';
 import BaseHead from '../components/BaseHead.astro';
 
-
+const { title } = Astro.props;
 ---
-<BaseHead />
+<BaseHead title={title} />
 
 <body>
     <div class="overlay" id="overlay"></div>

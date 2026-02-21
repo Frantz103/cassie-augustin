@@ -30,13 +30,13 @@ const heroImageAlt = homeData?.heroImageAlt || "A portrait of Ludnie Augustin sh
       <p class="intro pl-2 pr-mobile-2 ">{heroSubtitle}</p>
       
        <div class="cta-container ml-2">
-          <a href="#" data-micromodal-trigger="modal-contact" class="cta-button">{ctaText}</a>
+          <a href="#" role="button" data-micromodal-trigger="modal-contact" class="cta-button">{ctaText}</a>
           <p class="preline-text">{ctaSubtext}</p>
         </div> 
       </div>
     </div>
     <div class="six columns image-container hide-on-mobile  ">
-      <img class="u-max-full-width float-image " src={heroImage} alt={heroImageAlt} class="float-image">
+      <img class="u-max-full-width float-image" src={heroImage} alt={heroImageAlt}>
       <div class="vertical-bar-container">
         <span class="bar-number">01</span>
         <!-- Your bar image goes here -->

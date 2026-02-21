@@ -30,7 +30,7 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
           <img src="/assets/img/banner-image-desktop.png" alt="">
         </picture>
         <div class="hero-text">
-          <p>The Nourished </br>Runway</p>
+          <p>The Nourished <br/>Runway</p>
           <p>A blog by Cassie Augustin</p>
         </div>
         <img src="/assets/img/sunflower-clear.png" alt="" class=" hide-on-desktop sunflower-decor" /> <!-- Sunflower image -->
@@ -42,7 +42,7 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
             <div class="row">
                 <div class=" eight columns posts">
             <article>
-                <div class="breadcrumb"><a href="/">Home </a> / <a href="/blog">Blog</a></p></div>
+                <div class="breadcrumb"><a href="/">Home </a> / <a href="/blog">Blog</a></div>
             <div class="prose">
                 <div class="title">
                     <div class="date">
@@ -62,15 +62,13 @@ const { title, description, pubDate, updatedDate, heroImage, url } = Astro.props
             </div>
         </article>
           </div>
-          <div class=" four columns hide-on-mobile">
-            <aside>
-            <div class="side-images">
-            <img class="flower" src="/assets/img/flower-square.png" alt="" />
-            <img class="cross" src="/assets/img/health-cross.png" alt="" />
-            <img class="flower" src="/assets/img/flower-square.png" alt="" />
-            </aside> 
-            </div>
-            </div>
+          <div class="four columns hide-on-mobile">
+            <aside class="side-images">
+              <img class="flower" src="/assets/img/flower-square.png" alt="" />
+              <img class="cross" src="/assets/img/health-cross.png" alt="" />
+              <img class="flower" src="/assets/img/flower-square.png" alt="" />
+            </aside>
+          </div>
         </div>
     </div>
     <Modal />
