@@ -295,6 +295,9 @@ a:focus {
     float: right;
     z-index: 2000;
     position: relative;
+    border: none;
+    padding: 0;
+    cursor: pointer;
   }
 
  
@@ -783,4 +786,150 @@ footer li {
   .grid-item.third {
     grid-column: span 6;
   }
+}
+
+section {
+  margin-top: 2rem;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 6rem;
+}
+
+section a {
+  text-decoration: underline;
+  color: #333;
+}
+
+section .h-link {
+  text-decoration: none;
+}
+
+#navigation-links {
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  max-width: 400px;
+  z-index: 99999999;
+  height: 100vh;
+  top: 0;
+  right: 0;
+  display: none;
+  background-color: #FFF0E1;
+  overflow-y: auto;
+}
+
+#navigation-links.active {
+  display: block;
+}
+
+.btn-close {
+  padding-right: 0.8rem;
+}
+
+.close-icon {
+  width: 3.75rem;
+  height: auto;
+  vertical-align: middle;
+}
+
+#navigation-links ul {
+  list-style: none;
+  margin-top: 3rem;
+}
+
+#navigation-links .menu-top li {
+  font-family: Playfair Display;
+  font-size: 2.5rem;
+  line-height: 4rem;
+  text-align: left;
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.25rem;
+}
+
+.menu-footer ul li {
+  display: inline;
+  padding-right: 1rem;
+}
+
+#navigation-links .menu-footer {
+  margin-top: 20px;
+}
+
+.more-menu {
+  display: none;
+  position: absolute;
+  bottom: 50px;
+  right: 10%;
+  width: 156px;
+  min-height: 141px;
+  flex-shrink: 0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  z-index: 100;
+  background: #FFF0E1;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.more-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.more-menu li a {
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  border-bottom: 1px solid #ddd;
+  font-size: 1rem;
+}
+
+.more-menu li a:hover {
+  background-color: #f6f6f6;
+}
+
+.more-menu li:last-child a {
+  border-bottom: none;
+}
+
+.page-content {
+  max-width: 800px;
+  padding-top: 2rem;
+  padding-bottom: 4rem;
+}
+
+.page-content h1 {
+  margin-bottom: 2rem;
+}
+
+.breadcrumb {
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+}
+
+.breadcrumb a {
+  text-decoration: none;
+}
+
+.prose {
+  line-height: 1.8;
+}
+
+@media (min-width: 769px) {
+  .page-content {
+    margin-left: 4.875rem;
+  }
+}
+
+.preline-text {
+  white-space: pre-line;
+}
+
+body.lookbook-page::before,
+body.lookbook-page::after {
+  display: none !important;
 }

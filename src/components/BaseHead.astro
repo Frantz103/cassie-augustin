@@ -1,4 +1,5 @@
 ---
+const gaId = import.meta.env.PUBLIC_GA_ID || '';
 const { title, description = "Ludnie Cassie Augustin - Nutritionist, Model, and Miss Choucoune International 2024 contestant. Empowering women through nutrition and wellness." } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -13,6 +14,7 @@ const { title, description = "Ludnie Cassie Augustin - Nutritionist, Model, and 
     <meta property="og:type" content="website">
     <meta property="og:title" content={title}>
     <meta property="og:description" content={description}>
+    <meta property="og:image" content="/assets/img/Ludnie.jpg">
     <meta name="google-site-verification" content="aULVjtuSRDv7GETE3xCgYPGdyXaP6FNkono6cHGYpV8" />
 
     <link rel="icon" type="image/x-icon" href="/assets/favicon.png"/>
@@ -24,75 +26,9 @@ const { title, description = "Ludnie Cassie Augustin - Nutritionist, Model, and 
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 	<title>{title}</title>
   <script src="/assets/js/micromodal.min.js" defer></script>
-  
-  <style>
-    section {
-        margin-top: 2rem;
-    }
-  
-    ul {
-        list-style: none;
-        padding: 0;
-        margin: 0 6rem;
-    }
-   section a {
-        text-decoration: underline;
-        color: #333;
-    }
-    section .h-link {
-        text-decoration: none ;
-    }
-  
-   
-  </style>
-  
-  <script>
-  document.addEventListener('DOMContentLoaded', function () {
-      MicroModal.init({
-          // Configuration options
-          onShow: modal => console.info(`${modal.id} is shown`),
-          onClose: modal => console.info(`${modal.id} is hidden`),
-          openTrigger: 'data-micromodal-trigger',
-          closeTrigger: 'data-micromodal-close',
-          openClass: 'is-open',
-          disableScroll: true,
-          disableFocus: false,
-          awaitOpenAnimation: false,
-          awaitCloseAnimation: true,
-          debugMode: false
-      });
-  });
-  </script>
-
-<script>
- document.addEventListener('DOMContentLoaded', function() {
-    const header = document.querySelector('header');
-    const menuIcons = document.querySelectorAll('.menu-icon'); // Get all menu icons
-
-    // Check if the current URL includes 'lookbook' or 'blog'
-    if (window.location.href.includes("/lookbook") || window.location.href.includes("/blog")) {
-        header.style.backgroundColor = "var(--pastel-pink)";
-
-        // For lookbook specifically, ensure dark menu icons are visible on white bg
-        if (window.location.href.includes("/lookbook")) {
-            menuIcons.forEach(icon => {
-                icon.style.filter = "invert(0)"; // Dark icon on white
-                icon.style.opacity = "1"; // Full visibility
-            });
-        }
-    }
-});
-
-</script>
+  <script src="/assets/js/site-core.js" defer></script>
 
   <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0M6Z3LTZNX"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-0M6Z3LTZNX');
-</script>
+  {gaId && <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>}
+  {gaId && <script src="/assets/js/analytics-init.js" defer></script>}
 </head>
-
