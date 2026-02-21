@@ -5,6 +5,7 @@ export type SanityLookbookImage = {
 	asset: { _ref?: string; url?: string };
 	alt?: string;
 	caption?: string;
+	metadata?: { dimensions?: { width?: number; height?: number } };
 };
 
 export type SanityLookbookItem = {
@@ -30,7 +31,8 @@ const lookbookFields = groq`{
   order,
   images[]{
     ...,
-    "url": asset->url
+    "url": asset->url,
+    "metadata": asset->metadata
   }
 }`;
 
