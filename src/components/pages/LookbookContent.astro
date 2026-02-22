@@ -1,10 +1,10 @@
 ---
-import { useSanity } from '../../lib/useSanity';
-import { getLookbookItems } from '../../lib/lookbookQueries';
-import { urlFor } from '../../lib/sanity';
-import { getLocale } from '../../i18n/utils';
-import { getStrings } from '../../i18n/getStrings';
-import type { Locale } from '../../i18n/config';
+import { useSanity } from "../../lib/useSanity";
+import { getLookbookItems } from "../../lib/lookbookQueries";
+import { urlFor } from "../../lib/sanity";
+import { getLocale } from "../../i18n/utils";
+import { getStrings } from "../../i18n/getStrings";
+import type { Locale } from "../../i18n/config";
 
 const locale = getLocale(Astro) as Locale;
 const ui = await getStrings(locale);
@@ -15,7 +15,6 @@ const hasCmsItems = cmsItems.length > 0;
 ---
 
 <main class="lookbook-editorial">
-
   <!-- Hero Section -->
   <div class="lookbook-hero">
     <div class="hero-content">
@@ -28,90 +27,268 @@ const hasCmsItems = cmsItems.length > 0;
   {
     hasCmsItems ? (
       <section class="editorial-grid">
-        {
-          cmsItems.map((item) => {
-            const image = item.images?.[0];
-            const imgUrl = image ? urlFor(image).width(1600).auto('format').url() : '';
-            const layoutClass = item.layout || (item.featured ? 'featured' : 'third');
-            return (
-              <div class={`grid-item ${layoutClass}`} key={item._id}>
-                {imgUrl && <img src={imgUrl} alt={image?.alt || item.title} width={image?.metadata?.dimensions?.width || 800} height={image?.metadata?.dimensions?.height || 1200} loading="lazy" />}
-              </div>
-            );
-          })
-        }
+        {cmsItems.map((item) => {
+          const image = item.images?.[0];
+          const imgUrl = image
+            ? urlFor(image).width(1600).auto("format").url()
+            : "";
+          const layoutClass =
+            item.layout || (item.featured ? "featured" : "third");
+          return (
+            <div class={`grid-item ${layoutClass}`} key={item._id}>
+              {imgUrl && (
+                <img
+                  src={imgUrl}
+                  alt={image?.alt || item.title}
+                  width={image?.metadata?.dimensions?.width || 800}
+                  height={image?.metadata?.dimensions?.height || 1200}
+                  loading="lazy"
+                />
+              )}
+            </div>
+          );
+        })}
       </section>
     ) : (
       <section class="editorial-grid">
-
-        <!-- Row 1: Full width feature -->
         <div class="grid-item featured">
-          <img src="/assets/img/lookbook/ludnie-4.jpg" alt="Ludnie Augustin Editorial" width="798" height="1200" loading="lazy"/>
+          <picture>
+            <source
+              srcset="/assets/img/lookbook/ludnie-4.webp"
+              type="image/webp"
+            />
+            <img
+              src="/assets/img/lookbook/ludnie-4.jpg"
+              alt="Ludnie Augustin Editorial"
+              width="798"
+              height="1200"
+              loading="lazy"
+            />
+          </picture>
         </div>
-
-        <!-- Row 2: Two column -->
         <div class="grid-item half">
-          <img src="/assets/img/lookbook/Ludnie-2.jpg" alt="Ludnie Augustin Portrait" width="776" height="1179" loading="lazy"/>
+          <picture>
+            <source
+              srcset="/assets/img/lookbook/Ludnie-2.webp"
+              type="image/webp"
+            />
+            <img
+              src="/assets/img/lookbook/Ludnie-2.jpg"
+              alt="Ludnie Augustin Portrait"
+              width="776"
+              height="1179"
+              loading="lazy"
+            />
+          </picture>
         </div>
         <div class="grid-item half">
-          <img src="/assets/img/lookbook/ludnie-3.jpg" alt="Ludnie Augustin Fashion" width="798" height="1200" loading="lazy"/>
-        </div>
-
-        <!-- Row 3: Three column featured images -->
-        <div class="grid-item third">
-          <img src="/assets/img/lookbook/ludnie-1.jpg" alt="Ludnie Augustin" width="767" height="905" loading="lazy"/>
-        </div>
-        <div class="grid-item third">
-          <img src="/assets/img/ludnie-pink-dress.jpg" alt="Ludnie Augustin Pink Dress" width="800" height="1200" loading="lazy"/>
-        </div>
-        <div class="grid-item third">
-          <img src="/assets/img/lookbook/Ludnie-2.jpg" alt="Ludnie Augustin" width="776" height="1179" loading="lazy"/>
-        </div>
-
-        <!-- Row 4: Three column -->
-        <div class="grid-item third">
-          <img src="/assets/img/lookbook/ludnie-6.jpg" alt="Ludnie Augustin" width="1203" height="800" loading="lazy"/>
+          <picture>
+            <source
+              srcset="/assets/img/lookbook/ludnie-3.webp"
+              type="image/webp"
+            />
+            <img
+              src="/assets/img/lookbook/ludnie-3.jpg"
+              alt="Ludnie Augustin Fashion"
+              width="798"
+              height="1200"
+              loading="lazy"
+            />
+          </picture>
         </div>
         <div class="grid-item third">
-          <img src="/assets/img/lookbook/ludnie-5.jpg" alt="Ludnie Augustin" width="798" height="1200" loading="lazy"/>
+          <picture>
+            <source
+              srcset="/assets/img/lookbook/ludnie-1.webp"
+              type="image/webp"
+            />
+            <img
+              src="/assets/img/lookbook/ludnie-1.jpg"
+              alt="Ludnie Augustin"
+              width="767"
+              height="905"
+              loading="lazy"
+            />
+          </picture>
         </div>
         <div class="grid-item third">
-          <img src="/assets/img/lookbook/ludnie-9.jpg" alt="Ludnie Augustin" width="1067" height="800" loading="lazy"/>
+          <picture>
+            <source
+              srcset="/assets/img/ludnie-pink-dress.webp"
+              type="image/webp"
+            />
+            <img
+              src="/assets/img/ludnie-pink-dress.jpg"
+              alt="Ludnie Augustin Pink Dress"
+              width="800"
+              height="1200"
+              loading="lazy"
+            />
+          </picture>
         </div>
-
-        <!-- Row 5: Two column with asymmetry -->
+        <div class="grid-item third">
+          <picture>
+            <source
+              srcset="/assets/img/lookbook/Ludnie-2.webp"
+              type="image/webp"
+            />
+            <img
+              src="/assets/img/lookbook/Ludnie-2.jpg"
+              alt="Ludnie Augustin"
+              width="776"
+              height="1179"
+              loading="lazy"
+            />
+          </picture>
+        </div>
+        <div class="grid-item third">
+          <picture>
+            <source
+              srcset="/assets/img/lookbook/ludnie-6.webp"
+              type="image/webp"
+            />
+            <img
+              src="/assets/img/lookbook/ludnie-6.jpg"
+              alt="Ludnie Augustin"
+              width="1203"
+              height="800"
+              loading="lazy"
+            />
+          </picture>
+        </div>
+        <div class="grid-item third">
+          <picture>
+            <source
+              srcset="/assets/img/lookbook/ludnie-5.webp"
+              type="image/webp"
+            />
+            <img
+              src="/assets/img/lookbook/ludnie-5.jpg"
+              alt="Ludnie Augustin"
+              width="798"
+              height="1200"
+              loading="lazy"
+            />
+          </picture>
+        </div>
+        <div class="grid-item third">
+          <picture>
+            <source
+              srcset="/assets/img/lookbook/ludnie-9.webp"
+              type="image/webp"
+            />
+            <img
+              src="/assets/img/lookbook/ludnie-9.jpg"
+              alt="Ludnie Augustin"
+              width="1067"
+              height="800"
+              loading="lazy"
+            />
+          </picture>
+        </div>
         <div class="grid-item two-thirds">
-          <img src="/assets/img/lookbook/ludnie-10.jpg" alt="Ludnie Augustin Editorial" width="800" height="1200" loading="lazy"/>
+          <picture>
+            <source
+              srcset="/assets/img/lookbook/ludnie-10.webp"
+              type="image/webp"
+            />
+            <img
+              src="/assets/img/lookbook/ludnie-10.jpg"
+              alt="Ludnie Augustin Editorial"
+              width="800"
+              height="1200"
+              loading="lazy"
+            />
+          </picture>
         </div>
         <div class="grid-item one-third">
-          <img src="/assets/img/lookbook/ludnie-8.jpg" alt="Ludnie Augustin" width="1200" height="800" loading="lazy"/>
+          <picture>
+            <source
+              srcset="/assets/img/lookbook/ludnie-8.webp"
+              type="image/webp"
+            />
+            <img
+              src="/assets/img/lookbook/ludnie-8.jpg"
+              alt="Ludnie Augustin"
+              width="1200"
+              height="800"
+              loading="lazy"
+            />
+          </picture>
         </div>
-
-        <!-- Row 6: Three column -->
         <div class="grid-item third">
-          <img src="/assets/img/lookbook/ludnie-14.jpg" alt="Ludnie Augustin" width="1137" height="800" loading="lazy"/>
+          <picture>
+            <source
+              srcset="/assets/img/lookbook/ludnie-14.webp"
+              type="image/webp"
+            />
+            <img
+              src="/assets/img/lookbook/ludnie-14.jpg"
+              alt="Ludnie Augustin"
+              width="1137"
+              height="800"
+              loading="lazy"
+            />
+          </picture>
         </div>
         <div class="grid-item third">
-          <img src="/assets/img/lookbook/ludnie-13.jpg" alt="Ludnie Augustin" width="1414" height="1290" loading="lazy"/>
+          <picture>
+            <source
+              srcset="/assets/img/lookbook/ludnie-13.webp"
+              type="image/webp"
+            />
+            <img
+              src="/assets/img/lookbook/ludnie-13.jpg"
+              alt="Ludnie Augustin"
+              width="1414"
+              height="1290"
+              loading="lazy"
+            />
+          </picture>
         </div>
         <div class="grid-item third">
-          <img src="/assets/img/lookbook/ludnie-3.jpg" alt="Ludnie Augustin" width="798" height="1200" loading="lazy"/>
+          <picture>
+            <source
+              srcset="/assets/img/lookbook/ludnie-3.webp"
+              type="image/webp"
+            />
+            <img
+              src="/assets/img/lookbook/ludnie-3.jpg"
+              alt="Ludnie Augustin"
+              width="798"
+              height="1200"
+              loading="lazy"
+            />
+          </picture>
         </div>
-
-        <!-- Row 7: Full width closing -->
         <div class="grid-item featured">
-          <img src="/assets/img/lookbook/ludnie-15.jpg" alt="Ludnie Augustin Editorial" width="1425" height="800" loading="lazy"/>
+          <picture>
+            <source
+              srcset="/assets/img/lookbook/ludnie-15.webp"
+              type="image/webp"
+            />
+            <img
+              src="/assets/img/lookbook/ludnie-15.jpg"
+              alt="Ludnie Augustin Editorial"
+              width="1425"
+              height="800"
+              loading="lazy"
+            />
+          </picture>
         </div>
-
       </section>
     )
   }
 
   <!-- CTA Section -->
   <div class="lookbook-cta">
-    <a href="/assets/Docs/ludnie-comp-card-print-web.pdf" target="_blank" rel="noopener noreferrer" class="comp-card-link">
+    <a
+      href="/assets/Docs/ludnie-comp-card-print-web.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="comp-card-link"
+    >
       {ui.lookbook.viewCompCard}
     </a>
   </div>
-
 </main>

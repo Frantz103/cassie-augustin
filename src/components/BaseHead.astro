@@ -90,8 +90,20 @@ const personJsonLd = JSON.stringify({
         <link rel="preload" as="image" type="image/webp" href={preloadImage} />
       )
     }
-    <link rel="stylesheet" href="/normalize.css" />
-    <link rel="stylesheet" href="/skeleton.css" />
+    <link
+      rel="stylesheet"
+      href="/normalize.css"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript><link rel="stylesheet" href="/normalize.css" /></noscript>
+    <link
+      rel="stylesheet"
+      href="/skeleton.css"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript><link rel="stylesheet" href="/skeleton.css" /></noscript>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

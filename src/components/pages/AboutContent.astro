@@ -1,12 +1,12 @@
 ---
-import { useSanity } from '../../lib/useSanity';
-import { getAbout, getWithFallback } from '../../lib/sanityQueries';
-import { urlFor } from '../../lib/sanity';
-import PortableText from '../PortableText';
-import { sanitizeCmsText } from '../../lib/contentSafety';
-import { getLocale, localePath } from '../../i18n/utils';
-import { getStrings } from '../../i18n/getStrings';
-import type { Locale } from '../../i18n/config';
+import { useSanity } from "../../lib/useSanity";
+import { getAbout, getWithFallback } from "../../lib/sanityQueries";
+import { urlFor } from "../../lib/sanity";
+import PortableText from "../PortableText";
+import { sanitizeCmsText } from "../../lib/contentSafety";
+import { getLocale, localePath } from "../../i18n/utils";
+import { getStrings } from "../../i18n/getStrings";
+import type { Locale } from "../../i18n/config";
 
 const locale = getLocale(Astro) as Locale;
 const ui = await getStrings(locale);
@@ -15,9 +15,12 @@ const useCms = useSanity();
 const aboutData = useCms ? await getWithFallback(getAbout, locale) : null;
 
 const aboutTitle = aboutData?.title || ui.nav.about;
-const aboutImage = aboutData?.image ? urlFor(aboutData.image).url() : '/assets/img/ludnie-pink-dress.jpg';
-const aboutImageAlt = aboutData?.imageAlt || 'Portrait of Ludnie Cassie Augustin';
-const aboutClosingRaw = aboutData?.closing || 'Xoxo,\nCassie';
+const aboutImage = aboutData?.image
+  ? urlFor(aboutData.image).url()
+  : "/assets/img/ludnie-pink-dress.jpg";
+const aboutImageAlt =
+  aboutData?.imageAlt || "Portrait of Ludnie Cassie Augustin";
+const aboutClosingRaw = aboutData?.closing || "Xoxo,\nCassie";
 const aboutClosing = sanitizeCmsText(aboutClosingRaw);
 ---
 
@@ -25,30 +28,75 @@ const aboutClosing = sanitizeCmsText(aboutClosingRaw);
   <div class="container">
     <article class="about-content">
       <div class="breadcrumb pl-2">
-        <a href={localePath('/', locale)}>{ui.breadcrumbs.home}</a> / {aboutTitle}
+        <a href={localePath("/", locale)}>{ui.breadcrumbs.home}</a> / {
+          aboutTitle
+        }
       </div>
       <h1 class="about-title pl-2">{aboutTitle}</h1>
       <div class="about-grid">
         <div class="about-text pl-2 pr-mobile-2">
-          {aboutData?.body ? (
-            <PortableText value={aboutData.body} />
-          ) : (
-            <Fragment>
-              <p>I am Ludnie Cassie Augustin, your newfound online bestie <span aria-label="Heart">&#x1F496;</span>.</p>
-              <p>As a dedicated nutritionist with an unwavering faith In God,
-              I am deeply passionate about empowering women to embrace holistic wellness.</p>
-              <p>My journey transcends the boundaries of conventional nutrition. With a heart for women's health,
-              a flair for fashion and an eye for modeling, I am committed to uplift and hopefully inspire you
-              to embrace self-love and acceptance.</p>
-              <p>Here you will find a harmonious fusion of nutrition insight, faith-based guidance, Style inspirations and glimpses into the world of modeling.
-              Together let's embark on a transformative journey toward a healthier and more radiant you.</p>
-              <p>Make yourself at home!! And I mean that will all my heart.</p>
-            </Fragment>
-          )}
+          {
+            aboutData?.body ? (
+              <PortableText value={aboutData.body} />
+            ) : (
+              <Fragment>
+                <p>
+                  I am Ludnie Cassie Augustin, your newfound online bestie{" "}
+                  <span aria-label="Heart">&#x1F496;</span>.
+                </p>
+                <p>
+                  As a dedicated nutritionist with an unwavering faith In God, I
+                  am deeply passionate about empowering women to embrace
+                  holistic wellness.
+                </p>
+                <p>
+                  My journey transcends the boundaries of conventional
+                  nutrition. With a heart for women's health, a flair for
+                  fashion and an eye for modeling, I am committed to uplift and
+                  hopefully inspire you to embrace self-love and acceptance.
+                </p>
+                <p>
+                  Here you will find a harmonious fusion of nutrition insight,
+                  faith-based guidance, Style inspirations and glimpses into the
+                  world of modeling. Together let's embark on a transformative
+                  journey toward a healthier and more radiant you.
+                </p>
+                <p>
+                  Make yourself at home!! And I mean that will all my heart.
+                </p>
+              </Fragment>
+            )
+          }
           <p class="preline-text">{aboutClosing}</p>
         </div>
         <div class="about-image-col">
-          <img class="about-img" src={aboutImage} alt={aboutImageAlt} />
+          {
+            aboutImage.startsWith("/assets/") ? (
+              <picture>
+                <source
+                  srcset={aboutImage.replace(/\.jpg$/, ".webp")}
+                  type="image/webp"
+                />
+                <img
+                  class="about-img"
+                  src={aboutImage}
+                  alt={aboutImageAlt}
+                  width="800"
+                  height="1200"
+                  loading="lazy"
+                />
+              </picture>
+            ) : (
+              <img
+                class="about-img"
+                src={aboutImage}
+                alt={aboutImageAlt}
+                width="800"
+                height="1200"
+                loading="lazy"
+              />
+            )
+          }
         </div>
       </div>
     </article>
