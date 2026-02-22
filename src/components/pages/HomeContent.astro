@@ -1,74 +1,113 @@
 ---
-import { useSanity } from '../../lib/useSanity';
-import { getHomepage, getTestimonials, getSiteSettings, getWithFallback } from '../../lib/sanityQueries';
-import { urlFor } from '../../lib/sanity';
-import { sanitizeCmsText } from '../../lib/contentSafety';
-import { getLocale, localePath } from '../../i18n/utils';
-import { getStrings } from '../../i18n/getStrings';
-import type { Locale } from '../../i18n/config';
+import { useSanity } from "../../lib/useSanity";
+import {
+  getHomepage,
+  getTestimonials,
+  getSiteSettings,
+  getWithFallback,
+} from "../../lib/sanityQueries";
+import { urlFor } from "../../lib/sanity";
+import { sanitizeCmsText } from "../../lib/contentSafety";
+import { getLocale, localePath } from "../../i18n/utils";
+import { getStrings } from "../../i18n/getStrings";
+import type { Locale } from "../../i18n/config";
 
 const locale = getLocale(Astro) as Locale;
 const ui = await getStrings(locale);
 
 const useCms = useSanity();
 const [homeData, testimonials, settings] = await Promise.all([
-	useCms ? getWithFallback(getHomepage, locale) : null,
-	useCms ? getTestimonials(locale) : [],
-	useCms ? getSiteSettings(locale) : null,
+  useCms ? getWithFallback(getHomepage, locale) : null,
+  useCms ? getTestimonials(locale) : [],
+  useCms ? getSiteSettings(locale) : null,
 ]);
 
 // Hero fallbacks
 const heroTitle = homeData?.heroTitle || "Hi, I'm Cassie";
-const heroSubtitle = homeData?.heroSubtitle || "I am a nutritionist passionate about women health, fashion, and modeling.";
-const credentials = homeData?.credentials || "Certified Nutritionist · Model · Wellness Advocate";
+const heroSubtitle =
+  homeData?.heroSubtitle ||
+  "I am a nutritionist passionate about women health, fashion, and modeling.";
+const credentials =
+  homeData?.credentials || "Certified Nutritionist · Model · Wellness Advocate";
 const ctaText = homeData?.ctaText || ui.nav.contact;
 const ctaSubtextRaw =
-	homeData?.ctaSubtext || 'Follow along for nutrition tips, modeling work,\n and wellness inspiration.';
+  homeData?.ctaSubtext ||
+  "Follow along for nutrition tips, modeling work,\n and wellness inspiration.";
 const ctaSubtext = sanitizeCmsText(ctaSubtextRaw);
-const heroImage = homeData?.heroImage ? urlFor(homeData.heroImage).url() : "/assets/img/Ludnie.jpg";
-const heroImageAlt = homeData?.heroImageAlt || "Portrait of Ludnie Cassie Augustin";
+const heroImageUrl = homeData?.heroImage
+  ? urlFor(homeData.heroImage).url()
+  : "/assets/img/Ludnie.jpg";
+const heroImageWebp = homeData?.heroImage
+  ? urlFor(homeData.heroImage).format("webp").url()
+  : "/assets/img/Ludnie.webp";
+const heroImageAlt =
+  homeData?.heroImageAlt || "Portrait of Ludnie Cassie Augustin";
 ---
 
 <main>
   <!-- Hero Section -->
   <div class="container">
-  <div class="row hero-row">
-    <div class="six columns">
-      <div class="intro-container">
-      <h1 class="pl-2">{heroTitle}</h1>
-      <p class="credentials pl-2">{credentials}</p>
-      <p class="intro pl-2 pr-mobile-2">{heroSubtitle}</p>
+    <div class="row hero-row">
+      <div class="six columns">
+        <div class="intro-container">
+          <h1 class="pl-2">{heroTitle}</h1>
+          <p class="credentials pl-2">{credentials}</p>
+          <p class="intro pl-2 pr-mobile-2">{heroSubtitle}</p>
 
-       <div class="cta-container ml-2">
-          <a href={localePath('/contact', locale)} class="cta-button">{ctaText}</a>
-          <p class="preline-text">{ctaSubtext}</p>
+          <div class="cta-container ml-2">
+            <a href={localePath("/contact", locale)} class="cta-button"
+              >{ctaText}</a
+            >
+            <p class="preline-text">{ctaSubtext}</p>
+          </div>
+        </div>
+      </div>
+      <div class="six columns image-container hero-image-col">
+        <picture>
+          <source srcset={heroImageWebp} type="image/webp" />
+          <img
+            class="u-max-full-width float-image"
+            src={heroImageUrl}
+            alt={heroImageAlt}
+            width="669"
+            height="1000"
+            fetchpriority="high"
+            loading="eager"
+            decoding="async"
+          />
+        </picture>
+        <div class="vertical-bar-container">
+          <span class="bar-number">01</span>
+          <img
+            src="/assets/icons/bar.png"
+            alt=""
+            class="vertical-bar"
+            width="8"
+            height="512"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       </div>
     </div>
-    <div class="six columns image-container hero-image-col">
-      <img class="u-max-full-width float-image" src={heroImage} alt={heroImageAlt} fetchpriority="high" loading="eager">
-      <div class="vertical-bar-container">
-        <span class="bar-number">01</span>
-        <img src="/assets/icons/bar.png" alt="" class="vertical-bar">
-      </div>
-    </div>
-  </div>
   </div>
 
   <!-- Testimonials -->
-  {testimonials.length > 0 && (
-  <section class="homepage-section testimonials-section">
-    <div class="container">
-      <h2 class="section-heading">{ui.homepage.kindWords}</h2>
-      <div class="testimonials-grid">
-        {testimonials.slice(0, 3).map((t) => (
-          <blockquote class="testimonial-card">
-            <p>"{t.content}"</p>
-            <cite>— {t.name}</cite>
-          </blockquote>
-        ))}
-      </div>
-    </div>
-  </section>
-  )}
+  {
+    testimonials.length > 0 && (
+      <section class="homepage-section testimonials-section">
+        <div class="container">
+          <h2 class="section-heading">{ui.homepage.kindWords}</h2>
+          <div class="testimonials-grid">
+            {testimonials.slice(0, 3).map((t) => (
+              <blockquote class="testimonial-card">
+                <p>"{t.content}"</p>
+                <cite>— {t.name}</cite>
+              </blockquote>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
 </main>

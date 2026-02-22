@@ -1,33 +1,46 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/tokens.css';
-import '../styles/base.css';
-import '../styles/header.css';
-import '../styles/footer.css';
-import BaseHead from '../components/BaseHead.astro';
-import type { Locale } from '../i18n/config';
-import { DEFAULT_LOCALE } from '../i18n/config';
-import { FALLBACK_EN } from '../i18n/fallbacks';
-import type { UIStrings } from '../i18n/types';
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/tokens.css";
+import "../styles/base.css";
+import "../styles/header.css";
+import "../styles/footer.css";
+import BaseHead from "../components/BaseHead.astro";
+import type { Locale } from "../i18n/config";
+import { DEFAULT_LOCALE } from "../i18n/config";
+import { FALLBACK_EN } from "../i18n/fallbacks";
+import type { UIStrings } from "../i18n/types";
 
 interface Props {
-	title: string;
-	locale?: Locale;
-	ui?: UIStrings;
-	description?: string;
+  title: string;
+  locale?: Locale;
+  ui?: UIStrings;
+  description?: string;
+  preloadImage?: string;
 }
 
-const { title, locale = DEFAULT_LOCALE, ui = FALLBACK_EN, description } = Astro.props;
+const {
+  title,
+  locale = DEFAULT_LOCALE,
+  ui = FALLBACK_EN,
+  description,
+  preloadImage,
+} = Astro.props;
 ---
-<BaseHead title={title} locale={locale} ui={ui} description={description} />
+
+<BaseHead
+  title={title}
+  locale={locale}
+  ui={ui}
+  description={description}
+  preloadImage={preloadImage}
+/>
 
 <body>
-    <div class="overlay" id="overlay"></div>
-    <Header locale={locale} ui={ui} />
-    <div id="main-content">
+  <div class="overlay" id="overlay"></div>
+  <Header locale={locale} ui={ui} />
+  <div id="main-content">
     <slot />
-    </div>
-    <Footer locale={locale} ui={ui} />
+  </div>
+  <Footer locale={locale} ui={ui} />
 </body>
-</html>

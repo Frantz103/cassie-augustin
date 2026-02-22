@@ -56,7 +56,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: url("/assets/img/ludnie-mobile.JPG") no-repeat center center;
+    background: url("/assets/img/ludnie-mobile.webp") no-repeat center center;
     background-size: cover;
     z-index: var(--z-behind);
   }

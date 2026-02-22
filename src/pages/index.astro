@@ -1,14 +1,20 @@
 ---
-import Layout from '../components/Layout.astro';
-import '../styles/homepage.css';
-import { getLocale } from '../i18n/utils';
-import { getStrings } from '../i18n/getStrings';
-import type { Locale } from '../i18n/config';
-import HomeContent from '../components/pages/HomeContent.astro';
+import Layout from "../components/Layout.astro";
+import "../styles/homepage.css";
+import { getLocale } from "../i18n/utils";
+import { getStrings } from "../i18n/getStrings";
+import type { Locale } from "../i18n/config";
+import HomeContent from "../components/pages/HomeContent.astro";
 
 const locale = getLocale(Astro) as Locale;
 const ui = await getStrings(locale);
 ---
-<Layout title={`${ui.seo.siteTitle} - ${ui.nav.home}`} locale={locale} ui={ui}>
+
+<Layout
+  title={`${ui.seo.siteTitle} - ${ui.nav.home}`}
+  locale={locale}
+  ui={ui}
+  preloadImage="/assets/img/Ludnie.webp"
+>
   <HomeContent />
 </Layout>
