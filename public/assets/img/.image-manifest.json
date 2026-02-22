@@ -1,0 +1,102 @@
+{
+  "public/assets/img/Ludnie.jpg": {
+    "originalSize": 74583,
+    "compressedSize": 74456,
+    "webpSize": null
+  },
+  "public/assets/img/banner-image-desktop.png": {
+    "originalSize": 983491,
+    "compressedSize": 923382,
+    "webpSize": null
+  },
+  "public/assets/img/banner-image-mobile.png": {
+    "originalSize": 308099,
+    "compressedSize": 260273,
+    "webpSize": null
+  },
+  "public/assets/img/flower-square.png": {
+    "originalSize": 87371,
+    "compressedSize": 75447,
+    "webpSize": null
+  },
+  "public/assets/img/health-cross.png": {
+    "originalSize": 20200,
+    "compressedSize": 19122,
+    "webpSize": null
+  },
+  "public/assets/img/lookbook/Ludnie-2.jpg": {
+    "originalSize": 120978,
+    "compressedSize": 120671,
+    "webpSize": null
+  },
+  "public/assets/img/lookbook/ludnie-1.jpg": {
+    "originalSize": 70945,
+    "compressedSize": 70854,
+    "webpSize": null
+  },
+  "public/assets/img/lookbook/ludnie-10.jpg": {
+    "originalSize": 82727,
+    "compressedSize": 82256,
+    "webpSize": null
+  },
+  "public/assets/img/lookbook/ludnie-13.jpg": {
+    "originalSize": 120704,
+    "compressedSize": 120582,
+    "webpSize": null
+  },
+  "public/assets/img/lookbook/ludnie-14.jpg": {
+    "originalSize": 135336,
+    "compressedSize": 132868,
+    "webpSize": null
+  },
+  "public/assets/img/lookbook/ludnie-15.jpg": {
+    "originalSize": 189503,
+    "compressedSize": 186491,
+    "webpSize": null
+  },
+  "public/assets/img/lookbook/ludnie-3.jpg": {
+    "originalSize": 120749,
+    "compressedSize": 119787,
+    "webpSize": null
+  },
+  "public/assets/img/lookbook/ludnie-4.jpg": {
+    "originalSize": 126146,
+    "compressedSize": 125296,
+    "webpSize": null
+  },
+  "public/assets/img/lookbook/ludnie-5.jpg": {
+    "originalSize": 95070,
+    "compressedSize": 94789,
+    "webpSize": null
+  },
+  "public/assets/img/lookbook/ludnie-6.jpg": {
+    "originalSize": 119901,
+    "compressedSize": 119150,
+    "webpSize": null
+  },
+  "public/assets/img/lookbook/ludnie-8.jpg": {
+    "originalSize": 108439,
+    "compressedSize": 104150,
+    "webpSize": null
+  },
+  "public/assets/img/lookbook/ludnie-9.jpg": {
+    "originalSize": 151766,
+    "compressedSize": 150175,
+    "webpSize": null
+  },
+  "public/assets/img/ludnie-mobile.JPG": {
+    "originalSize": 85563,
+    "compressedSize": 85440,
+    "webpSize": null
+  },
+  "public/assets/img/ludnie-pink-dress.jpg": {
+    "originalSize": 323264,
+    "compressedSize": 322377,
+    "webpSize": null
+  },
+  "public/assets/img/sunflower-clear.png": {
+    "originalSize": 88151,
+    "compressedSize": 80839,
+    "webpSize": null
+  }
+}
