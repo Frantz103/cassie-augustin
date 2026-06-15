@@ -71,7 +71,14 @@ export default defineType({
         {type: 'block'},
         {
           type: 'image',
-          fields: [defineField({name: 'alt', type: 'string', title: 'Alt text'})],
+          fields: [
+            defineField({
+              name: 'alt',
+              type: 'string',
+              title: 'Alt text',
+              validation: (rule) => rule.required().warning('Alt text improves accessibility'),
+            }),
+          ],
           options: {hotspot: true},
         },
       ],
@@ -94,7 +101,9 @@ export default defineType({
       media: 'heroImage',
     },
     prepare({title, subtitle, date}) {
-      const label = subtitle ? `${subtitle} — ${date?.slice(0, 10) || ''}` : date?.slice(0, 10) || ''
+      const label = subtitle
+        ? `${subtitle} — ${date?.slice(0, 10) || ''}`
+        : date?.slice(0, 10) || ''
       return {title, subtitle: label}
     },
   },

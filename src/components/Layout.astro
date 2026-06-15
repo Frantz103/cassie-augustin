@@ -28,19 +28,23 @@ const {
 } = Astro.props;
 ---
 
-<BaseHead
-  title={title}
-  locale={locale}
-  ui={ui}
-  description={description}
-  preloadImage={preloadImage}
-/>
-
-<body>
-  <div class="overlay" id="overlay"></div>
-  <Header locale={locale} ui={ui} />
-  <div id="main-content">
-    <slot />
-  </div>
-  <Footer locale={locale} ui={ui} />
-</body>
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <BaseHead
+      title={title}
+      locale={locale}
+      ui={ui}
+      description={description}
+      preloadImage={preloadImage}
+    />
+  </head>
+  <body>
+    <div class="overlay" id="overlay"></div>
+    <Header locale={locale} ui={ui} />
+    <div id="main-content">
+      <slot />
+    </div>
+    <Footer locale={locale} ui={ui} />
+  </body>
+</html>

@@ -1,72 +1,110 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import BaseHead from './BaseHead.astro';
-import '../styles/tokens.css';
-import '../styles/base.css';
-import '../styles/header.css';
-import '../styles/footer.css';
-import '../styles/blog.css';
-import FormattedDate from '../components/FormattedDate.astro';
-import type { Locale } from '../i18n/config';
-import { DEFAULT_LOCALE } from '../i18n/config';
-import { localePath } from '../i18n/utils';
-import { FALLBACK_EN } from '../i18n/fallbacks';
-import type { UIStrings } from '../i18n/types';
+import type { CollectionEntry } from "astro:content";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import BaseHead from "./BaseHead.astro";
+import "../styles/tokens.css";
+import "../styles/base.css";
+import "../styles/header.css";
+import "../styles/footer.css";
+import "../styles/blog.css";
+import FormattedDate from "../components/FormattedDate.astro";
+import type { Locale } from "../i18n/config";
+import { DEFAULT_LOCALE } from "../i18n/config";
+import { localePath } from "../i18n/utils";
+import { FALLBACK_EN } from "../i18n/fallbacks";
+import type { UIStrings } from "../i18n/types";
 
-type Props = CollectionEntry<'blog'>['data'] & {
-	locale?: Locale;
-	ui?: UIStrings;
+type Props = CollectionEntry<"blog">["data"] & {
+  locale?: Locale;
+  ui?: UIStrings;
 };
 
-const { title, description, pubDate, updatedDate, heroImage, url, locale = DEFAULT_LOCALE, ui = FALLBACK_EN } = Astro.props;
+const {
+  title,
+  description,
+  pubDate,
+  updatedDate,
+  heroImage,
+  url,
+  locale = DEFAULT_LOCALE,
+  ui = FALLBACK_EN,
+} = Astro.props;
 ---
 
-<BaseHead title={ui.blog.pageTitle} locale={locale} ui={ui} />
-<body>
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <BaseHead title={ui.blog.pageTitle} locale={locale} ui={ui} />
+  </head>
+  <body>
     <div class="overlay" id="overlay"></div>
     <Header locale={locale} ui={ui} />
     <div id="main-content" class="hero-image">
-        <picture>
-          <source media="(max-width: 768px)" srcset="/assets/img/banner-image-mobile.webp" type="image/webp">
-          <source media="(max-width: 768px)" srcset="/assets/img/banner-image-mobile.png" type="image/png">
-          <source media="(min-width: 769px)" srcset="/assets/img/banner-image-desktop.webp" type="image/webp">
-          <source media="(min-width: 769px)" srcset="/assets/img/banner-image-desktop.png" type="image/png">
-          <img src="/assets/img/banner-image-desktop.png" alt="">
-        </picture>
-        <div class="hero-text">
-          <p>{ui.blog.bannerTitle.split(' ').slice(0, -1).join(' ')} <br/>{ui.blog.bannerTitle.split(' ').slice(-1)}</p>
-          <p>{ui.blog.bannerSubtitle}</p>
-        </div>
-        <img src="/assets/img/sunflower-clear.png" alt="" class=" hide-on-desktop sunflower-decor" />
-
+      <picture>
+        <source
+          media="(max-width: 768px)"
+          srcset="/assets/img/banner-image-mobile.webp"
+          type="image/webp"
+        />
+        <source
+          media="(max-width: 768px)"
+          srcset="/assets/img/banner-image-mobile.png"
+          type="image/png"
+        />
+        <source
+          media="(min-width: 769px)"
+          srcset="/assets/img/banner-image-desktop.webp"
+          type="image/webp"
+        />
+        <source
+          media="(min-width: 769px)"
+          srcset="/assets/img/banner-image-desktop.png"
+          type="image/png"
+        />
+        <img src="/assets/img/banner-image-desktop.png" alt="" />
+      </picture>
+      <div class="hero-text">
+        <p>
+          {ui.blog.bannerTitle.split(" ").slice(0, -1).join(" ")}
+          <br />{ui.blog.bannerTitle.split(" ").slice(-1)}
+        </p>
+        <p>{ui.blog.bannerSubtitle}</p>
       </div>
+      <img
+        src="/assets/img/sunflower-clear.png"
+        alt=""
+        class="hide-on-desktop sunflower-decor"
+      />
+    </div>
     <main>
-        <div class="container">
-
-            <div class="row">
-                <div class=" eight columns posts">
+      <div class="container">
+        <div class="row">
+          <div class="eight columns posts">
             <article>
-                <div class="breadcrumb"><a href={localePath('/', locale)}>{ui.breadcrumbs.home} </a> / <a href={localePath('/blog', locale)}>{ui.breadcrumbs.blog}</a></div>
-            <div class="prose">
+              <div class="breadcrumb">
+                <a href={localePath("/", locale)}>{ui.breadcrumbs.home} </a> / <a
+                  href={localePath("/blog", locale)}>{ui.breadcrumbs.blog}</a>
+              </div>
+              <div class="prose">
                 <div class="title">
-                    <div class="date">
-                        <FormattedDate date={pubDate} locale={locale} />
-                        {
-                            updatedDate && (
-                                <div class="last-updated-on">
-                                    {ui.blog.lastUpdatedOn} <FormattedDate date={updatedDate} locale={locale} />
-                                </div>
-                            )
-                        }
-                    </div>
-                    <h1>{title}</h1>
-                    <hr />
+                  <div class="date">
+                    <FormattedDate date={pubDate} locale={locale} />
+                    {
+                      updatedDate && (
+                        <div class="last-updated-on">
+                          {ui.blog.lastUpdatedOn}{" "}
+                          <FormattedDate date={updatedDate} locale={locale} />
+                        </div>
+                      )
+                    }
+                  </div>
+                  <h1>{title}</h1>
+                  <hr />
                 </div>
                 <slot />
-            </div>
-        </article>
+              </div>
+            </article>
           </div>
           <div class="four columns hide-on-mobile">
             <aside class="side-images">
@@ -76,8 +114,8 @@ const { title, description, pubDate, updatedDate, heroImage, url, locale = DEFAU
             </aside>
           </div>
         </div>
-    </div>
+      </div>
     </main>
     <Footer locale={locale} ui={ui} />
-</body>
+  </body>
 </html>

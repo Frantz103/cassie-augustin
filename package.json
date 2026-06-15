@@ -8,7 +8,6 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "prebuild": "node scripts/optimize-images.mjs",
     "optimize-images": "node scripts/optimize-images.mjs",
     "preview": "astro preview",
     "test": "npm run test:unit",

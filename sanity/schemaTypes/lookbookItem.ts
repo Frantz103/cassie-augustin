@@ -65,7 +65,12 @@ export default defineType({
         {
           type: 'image',
           fields: [
-            defineField({name: 'alt', type: 'string', title: 'Alt text'}),
+            defineField({
+              name: 'alt',
+              type: 'string',
+              title: 'Alt text',
+              validation: (rule) => rule.required().error('Alt text improves accessibility'),
+            }),
             defineField({name: 'caption', type: 'string', title: 'Caption'}),
           ],
           options: {hotspot: true},

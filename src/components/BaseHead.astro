@@ -30,106 +30,72 @@ const ogImageUrl = siteUrl
   ? `${siteUrl}/assets/img/Ludnie.jpg`
   : "/assets/img/Ludnie.jpg";
 const alternateLinks = getAlternateLinks(Astro.url.pathname, siteUrl);
-
-const personJsonLd = JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: ui.seo.siteTitle,
-  url: siteUrl || undefined,
-  image: ogImageUrl,
-  jobTitle: "Nutritionist",
-  description: metaDescription,
-  inLanguage: locale,
-  sameAs: ["https://www.instagram.com/cassie.augustin"],
-});
 ---
 
-<!doctype html>
-<html lang={locale}>
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, viewport-fit=cover"
-    />
-    <meta name="description" content={metaDescription} />
-    <meta name="author" content={ui.seo.siteTitle} />
+<meta charset="UTF-8" />
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1, viewport-fit=cover"
+/>
+<meta name="description" content={metaDescription} />
+<meta name="author" content={ui.seo.siteTitle} />
 
-    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+{canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
 
-    <!-- hreflang alternate links -->
-    {
-      alternateLinks.map(({ hreflang, href }) => (
-        <link rel="alternate" hreflang={hreflang} href={href} />
-      ))
-    }
+<!-- hreflang alternate links -->
+{
+  alternateLinks.map(({ hreflang, href }) => (
+    <link rel="alternate" hreflang={hreflang} href={href} />
+  ))
+}
+<link
+  rel="alternate"
+  hreflang="x-default"
+  href={`${siteUrl}${Astro.url.pathname.replace(/^\/(fr|ht)(\/|$)/, "/")}`}
+/>
+
+<!-- Open Graph / Social Media -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={metaDescription} />
+<meta property="og:image" content={ogImageUrl} />
+{canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+<meta property="og:locale" content={locale} />
+<meta
+  name="google-site-verification"
+  content="aULVjtuSRDv7GETE3xCgYPGdyXaP6FNkono6cHGYpV8"
+/>
+
+<link rel="icon" type="image/x-icon" href="/assets/favicon.png" />
+{
+  preloadImage && (
+    <link rel="preload" as="image" type="image/webp" href={preloadImage} />
+  )
+}
+<link rel="stylesheet" href="/normalize.css" />
+<link rel="stylesheet" href="/skeleton.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+/>
+<title>{title}</title>
+<script src="/assets/js/site-core.js" defer></script>
+
+<!-- Google tag (gtag.js) -->
+{
+  gaId && (
     <link
-      rel="alternate"
-      hreflang="x-default"
-      href={`${siteUrl}${Astro.url.pathname.replace(/^\/(fr|ht)(\/|$)/, "/")}`}
+      rel="preconnect"
+      href="https://www.googletagmanager.com"
+      crossorigin
     />
-
-    <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={metaDescription} />
-    <meta property="og:image" content={ogImageUrl} />
-    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
-    <meta property="og:locale" content={locale} />
-    <meta
-      name="google-site-verification"
-      content="aULVjtuSRDv7GETE3xCgYPGdyXaP6FNkono6cHGYpV8"
-    />
-
-    <!-- Structured Data -->
-    <script type="application/ld+json" set:html={personJsonLd} />
-
-    <link rel="icon" type="image/x-icon" href="/assets/favicon.png" />
-    {
-      preloadImage && (
-        <link rel="preload" as="image" type="image/webp" href={preloadImage} />
-      )
-    }
-    <link
-      rel="stylesheet"
-      href="/normalize.css"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript><link rel="stylesheet" href="/normalize.css" /></noscript>
-    <link
-      rel="stylesheet"
-      href="/skeleton.css"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript><link rel="stylesheet" href="/skeleton.css" /></noscript>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
-      media="print"
-      onload="this.media='all'"
-    />
-    <noscript
-      ><link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
-      /></noscript
-    >
-    <title>{title}</title>
-    <script src="/assets/js/site-core.js" defer></script>
-
-    <!-- Google tag (gtag.js) -->
-    {
-      gaId && (
-        <script
-          async
-          src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
-        />
-      )
-    }
-    {gaId && <script src="/assets/js/analytics-init.js" defer />}
-  </head>
-</html>
+  )
+}
+{
+  gaId && (
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`} />
+  )
+}
+{gaId && <script src="/assets/js/analytics-init.js" defer />}
