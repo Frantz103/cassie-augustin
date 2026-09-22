@@ -24,11 +24,12 @@ This website showcases Cassie's work as a nutritionist passionate about women's 
 ## Tech Stack
 
 - **Framework:** Astro 5.14.4
+- **CMS:** Sanity.io - Headless CMS for content management
 - **Styling:** Skeleton CSS + Custom CSS with optimized typography
 - **Interactions:** MicroModal for modal dialogs
 - **Testing:** Cypress for E2E testing
 - **Deployment:** Netlify with continuous deployment
-- **Content:** Markdown-based blog posts with content collections
+- **Content:** Markdown-based blog posts + Sanity CMS
 - **Analytics:** Google Analytics integration
 
 ## Quick Start
@@ -156,17 +157,42 @@ The color scheme features warm tones with `#FFF0E1` (off-white/peach) as the pri
 
 ## Available Commands
 
-| Command           | Action                                       |
-| :---------------- | :------------------------------------------- |
-| `npm install`     | Installs dependencies                        |
-| `npm run dev`     | Starts local dev server at `localhost:4321`  |
-| `npm run start`   | Alias for `npm run dev`                      |
-| `npm run build`   | Build your production site to `./dist/`      |
-| `npm run preview` | Preview your build locally, before deploying |
+| Command              | Action                                       |
+| :------------------- | :------------------------------------------- |
+| `npm install`        | Installs dependencies                        |
+| `npm run dev`        | Starts local dev server at `localhost:4321`  |
+| `npm run start`      | Alias for `npm run dev`                      |
+| `npm run build`      | Build your production site to `./dist/`      |
+| `npm run preview`    | Preview your build locally, before deploying |
+| `npm run sanity`     | Start Sanity Studio at `localhost:3333`      |
+| `npm run sanity:deploy` | Deploy Sanity Studio to the cloud         |
 
 ## Content Management
 
-### Adding Blog Posts
+### Sanity CMS (Recommended)
+
+This project now includes **Sanity.io** - a powerful, user-friendly headless CMS!
+
+**Quick Start with Sanity:**
+1. Read `QUICKSTART.md` for 5-minute setup
+2. Initialize: `cd sanity && npx sanity init`
+3. Start Studio: `npm run sanity`
+4. Create content at `http://localhost:3333`
+
+**Documentation:**
+- **QUICKSTART.md** - Get started in 5 minutes
+- **SANITY_SETUP.md** - Complete setup guide
+- **SANITY_QUERIES.md** - Query examples and patterns
+- **IMPLEMENTATION_SUMMARY.md** - What's been integrated
+
+**Features:**
+- Beautiful, intuitive editor for non-technical users
+- Rich text editing with images
+- Portfolio/lookbook image management
+- Access from anywhere (after deployment)
+- Free tier with generous limits
+
+### Adding Blog Posts (Legacy Markdown)
 
 1. Create a new `.md` file in `src/content/blog/`
 2. Add frontmatter with required fields:
@@ -203,25 +229,31 @@ This project includes:
 
 ## Recent Updates (2025)
 
-- ✅ Updated Astro from 4.5.3 to 5.14.4
-- ✅ **Redesigned Lookbook** - Complete high-end editorial makeover with:
+- **NEW: Sanity CMS Integration** - Professional content management system
+  - Easy-to-use editor for blog posts and portfolio images
+  - No coding required for content updates
+  - Rich text editing with image support
+  - Mobile-friendly admin panel
+- Updated Astro from 4.5.3 to 5.14.4
+- **Redesigned Lookbook** - Complete high-end editorial makeover with:
   - Minimalist, fashion-forward layout inspired by Vogue/Harper's Bazaar
   - Dynamic asymmetric grid (featured, half, third, 2/3-1/3 layouts)
   - Elegant hero section with vintage typography
   - Subtle hover interactions and smooth transitions
   - Removed lookbook modal in favor of dedicated page
-- ✅ Improved typography and readability across the site
-- ✅ Enhanced SEO with meta tags and Open Graph integration
-- ✅ Updated homepage CTA from pageant voting to "Let's Connect"
-- ✅ Refreshed contact modal with Instagram and email links
-- ✅ Streamlined navigation (removed outdated pageant references)
-- ✅ Added focus states for better accessibility
-- ✅ Optimized line heights and font sizes for comfortable reading
+- Improved typography and readability across the site
+- Enhanced SEO with meta tags and Open Graph integration
+- Updated homepage CTA from pageant voting to "Let's Connect"
+- Refreshed contact modal with Instagram and email links
+- Streamlined navigation (removed outdated pageant references)
+- Added focus states for better accessibility
+- Optimized line heights and font sizes for comfortable reading
 
 ## Dependencies
 
 ### Current Versions
 - Astro: 5.14.4
+- Sanity: Latest (CMS integration)
 - @astrojs/react: 3.0.10
 - MicroModal: 0.4.10
 - Cypress: 13.6.6
