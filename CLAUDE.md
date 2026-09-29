@@ -1,11 +1,7 @@
 # CLAUDE.md - cassie-augustin
 
-## 🚨 CRITICAL INSTRUCTION
-This project uses the **Concept-Driven Agent Architecture (CDAA)**.
-Before doing ANYTHING, you MUST read the protocols in the `WYSIWID/` directory.
+## Coding Style
 
-1. **Read Memory**: `WYSIWID/context.yaml`
-2. **Read Rules**: `WYSIWID/CODING-PHILOSOPHY.md`
-3. **Plan**: `WYSIWID/pseudocode_reasoning_system.yaml`
+**Tier 2: Coding Style (Production)** — See `~/Developer/ai-coding-styles/CODING_STYLE.md` for full principles.
 
-Refer to `WYSIWID/README.md` for full documentation.
+Spec-first, module isolation, citation traceability, Plan/Apply for destructive ops, append-only logs, test by absence.
