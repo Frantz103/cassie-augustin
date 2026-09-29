@@ -349,10 +349,7 @@ def search_context7(query):
     req = urllib.request.Request(url)
     req.add_header("Authorization", f"Bearer {api_key}")
 
-    # Bypass SSL verification for macOS Python issues
     ctx = ssl.create_default_context()
-    ctx.check_hostname = False
-    ctx.verify_mode = ssl.CERT_NONE
 
     print(f"🔍 Searching Context7 for: {query}...")
     try:
