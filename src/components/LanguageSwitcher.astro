@@ -1,29 +1,36 @@
 ---
-import { LOCALES, LOCALE_CODES, type Locale } from '../i18n/config';
-import { getLocale, stripLocalePrefix, localePath } from '../i18n/utils';
+import { LOCALES, LOCALE_CODES, type Locale } from "../i18n/config";
+import { getLocale, stripLocalePrefix, localePath } from "../i18n/utils";
 
 const locale = getLocale(Astro) as Locale;
 const barePath = stripLocalePrefix(Astro.url.pathname);
 ---
 
 <nav class="language-switcher" aria-label="Language">
-  {LOCALE_CODES.map((code) => (
-    <a
-      href={localePath(barePath, code)}
-      class:list={['lang-link', { active: code === locale }]}
-      aria-current={code === locale ? 'page' : undefined}
-      hreflang={LOCALES[code].hreflang}
-    >
-      {LOCALES[code].label}
-    </a>
-  ))}
+  {
+    LOCALE_CODES.map((code) => (
+      <a
+        href={localePath(barePath, code)}
+        class:list={["lang-link", { active: code === locale }]}
+        aria-current={code === locale ? "page" : undefined}
+        hreflang={LOCALES[code].hreflang}
+      >
+        {LOCALES[code].label}
+      </a>
+    ))
+  }
 </nav>
 
 <style>
+  /* Reset the global header `nav` rules (height, background, indent) */
   .language-switcher {
     display: flex;
     gap: 0.5rem;
     align-items: center;
+    justify-content: center;
+    height: auto;
+    margin-left: 0;
+    background: none;
   }
   .lang-link {
     font-size: 0.75rem;

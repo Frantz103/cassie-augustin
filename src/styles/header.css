@@ -1,6 +1,8 @@
 /* Header & Navigation */
 
-header, nav, .brand {
+header,
+nav,
+.brand {
   height: 78px;
 }
 
@@ -12,7 +14,8 @@ header, nav, .brand {
     z-index: var(--z-mobile-header);
   }
 
-  header, nav {
+  header,
+  nav {
     height: 60px;
   }
 
@@ -43,7 +46,9 @@ header, nav, .brand {
     align-items: center;
   }
 
-  header, nav, .brand {
+  header,
+  nav,
+  .brand {
     background-color: var(--pastel-pink);
   }
 
@@ -116,6 +121,11 @@ header, nav, .brand {
   cursor: pointer;
   font: inherit;
   color: inherit;
+}
+
+.menu:hover,
+.btn-close:hover {
+  background: none;
 }
 
 .close-icon {
