@@ -1,0 +1,25 @@
+project_context:
+  name: cassie-augustin
+  description: Brief description of the project
+  stack:
+  - 'Language: TypeScript/Python'
+  - 'Framework: React/FastAPI'
+  - 'Database: SQLite/Postgres'
+  - 'Architecture: WYSIWID (Concept-Driven)'
+entities:
+- name: User
+  definition: A registered member of the platform.
+- name: Concept
+  definition: A self-contained unit of functionality.
+decisions:
+- id: DEC-000
+  topic: Architecture Pattern
+  outcome: WYSIWID (What You See Is What It Does)
+  reason: To ensure refactoring safety and code isolation for AI agents.
+  status: ACTIVE
+active_state:
+  current_focus: Setting up the agent architecture
+  open_files: []
+  active_tasks:
+  - Initialize project structure
+  last_error: null
