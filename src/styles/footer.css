@@ -17,13 +17,17 @@ footer {
 
 /* Mobile footer menu */
 @media (max-width: 768px) {
+  .footer-menu {
+    height: 100%;
+  }
+
   .footer-menu ul {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: nowrap;
     gap: 1.25rem;
-    line-height: 85px;
+    height: 100%;
     margin: 0 1rem;
   }
 
@@ -55,7 +59,6 @@ footer {
     font-size: var(--text-md);
     font-weight: 400;
     overflow-wrap: break-word;
-    line-height: 85px;
   }
 
   footer li:last-child {
@@ -70,6 +73,8 @@ footer {
 
   .footer-desktop {
     flex: 1;
+    height: 100%;
+    margin-bottom: 0;
   }
 
   .footer-lang-switcher {

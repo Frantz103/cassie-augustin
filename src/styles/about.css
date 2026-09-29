@@ -23,6 +23,7 @@
 .about-img {
   width: 100%;
   max-width: 420px;
+  height: auto;
   box-shadow: var(--shadow-sm);
   object-fit: cover;
 }

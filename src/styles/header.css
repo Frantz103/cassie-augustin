@@ -9,7 +9,7 @@ nav,
 /* Mobile header */
 @media (max-width: 768px) {
   header {
-    background-color: var(--overlay-medium);
+    background-color: var(--pastel-pink);
     height: auto;
     z-index: var(--z-mobile-header);
   }
@@ -23,8 +23,14 @@ nav,
     margin: 0 1rem;
   }
 
+  /* The brand only holds the desktop logo; its 78px height pushed the menu below the bar */
+  header .brand {
+    display: none;
+  }
+
   .menu {
     float: right;
+    margin-top: 0.25rem;
     z-index: var(--z-mobile-menu-btn);
     position: relative;
     background: none;
@@ -35,6 +41,7 @@ nav,
 
   img.menu-icon.mobile {
     width: 4.1875rem;
+    filter: brightness(0);
   }
 }
 
