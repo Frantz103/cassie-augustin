@@ -61,5 +61,18 @@ footer {
   footer li:last-child {
     margin-right: 2rem;
   }
-}
 
+  .footer-menu.hide-on-mobile {
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  .footer-desktop {
+    flex: 1;
+  }
+
+  .footer-lang-switcher {
+    margin-right: 2rem;
+  }
+}
