@@ -16,6 +16,27 @@
 }
 
 @media (max-width: 768px) {
+  /* Header overlays the hero photo on the homepage */
+  body > header {
+    background-color: var(--overlay-medium);
+  }
+
+  /* Keep the footer at the bottom of the screen, not mid-photo */
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  body > footer {
+    margin-top: auto;
+  }
+
+  .menu img.menu-icon.mobile {
+    filter: none;
+  }
+
   .cta-button {
     padding: 0.75rem 1.5rem;
     margin-top: 1rem;

@@ -89,6 +89,8 @@
 .contact-form .cta-button {
   width: auto;
   max-width: none;
+  height: auto;
+  line-height: 1.2;
   padding: 0.75rem 2.5rem;
   margin-top: 0.5rem;
   font-size: var(--text-base-sm);
@@ -117,6 +119,7 @@
   }
 
   .contact-form-col {
+    max-width: 560px;
     padding-top: 0.25rem;
   }
 }
