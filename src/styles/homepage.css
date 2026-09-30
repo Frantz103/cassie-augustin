@@ -21,18 +21,6 @@
     background-color: var(--overlay-medium);
   }
 
-  /* Keep the footer at the bottom of the screen, not mid-photo */
-  body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    min-height: 100dvh;
-  }
-
-  body > footer {
-    margin-top: auto;
-  }
-
   .menu img.menu-icon.mobile {
     filter: none;
   }
