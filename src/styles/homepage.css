@@ -58,6 +58,16 @@
     padding-right: 2rem;
   }
 
+  /* Anchor the hero photo + tint to the page, and keep the footer above the tint */
+  body {
+    position: relative;
+  }
+
+  body > footer {
+    position: relative;
+    z-index: var(--z-content);
+  }
+
   body::before {
     content: "";
     position: absolute;
