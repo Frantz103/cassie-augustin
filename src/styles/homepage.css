@@ -168,11 +168,34 @@
     display: block;
   }
 
+  /* Thin rule with a diamond at each end (replaces the stretched bar.png) */
   .vertical-bar {
+    position: relative;
     display: block;
+    width: 1px;
     height: 100vh;
     max-height: 32rem;
     margin-top: 1rem;
+    background: var(--black);
+  }
+
+  .vertical-bar::before,
+  .vertical-bar::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 7px;
+    height: 7px;
+    background: var(--black);
+    transform: translateX(-50%) scaleY(1.7) rotate(45deg);
+  }
+
+  .vertical-bar::before {
+    top: -4px;
+  }
+
+  .vertical-bar::after {
+    bottom: -4px;
   }
 }
 
