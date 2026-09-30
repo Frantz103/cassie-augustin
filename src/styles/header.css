@@ -166,6 +166,7 @@ nav,
   display: inline;
   padding-right: 0;
   font-size: var(--text-base);
+  white-space: nowrap;
 }
 
 #navigation-links .menu-footer {

@@ -170,6 +170,20 @@ h3 {
   letter-spacing: 0.5px;
 }
 
+/* Mobile: short pages keep the footer at the bottom of the screen */
+@media (max-width: 768px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  body > footer {
+    margin-top: auto;
+  }
+}
+
 /* Visibility */
 .hide-on-mobile {
   display: none;
