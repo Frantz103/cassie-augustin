@@ -1,5 +1,6 @@
 import {defineField, defineType} from 'sanity'
 import {languageField} from './fields/languageField'
+import {isUniquePerLanguage} from './fields/isUniquePerLanguage'
 
 export default defineType({
   name: 'page',
@@ -19,7 +20,7 @@ export default defineType({
       type: 'slug',
       title: 'URL Slug',
       description: 'The URL path for this page (e.g., "privacy-policy" becomes /privacy-policy)',
-      options: {source: 'title', maxLength: 96},
+      options: {source: 'title', maxLength: 96, isUnique: isUniquePerLanguage},
       validation: (rule) =>
         rule.required().custom((slug) => {
           const reserved = ['blog', 'lookbook', 'index']
