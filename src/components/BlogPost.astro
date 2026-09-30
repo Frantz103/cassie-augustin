@@ -35,7 +35,12 @@ const {
 <!doctype html>
 <html lang={locale}>
   <head>
-    <BaseHead title={ui.blog.pageTitle} locale={locale} ui={ui} />
+    <BaseHead
+      title={`${title} - ${ui.seo.siteTitle}`}
+      description={description}
+      locale={locale}
+      ui={ui}
+    />
   </head>
   <body>
     <div class="overlay" id="overlay"></div>
@@ -84,7 +89,8 @@ const {
             <article>
               <div class="breadcrumb">
                 <a href={localePath("/", locale)}>{ui.breadcrumbs.home} </a> / <a
-                  href={localePath("/blog", locale)}>{ui.breadcrumbs.blog}</a>
+                  href={localePath("/blog", locale)}>{ui.breadcrumbs.blog}</a
+                >
               </div>
               <div class="prose">
                 <div class="title">
