@@ -1,52 +1,173 @@
 ---
 import { LOCALES, LOCALE_CODES, type Locale } from "../i18n/config";
 import { getLocale, stripLocalePrefix, localePath } from "../i18n/utils";
+import { FALLBACK_EN } from "../i18n/fallbacks";
+import type { UIStrings } from "../i18n/types";
 
+interface Props {
+  /** Where the panel opens relative to the button. Footer opens up. */
+  direction?: "up" | "down";
+  ui?: UIStrings;
+}
+
+const { direction = "down", ui = FALLBACK_EN } = Astro.props;
 const locale = getLocale(Astro) as Locale;
 const barePath = stripLocalePrefix(Astro.url.pathname);
 ---
 
-<nav class="language-switcher" aria-label="Language">
-  {
-    LOCALE_CODES.map((code) => (
-      <a
-        href={localePath(barePath, code)}
-        class:list={["lang-link", { active: code === locale }]}
-        aria-current={code === locale ? "page" : undefined}
-        hreflang={LOCALES[code].hreflang}
-      >
-        {LOCALES[code].label}
-      </a>
-    ))
-  }
-</nav>
+<details class:list={["language-switcher", `opens-${direction}`]}>
+  <summary aria-label={ui.languageSwitcher.label}>
+    <svg
+      class="globe"
+      viewBox="0 0 24 24"
+      width="16"
+      height="16"
+      aria-hidden="true"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+    >
+      <circle cx="12" cy="12" r="9"></circle>
+      <path d="M3 12h18M12 3c2.8 3 2.8 15 0 18M12 3c-2.8 3-2.8 15 0 18"></path>
+    </svg>
+    <span class="current">{LOCALES[locale].label}</span>
+    <svg
+      class="chevron"
+      viewBox="0 0 24 24"
+      width="12"
+      height="12"
+      aria-hidden="true"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <path d="M6 9l6 6 6-6"></path>
+    </svg>
+  </summary>
+  <ul class="lang-list" aria-label={ui.languageSwitcher.label}>
+    {
+      LOCALE_CODES.map((code) => (
+        <li>
+          <a
+            href={localePath(barePath, code)}
+            class:list={["lang-link", { active: code === locale }]}
+            aria-current={code === locale ? "page" : undefined}
+            hreflang={LOCALES[code].hreflang}
+            lang={LOCALES[code].hreflang}
+          >
+            <span class="check" aria-hidden="true">
+              {code === locale ? "✓" : ""}
+            </span>
+            {LOCALES[code].label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</details>
 
 <style>
-  /* Reset the global header `nav` rules (height, background, indent) */
   .language-switcher {
-    display: flex;
-    gap: 0.5rem;
+    position: relative;
+    display: inline-block;
+    font-family: var(--font-body);
+  }
+
+  summary {
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    height: auto;
-    margin-left: 0;
-    background: none;
-  }
-  .lang-link {
-    font-size: 0.75rem;
+    gap: 0.4rem;
+    padding: 0.4rem 0.75rem;
+    border: 1px solid var(--black);
+    border-radius: 999px;
+    font-size: var(--text-sm);
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    text-decoration: none;
-    padding: 0.2rem 0.4rem;
-    border-radius: 2px;
-    transition: opacity 0.2s;
+    color: var(--black);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+    transition:
+      background-color var(--transition-fast),
+      color var(--transition-fast);
   }
-  .lang-link:hover {
-    opacity: 0.7;
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  summary:hover,
+  .language-switcher[open] > summary {
+    background: var(--black);
+    color: var(--white);
+  }
+  summary:focus-visible {
+    outline: 2px solid var(--black);
+    outline-offset: 2px;
+  }
+
+  .chevron {
+    transition: transform var(--transition-fast);
+  }
+  .language-switcher[open] .chevron {
+    transform: rotate(180deg);
+  }
+
+  /* `.language-switcher` prefix outranks the menu panel's ul/li rules */
+  .language-switcher .lang-list {
+    display: block;
+    position: absolute;
+    right: 0;
+    min-width: 11rem;
+    margin: 0;
+    padding: 0.35rem;
+    list-style: none;
+    background: var(--white);
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-lg);
+    z-index: var(--z-footer);
+  }
+  .opens-up .lang-list {
+    bottom: calc(100% + 0.5rem);
+  }
+  .opens-down .lang-list {
+    top: calc(100% + 0.5rem);
+  }
+  .language-switcher .lang-list li {
+    display: block;
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+  }
+
+  .lang-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 0.75rem;
+    border-radius: var(--radius-sm);
+    font-size: var(--text-base);
+    color: var(--black);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .lang-link:hover,
+  .lang-link:focus-visible {
+    background: var(--off-white);
+    outline: none;
   }
   .lang-link.active {
     font-weight: 700;
-    text-decoration: underline;
-    text-underline-offset: 3px;
+  }
+  .check {
+    display: inline-block;
+    width: 1rem;
+    text-align: center;
+  }
+
+  /* Inside the menu panel the panel should line up with the centred content */
+  .opens-down .lang-list {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
   }
 </style>
