@@ -170,6 +170,11 @@ nav,
 
 #navigation-links .menu-footer {
   margin-top: 1.25rem;
+  text-align: center;
+}
+
+#navigation-links .menu-footer ul {
+  margin-top: 1.25rem;
 }
 
 #navigation-links .menu-footer > p {
